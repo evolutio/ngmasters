@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AngularJS</title>
+<link rel="stylesheet" href="../css/bootstrap.css">
+<script type="text/javascript">
+
+///////////////////
+
+v1 = 'Hello World';
+var v2 = 2;
+
+function f(){
+  v3 = true;
+  var v4 = v2+2;
+}
+
+f();
+
+</script>
+</head>
+<body>
+<div class="container" style="margin: 15px;">
+  <h1>Variaveis</h1>
+
+  <div>
+
+    <h3 style="margin-top: 30px;">
+      * Sempre existe um objeto chamado window</h3>
+    <button onclick="alert(window)">alert(window)</button>
+
+    <h3 style="margin-top: 30px;">
+      * Esse objeto representa a janela do browser.
+    <br> Por exemplo, ele sabe dar scroll:</h3>
+    <button onclick="window.scrollTo(0,1000)">window.scrollTo(0,1000)</button>
+
+    <h3 style="margin-top: 30px;">
+      * Sem o "var", variáveis vão parar nesse objeto window</h3>
+    <button onclick="alert(window.v1)">alert(window.v1)</button>
+
+    <h3 style="margin-top: 30px;">
+      * Coisas que estão no window, são chamadas de globais.
+      <br> Se é global, não precisa do "window."</h3>
+    <button onclick="alert(v1)">alert(v1)</button>
+
+    <h3 style="margin-top: 30px;">
+      * alert é uma função global</h3>
+    <button onclick="window.alert(v1)">window.alert(v1)</button>
+
+    <h3 style="margin-top: 30px;">
+      * Se definida fora de uma função, a variável é global
+      <br> Mesmo usando "var" </h3>
+    <button onclick="alert(v2)">alert(v2)</button>
+
+    <h3 style="margin-top: 30px;">
+      * Sem "var", a variável é global
+      <br> Mesmo definida dentro de uma função. </h3>
+    <button onclick="alert(v3)">alert(v3)</button>
+
+    <h3 style="margin-top: 30px;">
+      * Quando uma variável não é global,
+      <br> ela é local. </h3>
+    <button onclick="alert(window.v4)">alert(window.v4)</button>
+
+
+    <h3 style="margin-top: 30px;">
+      * Ei, vc já viu a toolbar do chrome?
+      <br> É uma mão na roda!</h3>
+    <ul>
+      <li>Console</li>
+      <li>Debug</li>
+      <li>Elements</li>
+      <li>Network</li>
+    </ul>
+
+    <h3 style="margin-top: 30px;">
+      * EVITE criar coisas globais
+      <br> (mais sobre isso depois)</h3>
+
+    <h3 style="margin-top: 30px;">
+      * "undefined" é uma variável global retornada sempre
+      <br> que vc tenta acessar um campo inexistente de um objeto</h3>
+    <button onclick="alert(window.v4)">alert(window.v4)</button>
+
+    <h3 style="margin-top: 30px;">
+      * E isso é diferente de usar uma variável que _não existe_
+      <br> (Olha o console aí...)</h3>
+    <button onclick="alert(v4)">alert(v4)</button>
+  </div>
+
+  <h3 style="margin-top: 30px;">Manjei, PRÓXIMO!</h3>
+  <ul>
+    <li><a href="003-funcoes.html">Funções</a></li>
+  </ul>
+</div>
+
+</body>
+</html>
