@@ -6,6 +6,11 @@
 <link rel="stylesheet" href="../css/bootstrap.css">
 <script type="text/javascript">
 
+var pessoas = [
+  {nome: 'Tony', idade: 31, gente_boa: true},
+  {nome: 'Félixdanovela', idade: 40, gente_boa: false}
+]
+
 </script>
 </head>
 <body>
@@ -16,15 +21,39 @@
 
     <h3 style="margin-top: 30px;">
       * O que é JSON</h3>
-
-    <h3 style="margin-top: 30px;">
-      * JSON.parse</h3>
+    <div class="alert alert-info">
+      Um formato para serialização de objetos,
+      que por acaso é javascript válido.
+    </div>
 
     <h3 style="margin-top: 30px;">
       * JSON.stringify</h3>
+      <button onclick="console.log(JSON.stringify(pessoas))">JSON.stringify(pessoas)</button>
+
+    <h3 style="margin-top: 30px;">
+      * stringify bonitinho</h3>
+      <button onclick="console.log(JSON.stringify(pessoas, null, 4))">JSON.stringify(pessoas, null, 4)</button>
+
+    <h3 style="margin-top: 30px;">
+      * JSON.parse</h3>
+    <ul>
+      <li>Sem aspas nos atributos não é JSON válido!</li>
+    </ul>
 
     <h3 style="margin-top: 30px;">
       * Backends que retornam JSON</h3>
+      <ul>
+        <li>
+          <a href="http://freedomsponsors.org">FreedomSponsors</a>: 
+          <a href="http://freedomsponsors.org/core/json/list_issue_cards?sponsoring=true&offset=10&count=5">Olha o JSON</a> 
+        </li>
+        <li>
+          <a href="https://api.github.com/repos/freedomsponsors/www.freedomsponsors.org/issues">Github</a>
+        </li>
+        <li>
+          etc, etc
+        </li>
+      </ul>
 
   <h3 style="margin-top: 30px;">Beleza, PRÓXIMO!</h3>
   <ul>
