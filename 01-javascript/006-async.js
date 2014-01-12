@@ -22,7 +22,7 @@ function ei_ei_ei(){
 }
 
 function chega(){
-	console.log('Pára de encher!')
+	console.log('Pára de encher!');
 	clearInterval(timer);
 }
 
