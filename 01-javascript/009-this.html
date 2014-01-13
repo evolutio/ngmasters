@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AngularJS</title>
+<link rel="stylesheet" href="../css/bootstrap.css">
+<script src="009-this.js"></script>
+</head>
+<body>
+<div class="container" style="margin: 15px;">
+  <h1>This</h1>
+
+  <div>
+
+    <h3 style="margin-top: 30px;">
+      * This... é isso?</h3>
+    <div class="alert alert-info">
+      :-)<br><br>
+      Toda função tem acesso a uma variável "this", que nada mais é do que o objeto que chamou a função.<br>
+      Dentro da execução de <pre>aviao.voa()</pre>, o this, dentro do método "voa()" aponta pra variável "aviao".<br>
+      Simples né...<br>
+      Mas muita gente boa se perde nessa hora!
+
+    </div>
+
+
+    <h3 style="margin-top: 30px;">
+      * Exemplinho 1</h3>
+    <div class="highlight"><pre>
+      function quem_eh_this(){ console.log(this); }
+      quem_eh_this();
+
+      aviao = {}
+      aviao.voa = quem_eh_this;
+      aviao.voa();
+
+      //Conclusão importante:
+      //Dependendo do contexto que uma função é usada, o this pode mudar!!!
+    </pre></div>
+
+    <h3 style="margin-top: 30px;">
+      * Vamos ver um exemplo mais concreto...</h3>
+    <button onclick="o.alertnow()">o.alertnow()</button> /
+    <button onclick="o.alertlater()">o.alertlater()</button>
+
+    <h3 style="margin-top: 30px;">
+      * Manjou o problema?</h3>
+    <div class="alert alert-info">
+      Especialistas criticam a linguagem por causa desse comportamento. Com uma certa razão na minha opinião.<br>
+      Agora, Lembra daquela técnica pra logar erros javascript no servidor, sem repetição?<br>
+      Vamos fazer isso de outro jeito...
+    </div>
+
+    <button onclick="set_onerror1()">set_onerror1()</button> /
+    <button onclick="dapau()">dapau()</button>
+
+    <div class="alert alert-info">
+      Viu o tamanho da zona??<br>
+      Um jeito de resolver é assim:
+    </div>
+
+    <button onclick="set_onerror2()">set_onerror2()</button> /
+    <button onclick="dapau()">dapau()</button>
+
+    <div class="alert alert-info">
+      Moral da história:<br>
+      CUIDADO com o this. Ele pode não ser quem vc pensa!
+    </div>
+
+
+  <h3 style="margin-top: 30px;">Então eu não posso confiar nem no this? Que triste isso! :'(</h3>
+  <ul>
+    <li>É uma má notícia, eu sei... <br>
+      mas <a href="/02-jquery/001.html">vamos falar de JQuery</a> pra gente esquecer desse detalhe...</li>
+  </ul>
+</div>
+
+</body>
+</html>
