@@ -54,3 +54,27 @@ function cc(){
 	conta1.print_all();
 	conta2.print_all();
 }
+
+//Outro exemplo
+//Um error logger que não loga o mesmo erro duas vezes:
+
+window.onerror = function(){
+
+	function ajax_faz_de_conta(msg, url, lineNumber){
+		console.log('Enviando erro pro servidor: '+url+':'+lineNumber+' - '+msg);
+	}
+
+	var ja_loguei = {};
+	return function(msg, url, lineNumber){
+		console.log('peguei o erro');
+		if(!ja_loguei[msg]){
+			ajax_faz_de_conta(msg, url, lineNumber);
+			ja_loguei[msg] = true;
+		}
+	}
+}();
+
+function dapau(){
+	var x = undefined;
+	x.do_somenthing();
+}
