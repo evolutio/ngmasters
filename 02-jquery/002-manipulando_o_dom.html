@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AngularJS</title>
+<link rel="stylesheet" href="../css/bootstrap.css">
+<link rel="stylesheet" href="002-manipulando_o_dom.css">
+<script src="../lib/jquery-1.10.2.min.js"></script>
+</head>
+<body>
+<div class="container" style="margin: 15px;">
+  <h1>Manipulando o DOM com JQuery</h1>
+
+  <div>
+
+    <h3 style="margin-top: 30px;">
+      DOM??</h3>
+    <div class="alert alert-info" id="explicadom">
+      Document Object Model. É a estrutura HTML da página.
+    </div>
+
+    <div class="highlight"><pre>
+    	document;
+    	document.children;
+    	document.children[0];
+    	document.children[0].children; //...
+    	document.getElementById('explicadom')
+    	document.getElementById('explicadom').innerText
+    </pre></div>
+
+    <h3 style="margin-top: 30px;">
+      jQuery = $</h3>
+    <div class="alert alert-info">
+      O jquery cria uma variável global chamada $.<br>
+      Esse $ sabe fazer muita coisa.
+    </div>
+
+    <div class="highlight"><pre>
+    	$ //$ eh uma função
+    	$() //que retorna um array... (por quê? - Jajá a gente volta aqui)
+    	
+    	//$ tem atributos (que sao outras funcoes)
+    	$.get //AJAX
+    	$.put //AJAX
+    	
+    	$.forEach //loop
+    	var arrayzinho = ['um', 'dois', 'tres'];
+    	$.forEach(arrayzinho, function(e){
+    		console.log(e);
+	    });
+    </pre></div>
+
+    <h3 style="margin-top: 30px;">
+      Seleção e Manipulação</h3>
+    <div class="alert alert-info">
+      A função $ serve pra selecionar partes do DOM.<br>
+      Uma vez selecionadas, elas podem ser manipuladas.
+    </div>
+	<div class="vovo">
+		Vovô
+	    <div class="papai">
+	    	Papai
+	        <div class="filho" id="zequinha">
+	        	Filho
+	            <span class="neto">Neto</span>
+	        </div>
+	    </div>
+	    <div class="titio joao"></div>
+	    <div class="titio jose"></div>
+	</div>
+
+    <div class="highlight"><pre>
+    	//selecionando via seletores CSS...
+    	$('.vovo')
+    	$('.titio')
+    	$('#zequinha')
+
+    	//Manipulando
+    	$('.titio').text() //pega o conteudo como texto
+    	$('.titio').text('Tioooo!') //seta o conteudo como texto
+    	$('.titio').html() //pega o conteudo como html
+    	$('.titio').html('olha o &lt;strong&gt;negrito&lt;/strong&gt;!') //seta html
+    	$('.titio').addClass('redback'); //adiciona classe css
+    	$('.titio').css('width', '40px'); //modifica atributo css
+    	$('.titio').attr('boi', 'lambeu'); //modifica atributo do elemento
+    	$('.titio').removeClass('redback'); //remove classe css
+    </pre></div>
+
+    <h3 style="margin-top: 30px;">
+      Conclusão</h3>
+    <div class="alert alert-info">
+      JQuery é legal, mão na roda. A vida antes do JQuery era bem mais difícil.<br>
+      Manipulando DOM com JQuery, e fazendo chamadas AJAX,<br>
+      é possível construir aplicações ricas que mudam o <br>
+      estado da tela sem dar refresh no browser.<br><br>
+      Possível != fácil :P
+    </div>
+
+  <h3 style="margin-top: 30px;">Tá muito teórico isso. Dá um exemplo mais prático pelamordedeus...</h3>
+  <ul>
+    <li><a href="003-todo.html">Yessir. Exemplo: todo-list</a></li>
+  </ul>
+</div>
+
+</body>
+</html>
+
+
+
+
+
