@@ -15,8 +15,9 @@ function n_alerts(){
 		alert(x);
 	}
 	for(i in arguments){
-		alert(arguments[i]);
+		alertaiiii(arguments[i]);
 	}
+	return alertaiiii;
 }
 
 var f1 = function(x, y){
