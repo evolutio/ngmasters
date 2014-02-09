@@ -1,0 +1,17 @@
+.todotable {
+	max-width: 500px;
+}
+
+
+.tododone {
+	text-decoration: line-through;
+	color: #999;
+}
+
+.todocheck {
+	width: 15px;
+}
+
+.todoremove {
+	width: 15px;
+}
