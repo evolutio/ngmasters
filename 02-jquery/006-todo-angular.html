@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AngularJS</title>
+<link rel="stylesheet" href="../css/bootstrap.css">
+<link rel="stylesheet" href="003-todo.css">
+<script src="../lib/jquery-1.10.2.min.js"></script>
+<script src="../lib/angular.min.js"></script>
+<script>
+  function MyCtrl($scope, $http){
+    function loadTodos(){
+      $http.get('/02-jquery/todos.json').success(function(todos){
+        $scope.todos = todos;
+      });
+    }
+
+    $scope.remove = function(index){
+      $scope.todos.splice(index, 1);
+    }
+
+    loadTodos();
+
+    $scope.newtask_keyup = function(evt){
+      if(evt.keyCode == 13){
+        var todo = {
+          id: 123,
+          todo: $scope.newtask,
+          done: false
+        };
+        $scope.todos.push(todo);
+        $scope.newtask = '';
+      }
+    }
+  }
+</script>
+</head>
+<body>
+<div class="container" style="margin: 15px;" ng-app ng-controller="MyCtrl">
+  <h1>TODO list - com JQuery</h1>
+
+  <div>
+    <div>
+      <label>Nova tarefa:</label>
+      <input type="text" ng-model="newtask" ng-keyup="newtask_keyup($event)">
+    </div>
+    <table class="table table-striped table-bordered todotable">
+      <tr ng-repeat="todo in todos">
+        <td class="todocheck"><input type="checkbox" ng-model="todo.done"></td>
+        <td ng-class="{tododone: todo.done}">{{todo.todo}}</td>
+        <td class="todoremove"><a href ng-click="remove($index)"><i class="icon-trash"></i></a></td>
+      </tr>
+    </table>
+  </div>
+
+  <h3 style="margin-top: 30px;">Entendi, gostei desse JQuery...</h3>
+  <ul>
+    <li><a href="005-todo-problemas.html">Gostou é? Vamos refletir um pouco sobre esse código...</a></li>
+  </ul>
+</div>
+
+</body>
+</html>
+
+
+
+
+
