@@ -8,12 +8,13 @@ Instruções:
 
 É mais rápido que fazer um miojo.
 
-Tópicos:
+# Tópicos:
 
-## 01 - Javascript
+## 01 - Javascript pra gente grande
 
 * Variáveis
 * Arrays e objetos
+* Wat?
 * json
 * Funções
 * Programação assíncrona
@@ -31,75 +32,67 @@ Tópicos:
 
 * Hello world
 * Binding
+* {[{ Client }]} x {{ server }}
 * ng-model
 * ng-class, ng-show, ng-hide, ng-if
-* O controller
+* O Controller
 * ng-click
 * ng-repeat, ng-filter
 * ng-include
+* $digest()
 * Egghead.io - AngularJS - $index, $event, $log
 * Vamos entender o TODO-list com angular
 * Outro exemplo: Árvore navegável
 
-AngularJS - primeiro contato
-- Hello World
-- Egghead.io - AngularJS - Binding
-- ng-model
-- ng-class, ng-show e ng-hide
-- O Controller
-- Egghead.io - AngularJS - Controllers
-- ng-click
-- ng-repeat, ng-filter
-- Egghead.io - AngularJS - $index, $event, $log
+## 04 - Angular e Ajax
 
-Ajax
-- Ajax com JQuery
-- $http
-- Servicos customizados
-- Mockando Ajax
+* Ajax com JQuery
+* $http
+* Servicos customizados
+* Wrapper $http
+* Mockando Ajax
 
-AngularJS - entendendo melhor como ele funciona
-- $digest()
-- Egghead.io - AngularJS - The Dot
-- Egghead.io - AngularJS - Sharing Data Between Controllers
-- Egghead.io - AngularJS - Defining a Method on the Scope
+## 05 - AngularJS pra gente grande: diretivas
 
-Diretivas: A killer-feature dp Angular
-- Custom-elemets (Diretivas E)
-- Egghead.io - AngularJS - Directive Restrictions
-- Egghead.io - AngularJS - Directives Talking to Controllers
-- Egghead.io - AngularJS - Directive to Directive Communication
-- Egghead.io - AngularJS - Understanding Isolate Scope
-- Egghead.io - AngularJS - Isolate Scope "@"
-- Egghead.io - AngularJS - Isolate Scope "=", "=?"
-- Egghead.io - AngularJS - Isolate Scope "&"
-- Egghead.io - AngularJS - Isolate Scope Review
+* Custom tags
+* Transclusão
+* Pegadinha: The dot
+* Escopo isolado: @ e =
+* Egghead.io - AngularJS - Sharing Data Between Controllers
+* Escopo isolado: =? e &
+* Diretivas de tag (A)
+* Egghead.io - AngularJS - $scope vs. scope
+* Componentes prontos pra usar: AngularUI, Autocomplete, TinyMCE...
 
-Diretivas de tag (A)
-- Egghead.io - AngularJS - $scope vs. scope
+## 06 - eventos
 
-Modulos e dependencias
-- criando modulos
-- Regras de dependencias
+* watch
+* $on
 
-Eventos
-- watch
-- $on
+## 07 - Services
+* Services
+* Promises
 
-Transclusao
-- causo tipico
-- escopo
+## 08 - Animações
+* Animações
 
-Ng-view
-- rotas
-- urls
-- etc
+## 09 - Módulos e dependências
 
-Boas praticas
+* Criando modulos
+* Regras de dependencias
+* Extensões
 
-Testing
+## 10 - ng-view
+* Rotas
+* URLs
 
-$ Services
-- primises
+## 11 - Testing
+* Testacular
+* Selenium
 
-Animacoes
+## 12 - AngularJS: guia de boas práticas
+
+## 13 - AngularJS: Desvantagens não-óvias
+
+* Desvantagens (AngularJS não é bala de prata!)
+* Quando não
