@@ -95,4 +95,4 @@ Instruções:
 ## 13 - AngularJS: Desvantagens não-óvias
 
 * Desvantagens (AngularJS não é bala de prata!)
-* Quando não
+* Quando não usar
