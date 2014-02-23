@@ -12,6 +12,7 @@ Instruções:
 
 ## 01 - Javascript pra gente grande
 
+* História do Javascript
 * Variáveis
 * Arrays e objetos
 * Wat?
@@ -24,6 +25,7 @@ Instruções:
 
 ## 02 - JQuery
 
+* O DOM. Dom x Sax
 * Manipulando o DOM
 * Implementação de uma TODO-list
 * A mesma TODO-list com AngularJS
