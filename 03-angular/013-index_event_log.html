@@ -9,7 +9,7 @@
   <script src="../lib/jquery-1.10.2.min.js"></script>
   <script src="../js/base.js"></script>
   <script>
-    function MyCtrl($scope, $http){
+    function MyCtrl($scope, $http, $log){
 
       function get_issues(){
         var url = 'https://api.github.com/repos/freedomsponsors/www.freedomsponsors.org/issues';
@@ -17,7 +17,6 @@
         $http.get(url).success(function(result){
           $scope.loading_issues = false;
           $scope.issues = result;
-          $scope.$digest();
         })
       }
 
@@ -35,6 +34,38 @@
 
       $scope.desce = function(indice){
         _troca($scope.issues, indice, indice + 1);
+      }
+
+      ///////////////////////////////////////////////////
+
+      var fotos = [
+        "../img/phones/motorola-xoom-with-wi-fi.0.jpg", 
+        "../img/phones/motorola-xoom.0.jpg", 
+        "../img/phones/motorola-atrix-4g.0.jpg", 
+        "../img/phones/dell-streak-7.0.jpg", 
+        "../img/phones/samsung-gem.0.jpg", 
+        "../img/phones/dell-venue.0.jpg", 
+        "../img/phones/nexus-s.0.jpg", 
+        "../img/phones/lg-axis.0.jpg", 
+        "../img/phones/samsung-galaxy-tab.0.jpg", 
+        "../img/phones/samsung-showcase-a-galaxy-s-phone.0.jpg", 
+        "../img/phones/droid-2-global-by-motorola.0.jpg", 
+        "../img/phones/droid-pro-by-motorola.0.jpg", 
+        "../img/phones/motorola-bravo-with-motoblur.0.jpg", 
+        "../img/phones/motorola-defy-with-motoblur.0.jpg", 
+        "../img/phones/t-mobile-mytouch-4g.0.jpg", 
+        "../img/phones/samsung-mesmerize-a-galaxy-s-phone.0.jpg", 
+        "../img/phones/sanyo-zio.0.jpg", 
+        "../img/phones/samsung-transform.0.jpg", 
+        "../img/phones/t-mobile-g2.0.jpg", 
+        "../img/phones/motorola-charm-with-motoblur.0.jpg", 
+      ];
+
+      var indicefoto = 0
+      $scope.foto = fotos[indicefoto];
+
+      $scope.passafoto = function(evento){
+        $log.info(evento);
       }
 
     }
@@ -68,7 +99,7 @@
     </table>
     <hr>
     <h2>Carrossel</h2>
-    <img ng-src="foto" ng-click="passafoto($event)">
+    <img ng-src="{[{foto}]}" ng-click="passafoto($event)">
 
     <h3>Nossa, tô ficando cansado de tanta teoria... Cadê a parte prática??</h3>
     <ul>
