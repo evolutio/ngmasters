@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AngularJS</title>
+  <link rel="stylesheet" href="../css/bootstrap.css">
+  <link rel="stylesheet" href="../css/app.css">
+  <script src="../lib/angular.min.js"></script>
+  <script src="../lib/jquery-1.10.2.min.js"></script>
+  <script src="../js/base.js"></script>
+  <script>
+    function MyCtrl($scope, $http){
+
+      function get_issues(){
+        var url = 'https://api.github.com/repos/freedomsponsors/www.freedomsponsors.org/issues';
+        $scope.loading_issues = true;
+        $http.get(url).success(function(result){
+          $scope.loading_issues = false;
+          $scope.issues = result;
+          $scope.$digest();
+        })
+      }
+
+      get_issues();
+
+      function _troca(array, i, j){
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+      }
+
+      $scope.sobe = function(indice){
+        _troca($scope.issues, indice, indice - 1);
+      };
+
+      $scope.desce = function(indice){
+        _troca($scope.issues, indice, indice + 1);
+      }
+
+    }
+  </script>
+</head>
+
+<body ng-app="myapp" ng-controller="MyCtrl">
+  <div class="container" style="margin: 15px;">
+    <h1>$index, $event, $log</h1>
+    <hr>
+      
+    <h2>Sobe/Desce</h2>
+    <img ng-show="loading_issues" src="../img/loader.gif">
+
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>$index</th>
+        <th>controls</th>
+        <th>Título</th>
+      </tr>
+      <tr ng-repeat="issue in issues">
+        <td>{[{issue.number}]}</td>
+        <td>{[{$index}]}</td>
+        <td>
+          <button ng-show="$index > 0" ng-click="sobe($index)"><i class="icon-chevron-up"></i></button>
+          <button ng-show="$index < issues.length - 1" ng-click="desce($index)"><i class="icon-chevron-down"></i></button>
+        </td>
+        <td>{[{issue.title}]}</td>
+      </tr>
+    </table>
+    <hr>
+    <h2>Carrossel</h2>
+    <img ng-src="foto" ng-click="passafoto($event)">
+
+    <h3>Nossa, tô ficando cansado de tanta teoria... Cadê a parte prática??</h3>
+    <ul>
+      <li><a href="013-index_event_log.html">Calma que tá acabando: $index, $event e $log</a></li>
+    </ul>
+  </div>
+
+</body>
+
+
+</html>
+
+
+
