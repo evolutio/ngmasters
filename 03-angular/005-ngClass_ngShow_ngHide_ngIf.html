@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AngularJS</title>
+  <link rel="stylesheet" href="../css/bootstrap.css">
+  <link rel="stylesheet" href="../css/app.css">
+  <script src="../lib/angular.min.js"></script>
+  <script>
+    var myapp = angular.module("myapp", []);
+    myapp.config(function($interpolateProvider){
+        $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
+    });
+  </script>
+</head>
+<body ng-app="myapp">
+<div class="container" style="margin: 15px;">
+  <h1>ng-class, ng-show, ng-hide, ng-if</h1>
+  <hr>
+
+  <span ng-hide="esconde">Agora você está me vendo...</span>
+  <span ng-show="esconde">E agora não!</span>
+  <input type="checkbox" ng-model="esconde"> Esconde!
+  <div>
+      <img ng-if="!esconde" ng-class="{cabeca_pra_baixo: virado, bordinha: combordinha}" src="../img/tony.jpeg">
+  </div>
+  <div style="margin-top: 20px;">
+    <input type="checkbox" ng-model="virado"> Vira!
+    <input type="checkbox" ng-model="combordinha"> Bota uma bordinha!
+  </div>
+  <hr>
+
+
+  <h3>Legaaaal, manda mais!</h3>
+  <ul>
+    <li><a href="006-O_controller.html">O Controller</a></li>
+  </ul>
+</div>
+
+</body>
+</html>
