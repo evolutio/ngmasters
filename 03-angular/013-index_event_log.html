@@ -66,6 +66,19 @@
 
       $scope.passafoto = function(evento){
         $log.info(evento);
+        if(evento.x > 320){
+          indicefoto++;
+          if(indicefoto >= fotos.length){
+            indicefoto -= fotos.length;
+          }
+        }
+        if(evento.x < 80){
+          indicefoto--;
+          if(indicefoto < 0){
+            indicefoto += fotos.length;
+          }
+        }
+        $scope.foto = fotos[indicefoto];
       }
 
     }
@@ -100,10 +113,17 @@
     <hr>
     <h2>Carrossel</h2>
     <img ng-src="{[{foto}]}" ng-click="passafoto($event)">
+    <div class="alert alert-info">
+      Tony, não esquece:
+      <ul>
+        <li>Mostra o closure em ação</li>
+      </ul>
+    </div>
+    <hr>
 
-    <h3>Nossa, tô ficando cansado de tanta teoria... Cadê a parte prática??</h3>
+    <h3>Blz blz, vamo pra umas coisas mais práticas?!</h3>
     <ul>
-      <li><a href="013-index_event_log.html">Calma que tá acabando: $index, $event e $log</a></li>
+      <li><a href="014-pratica1-todolist_denovo.html">Blz, vamos ver a TODO-list de novo</a></li>
     </ul>
   </div>
 
