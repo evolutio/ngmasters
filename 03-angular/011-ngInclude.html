@@ -195,6 +195,7 @@
             $scope.aocontrario = !$scope.aocontrario;
           }
         }
+//        $scope.selected_phone = $scope.phones[0];
 
         $scope.filtro = '';
         // $scope.ordem = '';
@@ -219,7 +220,7 @@
         Filtar:
         <input type="text" ng-model="filtro">
       </div>
-      <div ng-include="include/phone-detail.html"></div>
+      <div ng-show="selected_phone" ng-include="include/phone_detail.html"></div>
       <div>
         <table class="table">
           <tr>
