@@ -219,27 +219,7 @@
         Filtar:
         <input type="text" ng-model="filtro">
       </div>
-      <div ng-show="selected_phone" class="row">
-        <div class="span6">
-          <img ng-src="{[{selected_phone.imageUrl}]}" class="bordinha">
-        </div>
-        <div class="span6">
-          <div>
-            <div>
-              id: {[{ selected_phone.id }]}
-            </div>
-            <div>
-              age: {[{ selected_phone.age }]}
-            </div>
-            <div>
-              Modelo: {[{ selected_phone.name }]}
-            </div>
-            <div>
-              Descrição: {[{ selected_phone.snippet }]}
-            </div>
-          </div>
-        </div>
-      </div>
+      <div ng-include="include/phone-detail.html"></div>
       <div>
         <table class="table">
           <tr>
