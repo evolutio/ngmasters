@@ -10,7 +10,9 @@
   <script src="../js/base.js"></script>
   <script src="../js/github.js"></script>
   <script>
-    function MyCtrl($scope, $log, Github){
+    function MyCtrl($scope, $log, $timeout, Github){
+      
+      //Infinite scrolling
       var page = 0;
       $scope.issues = [];
       $scope.theres_more = true;
@@ -29,6 +31,32 @@
       };
       $scope.get_more_issues();
 
+      //Github user autocomplete
+      var DELAY = 200;
+      var timer;
+      $scope.searchowner_keyup = function(evt){
+        if(timer){
+          $timeout.cancel(timer)
+        }
+        timer = $timeout(function(){
+          $scope.searching_users = true;
+          if($scope.search_owner){
+            Github.search_users($scope.search_owner).
+              success(function(result){
+                $scope.searching_users = false;
+                $scope.githubusers = result.items;
+                $scope.showusers = true;
+              });
+          }
+          timer = null;
+        }, DELAY);
+      }
+
+      $scope.selectowner = function(user){
+        $scope.search_owner = user.login;
+        $scope.showusers = false;
+      }
+
     }
   </script>
 </head>
@@ -41,6 +69,22 @@
     <h2>Sobe/Desce</h2>
     <img ng-show="loading_issues" src="../img/loader.gif">
 
+    <span>
+        Owner:
+        <span style="position: relative;">
+            <input type="text" ng-model="search_owner" ng-keyup="searchowner_keyup($event)">
+            <img ng-show="searching_users" src="../img/loader.gif">
+            <div class="pop-options" ng-show="showusers">
+                <ul>
+                    <li ng-repeat="user in githubusers" ng-click="selectowner(user)">
+                      <img class="icon-32" ng-src="{[{ user.avatar_url }]}">
+                      {[{ user.login }]}
+                    </li>
+                </ul>
+            </div>
+        </span>
+    </div>
+      
     <table class="table">
       <tr>
         <th>ID</th>

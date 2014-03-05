@@ -23,3 +23,31 @@
 .selected {
     background-color: #aff0a8;
 }
+
+.pop-options {
+    position: absolute;
+    padding: 0px;
+    z-index: 1;
+    background-color: white;
+	min-width:160px;
+	min-height:20px;
+}
+
+.pop-options ul {
+    list-style: none;
+    margin-left: 0px;
+}
+.pop-options ul li {
+    margin: 0px;
+    padding: 6px 5px;
+}
+
+.pop-options ul li:hover {
+    background-color: #aaf;
+    cursor: pointer;
+}
+
+.icon-32 {
+    width: 32px;
+    height: 32px;
+}
