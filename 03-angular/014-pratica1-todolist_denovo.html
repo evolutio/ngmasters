@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AngularJS</title>
+<link rel="stylesheet" href="../css/bootstrap.css">
+<link rel="stylesheet" href="../02-jquery/003-todo.css">
+<script src="../lib/jquery-1.10.2.min.js"></script>
+<script src="../lib/angular.min.js"></script>
+<script src="../js/base.js"></script>
+<script>
+  function MyCtrl($scope, $http, $timeout, $log){
+
+    function TODOAsyncApi(){
+      var ID = 5;
+      var api = {
+        load_all: function(){
+          return $http.get('backend/list_todos.json');
+        },
+        remove: function(id){
+          var cb;
+          var result = {
+            success : function(callback){
+              cb = callback;
+            }
+          }
+          $timeout(function(){
+            cb();
+          }, 1000);
+          return result;
+        },
+        add: function(todo){
+          var cb;
+          var result = {
+            success: function(callback){
+              cb = callback;
+            }
+          }
+          $timeout(function(){
+            cb(++ID);
+          },1000)
+          return result;
+        }
+      }
+      return api;
+    }
+
+    var todoAPI = TODOAsyncApi();
+
+    $scope.remove = function(index){
+      var todo = $scope.todos[index];
+      todo.removing = true;
+      todoAPI.remove(todo.id).success(function(){
+        $scope.todos.splice(index, 1)[0];
+      });
+    };
+
+    $scope.newtask_keyup = function(evt){
+      if(evt.keyCode == 13){
+        var todo = {
+          todo: $scope.newtask,
+          done: false
+        };
+        $scope.adding = true;
+        todoAPI.add(todo).success(function(newid){
+          todo.id = newid;
+          $scope.todos.push(todo);
+          $scope.newtask = '';
+          $scope.adding = false;
+        });
+      }
+    };
+
+    todoAPI.load_all().success(function(todos){
+      $scope.todos = todos;
+    });
+  }
+
+</script>
+</head>
+  <body>
+  <div class="container" style="margin: 15px;" ng-app="myapp" ng-controller="MyCtrl">
+    <h1>Exemplo prático 1 - TODO list</h1>
+
+    <div>
+      <div>
+        <label>Nova tarefa:</label>
+        <input type="text" ng-model="newtask" ng-keyup="newtask_keyup($event)">
+        <img ng-show="adding" src="../img/loader.gif">
+      </div>
+      <table class="table table-striped table-bordered todotable">
+        <tr ng-repeat="todo in todos">
+          <td class="todocheck"><input type="checkbox" ng-model="todo.done"></td>
+          <td ng-class="{tododone: todo.done}">{[{todo.todo}]}</td>
+          <td class="todoremove">
+            <a href ng-click="remove($index)"><i class="icon-trash"></i></a>
+            <img ng-show="todo.removing" src="../img/loader.gif">
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="alert alert-info">
+      Olha só quanto conceito importante a gente tá aplicando aqui:
+      <ul>
+        <li>Objeto com estado armazenado em closure</li>
+        <li>Construção e consumo de API assíncrona</li>
+        <li>$timeout, $http</li>
+        <li>Uso de $event, e $index</li>
+        <li>ng-model, ng-class, ng-show</li>
+      </ul>
+      E não esquece de mostrar:
+      <ul>
+        <li>O bug das remoções simultâneas! Como que resolve??</li>
+      </ul>
+    </div>
+
+    <h3 style="margin-top: 30px;">Que foda! Tem mais exemplo desse??</h3>
+    <ul>
+      <li><a href="../03-angular/015-pratica2-navegador_de_issuesI.html">Tem! Navegador de issues do Github</a></li>
+    </ul>
+  </div>
+
+</body>
+</html>
+
+
+
+
+

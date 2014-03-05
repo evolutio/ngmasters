@@ -1,0 +1,27 @@
+[
+    {
+        "id": 1,
+        "todo": "Lavar a roupa",
+        "done": false
+    },
+    {
+        "id": 2,
+        "todo": "Levar a cachorra pra passear",
+        "done": true
+    },
+    {
+        "id": 3,
+        "todo": "Fazer supermercado",
+        "done": false
+    },
+    {
+        "id": 4,
+        "todo": "Trocar a fralda do neném",
+        "done": true
+    },
+    {
+        "id": 5,
+        "todo": "Consertar o chuveiro",
+        "done": false
+    }
+]
