@@ -13,7 +13,7 @@
 
     function TODOAsyncApi(){
       var ID = 5;
-      var api = {
+      return {
         load_all: function(){
           return $http.get('backend/list_todos.json');
         },
@@ -41,8 +41,7 @@
           },1000)
           return result;
         }
-      }
-      return api;
+      };
     }
 
     var todoAPI = TODOAsyncApi();

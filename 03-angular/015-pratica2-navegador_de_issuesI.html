@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AngularJS</title>
+  <link rel="stylesheet" href="../css/bootstrap.css">
+  <link rel="stylesheet" href="../css/app.css">
+  <script src="../lib/angular.min.js"></script>
+  <script src="../lib/jquery-1.10.2.min.js"></script>
+  <script src="../js/base.js"></script>
+  <script src="../js/github.js"></script>
+  <script>
+    function MyCtrl($scope, $log, Github){
+      var page = 0;
+      $scope.issues = [];
+      $scope.theres_more = true;
+      $scope.get_more_issues = function(){
+        page++;
+        $scope.loading_issues = true;
+        Github.list_issues("freedomsponsors", "www.freedomsponsors.org", page).
+          success(function(issues){
+            $log.info('got '+issues.length+' issues');
+            $scope.issues = $scope.issues.concat(issues);
+            if(issues.length == 0){
+              $scope.theres_more = false;
+            }
+            $scope.loading_issues = false;
+          });
+      };
+      $scope.get_more_issues();
+
+    }
+  </script>
+</head>
+
+<body ng-app="myapp" ng-controller="MyCtrl">
+  <div class="container" style="margin: 15px;">
+    <h1>Navegador de issues</h1>
+    <hr>
+      
+    <h2>Sobe/Desce</h2>
+    <img ng-show="loading_issues" src="../img/loader.gif">
+
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Título</th>
+        <th>Status</th>
+      </tr>
+      <tr ng-repeat="issue in issues">
+        <td>
+          <i class="icon-exclamation-sign" ng-if="issue.state == 'open'"></i>
+          <i class="icon-ok-circle" ng-if="issue.state == 'closed'"></i>
+          {[{issue.number}]}
+        </td>
+        <td>{[{issue.title}]}</td>
+        <td>{[{issue.state}]}</td>
+      </tr>
+    </table>
+    <img ng-show="loading_issues" src="../img/loader.gif">
+    <button ng-click="get_more_issues()" ng-show="theres_more">Mooooore!</button>
+    <div class="alert alert-warn" ng-hide="theres_more">
+      Acabou!
+    </div>
+    <hr>
+ 
+    <h3>Da hora!!! Tem mais??</h3>
+    <ul>
+      <li><a href="015-pratica3-navegador_de_repositorio.html">Teeeeem. Vamo navegar nos códigos do Github :-)</a></li>
+    </ul>
+  </div>
+
+</body>
+
+
+</html>
+
+
+
