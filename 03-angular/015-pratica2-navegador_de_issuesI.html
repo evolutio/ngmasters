@@ -67,8 +67,11 @@
             }
             $scope.loading_issues = false;
           }).
-          error(function(a,b,c){
-            $log.info(a,b,c);
+          error(function(result,status){
+            $log.error("status "+status);
+            $log.error(result);
+            alert(result.message);
+            $scope.loading_issues = false;
           });
       };
 
@@ -104,10 +107,10 @@
           ng-change="onselect_repo()"></select>
     </div>
       
-    <table class="table">
+    <table class="table" style="width: 450px;">
       <tr>
-        <th>ID</th>
-        <th>Título</th>
+        <th style="width:60px;">ID</th>
+        <th style="width:300px;">Título</th>
         <th>Status</th>
       </tr>
       <tr ng-repeat="issue in issues">
