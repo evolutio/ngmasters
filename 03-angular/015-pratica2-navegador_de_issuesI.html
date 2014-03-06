@@ -78,11 +78,25 @@
 
       $scope.open = function(issue){
         $scope.selected_issue = issue;
+        if(!issue.comment_list){
+          $scope.loading_comments = true;
+          Github.list_issue_comments(
+            $scope.selected_repo.owner.login, 
+            $scope.selected_repo.name, 
+            $scope.selected_issue.number).success(function(comments){
+              issue.comment_list = comments;
+              $scope.loading_comments = false;
+            });
+        }
       }
 
       $scope.close = function(){
         $scope.selected_issue = null;
       };
+
+      $scope.friendly_date = function(date_str){
+        return Global.friendly_date(new Date(date_str));
+      }
 
     }
   </script>
@@ -103,7 +117,7 @@
             <div class="pop-options" ng-show="showusers">
                 <ul>
                     <li ng-repeat="user in githubusers" ng-click="selectowner(user)">
-                      <img class="icon-32" ng-src="{[{ user.avatar_url }]}">
+                      <img class="square32" ng-src="{[{ user.avatar_url }]}">
                       {[{ user.login }]}
                     </li>
                 </ul>
@@ -132,16 +146,32 @@
           <a href ng-click="open(issue)">
             {[{issue.title}]}
           </a>
+          <span class="pull-right" ng-show="issue.comments">
+            <i class="icon-comment"></i> {[{ issue.comments }]}
+          </span>
         </td>
         <td>{[{issue.state}]}</td>
       </tr>
     </table>
-    <img ng-show="loading_issues" src="../img/loader.gif">
+    <img ng-show="loading_issues" src="../img/loader-bar.gif">
     <button ng-click="get_more_issues()" ng-show="selected_repo && theres_more">Mooooore!</button>
     <div class="alert alert-warn" ng-show="selected_repo && !theres_more">
       Acabou!
     </div>
     <hr>
+
+    <div class="alert alert-info">
+      Mais coisa importante aqui:
+      <ul>
+        <li>Factory!!!</li>
+        <li>O truque do autocomplete</li>
+        <li>ng-options, ng-change</li>
+      </ul>
+      E não esquece de mostrar:
+      <ul>
+        <li>O bug do issue.comment_list</li>
+      </ul>
+    </div>
  
     <h3>Da hora!!! Tem mais??</h3>
     <ul>
@@ -160,105 +190,55 @@
 
 
         <div class="timeline-comment-wrapper js-comment-container">
-          <a href="/tonylampada"><img alt="tonylampada" class="timeline-comment-avatar js-avatar" data-user="218821" height="48" src="https://0.gravatar.com/avatar/4dbc40e7a6fa89a3568a926378c22ace?d=https%3A%2F%2Fidenticons.github.com%2F36820d9cff981312031789b1900ade2c.png&amp;r=x&amp;s=140" width="48"></a>
+          <a href="http://github.com/{[{ selected_issue.user.login }]}"><img alt="{[{selected_issue.user.login}]}" class="timeline-comment-avatar" height="48" ng-src="{[{ selected_issue.user.avatar_url }]}" width="48"></a>
           <div class="timeline-comment timeline-comment-owner-comment">
-            <div id="issue-27429351" class="comment js-comment js-task-list-container">
+            <div class="comment">
               <div class="timeline-comment-header ">
                 <div class="timeline-comment-header-text">
                   <strong>
-                    <a href="http://github.com/tonylampada" class="author">tonylampada</a>
+                    <a href="http://github.com/{[{ selected_issue.user.login }]}" class="author">{[{ selected_issue.user.login }]}</a>
                   </strong>
                   commented
-                  <a href="#issue-27429351" class="timestamp"><time class="js-relative-date" title="2014-02-12 10:22:44">21 days ago</time></a>
+                  <a href class="timestamp"><time title="{[{ selected_issue.created_at }]}">{[{ friendly_date(selected_issue.created_at) }]}</time></a>
                 </div>
               </div>
 
               <div class="comment-content">
                 <div class="edit-comment-hide">
                   <div class="comment-body markdown-body markdown-format js-comment-body">
-                    <p>Something is wrong with Blockchain API. It seems they've taken measures to protect themselves against the recent DDoS attacks to the Bitcoin network.</p>
-                    <p>Find out what we need to do to make API calls work again.</p>
+                    <p>{[{ selected_issue.body }]}</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="timeline-comment-wrapper js-comment-container">
-          <a href="/tonylampada"><img alt="tonylampada" class="timeline-comment-avatar js-avatar" data-user="218821" height="48" src="https://0.gravatar.com/avatar/4dbc40e7a6fa89a3568a926378c22ace?d=https%3A%2F%2Fidenticons.github.com%2F36820d9cff981312031789b1900ade2c.png&amp;r=x&amp;s=140" width="48"></a>
+        <img src="../img/loader-bar.gif" ng-show="loading_comments">
+        <div class="timeline-comment-wrapper js-comment-container" ng-repeat="comment in selected_issue.comment_list">
+          <a href="http://github.com/{[{ comment.user.login }]}"><img alt="{[{comment.user.login}]}" class="timeline-comment-avatar" height="48" ng-src="{[{ comment.user.avatar_url }]}" width="48"></a>
           <div class="timeline-comment timeline-comment-owner-comment">
-            <div id="issue-27429351" class="comment js-comment js-task-list-container">
+            <div class="comment">
               <div class="timeline-comment-header ">
                 <div class="timeline-comment-header-text">
                   <strong>
-                    <a href="http://github.com/tonylampada" class="author">tonylampada</a>
+                    <a href="http://github.com/{[{ comment.user.login }]}" class="author">{[{ comment.user.login }]}</a>
                   </strong>
                   commented
-                  <a href="#issue-27429351" class="timestamp"><time class="js-relative-date" title="2014-02-12 10:22:44">21 days ago</time></a>
+                  <a href class="timestamp"><time title="{[{ comment.created_at }]}">{[{ friendly_date(comment.created_at) }]}</time></a>
                 </div>
               </div>
 
               <div class="comment-content">
                 <div class="edit-comment-hide">
                   <div class="comment-body markdown-body markdown-format js-comment-body">
-                    <p>Something is wrong with Blockchain API. It seems they've taken measures to protect themselves against the recent DDoS attacks to the Bitcoin network.</p>
-                    <p>Find out what we need to do to make API calls work again.</p>
+                    <p>{[{ comment.body }]}</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="timeline-comment-wrapper js-comment-container">
-          <a href="/tonylampada"><img alt="tonylampada" class="timeline-comment-avatar js-avatar" data-user="218821" height="48" src="https://0.gravatar.com/avatar/4dbc40e7a6fa89a3568a926378c22ace?d=https%3A%2F%2Fidenticons.github.com%2F36820d9cff981312031789b1900ade2c.png&amp;r=x&amp;s=140" width="48"></a>
-          <div class="timeline-comment timeline-comment-owner-comment">
-            <div id="issue-27429351" class="comment js-comment js-task-list-container">
-              <div class="timeline-comment-header ">
-                <div class="timeline-comment-header-text">
-                  <strong>
-                    <a href="http://github.com/tonylampada" class="author">tonylampada</a>
-                  </strong>
-                  commented
-                  <a href="#issue-27429351" class="timestamp"><time class="js-relative-date" title="2014-02-12 10:22:44">21 days ago</time></a>
-                </div>
-              </div>
 
-              <div class="comment-content">
-                <div class="edit-comment-hide">
-                  <div class="comment-body markdown-body markdown-format js-comment-body">
-                    <p>Something is wrong with Blockchain API. It seems they've taken measures to protect themselves against the recent DDoS attacks to the Bitcoin network.</p>
-                    <p>Find out what we need to do to make API calls work again.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="timeline-comment-wrapper js-comment-container">
-          <a href="/tonylampada"><img alt="tonylampada" class="timeline-comment-avatar js-avatar" data-user="218821" height="48" src="https://0.gravatar.com/avatar/4dbc40e7a6fa89a3568a926378c22ace?d=https%3A%2F%2Fidenticons.github.com%2F36820d9cff981312031789b1900ade2c.png&amp;r=x&amp;s=140" width="48"></a>
-          <div class="timeline-comment timeline-comment-owner-comment">
-            <div id="issue-27429351" class="comment js-comment js-task-list-container">
-              <div class="timeline-comment-header ">
-                <div class="timeline-comment-header-text">
-                  <strong>
-                    <a href="http://github.com/tonylampada" class="author">tonylampada</a>
-                  </strong>
-                  commented
-                  <a href="#issue-27429351" class="timestamp"><time class="js-relative-date" title="2014-02-12 10:22:44">21 days ago</time></a>
-                </div>
-              </div>
-
-              <div class="comment-content">
-                <div class="edit-comment-hide">
-                  <div class="comment-body markdown-body markdown-format js-comment-body">
-                    <p>Something is wrong with Blockchain API. It seems they've taken measures to protect themselves against the recent DDoS attacks to the Bitcoin network.</p>
-                    <p>Find out what we need to do to make API calls work again.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
       </div>
     </div>

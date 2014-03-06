@@ -14,6 +14,10 @@ myapp.factory('Github', function($http){
         list_user_repos: function(owner){
             var url="https://api.github.com/users/"+owner+"/repos";
             return $http.get(url);
+        },
+        list_issue_comments: function(owner, repo, issue_number){
+            var url="https://api.github.com/repos/"+owner+"/"+repo+"/issues/"+issue_number+"/comments";
+            return $http.get(url);
         }
 	}
 })

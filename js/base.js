@@ -15,3 +15,21 @@ var myapp = angular.module("myapp", []);
 myapp.config(function($interpolateProvider){
 	$interpolateProvider.startSymbol('{[{').endSymbol('}]}');
 });
+
+window.Global = {}
+Global.friendly_date = function(d){
+    var delta = new Date().getTime() - d.getTime();
+    var seconds = Math.floor(delta / 1000);
+    var minutes = Math.floor(seconds / 60);
+    var hours = Math.floor(minutes / 60);
+    var days = Math.floor(hours / 24);
+    if(minutes < 1){
+        return seconds + " seconds ago";
+    } else if(hours < 1){
+        return minutes + " minutes ago";
+    } else if(days < 1){
+        return hours + " hours ago";
+    } else {
+        return days + " days ago";
+    }
+}
