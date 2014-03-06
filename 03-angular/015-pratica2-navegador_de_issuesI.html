@@ -76,6 +76,14 @@
           });
       };
 
+      $scope.open = function(issue){
+        $scope.selected_issue = issue;
+      }
+
+      $scope.close = function(){
+        $scope.selected_issue = null;
+      };
+
     }
   </script>
 </head>
@@ -120,7 +128,11 @@
           <i class="icon-ok-circle" ng-if="issue.state == 'closed'"></i>
           {[{issue.number}]}
         </td>
-        <td>{[{issue.title}]}</td>
+        <td>
+          <a href ng-click="open(issue)">
+            {[{issue.title}]}
+          </a>
+        </td>
         <td>{[{issue.state}]}</td>
       </tr>
     </table>
@@ -137,12 +149,12 @@
     </ul>
   </div>
 
-  <div class="transparent-layer">
+  <div class="transparent-layer" ng-show="selected_issue">
 
     <div class="modal" style="position: relative; top: auto; left: auto; right: auto; margin: 0 auto 20px; z-index: 1; max-width: 100%;margin-top: 50px;min-height: 400px;max-height:80%;min-width:600px;">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3>Modal header</h3>
+        <button type="button" class="close" ng-click="close()">×</button>
+        <h3>{[{ selected_issue.title }]}</h3>
       </div>
       <div class="modal-body" style="max-height:80%;">
 
@@ -150,16 +162,89 @@
         <div class="timeline-comment-wrapper js-comment-container">
           <a href="/tonylampada"><img alt="tonylampada" class="timeline-comment-avatar js-avatar" data-user="218821" height="48" src="https://0.gravatar.com/avatar/4dbc40e7a6fa89a3568a926378c22ace?d=https%3A%2F%2Fidenticons.github.com%2F36820d9cff981312031789b1900ade2c.png&amp;r=x&amp;s=140" width="48"></a>
           <div class="timeline-comment timeline-comment-owner-comment">
-            <div id="issue-27429351" class="comment js-comment js-task-list-container" data-body-version="de89446753d59382b2a80fdf23ba9393">
+            <div id="issue-27429351" class="comment js-comment js-task-list-container">
               <div class="timeline-comment-header ">
                 <div class="timeline-comment-header-text">
                   <strong>
-                    <a href="/tonylampada" class="author">tonylampada</a>
+                    <a href="http://github.com/tonylampada" class="author">tonylampada</a>
                   </strong>
                   commented
-                  <a href="#issue-27429351" class="timestamp"><time class="js-relative-date" data-title-format="YYYY-MM-DD HH:mm:ss" datetime="2014-02-12T04:22:44-08:00" title="2014-02-12 10:22:44">21 days ago</time></a>
+                  <a href="#issue-27429351" class="timestamp"><time class="js-relative-date" title="2014-02-12 10:22:44">21 days ago</time></a>
+                </div>
+              </div>
 
-                  <span class="comment-header-tag">Owner</span>
+              <div class="comment-content">
+                <div class="edit-comment-hide">
+                  <div class="comment-body markdown-body markdown-format js-comment-body">
+                    <p>Something is wrong with Blockchain API. It seems they've taken measures to protect themselves against the recent DDoS attacks to the Bitcoin network.</p>
+                    <p>Find out what we need to do to make API calls work again.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-comment-wrapper js-comment-container">
+          <a href="/tonylampada"><img alt="tonylampada" class="timeline-comment-avatar js-avatar" data-user="218821" height="48" src="https://0.gravatar.com/avatar/4dbc40e7a6fa89a3568a926378c22ace?d=https%3A%2F%2Fidenticons.github.com%2F36820d9cff981312031789b1900ade2c.png&amp;r=x&amp;s=140" width="48"></a>
+          <div class="timeline-comment timeline-comment-owner-comment">
+            <div id="issue-27429351" class="comment js-comment js-task-list-container">
+              <div class="timeline-comment-header ">
+                <div class="timeline-comment-header-text">
+                  <strong>
+                    <a href="http://github.com/tonylampada" class="author">tonylampada</a>
+                  </strong>
+                  commented
+                  <a href="#issue-27429351" class="timestamp"><time class="js-relative-date" title="2014-02-12 10:22:44">21 days ago</time></a>
+                </div>
+              </div>
+
+              <div class="comment-content">
+                <div class="edit-comment-hide">
+                  <div class="comment-body markdown-body markdown-format js-comment-body">
+                    <p>Something is wrong with Blockchain API. It seems they've taken measures to protect themselves against the recent DDoS attacks to the Bitcoin network.</p>
+                    <p>Find out what we need to do to make API calls work again.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-comment-wrapper js-comment-container">
+          <a href="/tonylampada"><img alt="tonylampada" class="timeline-comment-avatar js-avatar" data-user="218821" height="48" src="https://0.gravatar.com/avatar/4dbc40e7a6fa89a3568a926378c22ace?d=https%3A%2F%2Fidenticons.github.com%2F36820d9cff981312031789b1900ade2c.png&amp;r=x&amp;s=140" width="48"></a>
+          <div class="timeline-comment timeline-comment-owner-comment">
+            <div id="issue-27429351" class="comment js-comment js-task-list-container">
+              <div class="timeline-comment-header ">
+                <div class="timeline-comment-header-text">
+                  <strong>
+                    <a href="http://github.com/tonylampada" class="author">tonylampada</a>
+                  </strong>
+                  commented
+                  <a href="#issue-27429351" class="timestamp"><time class="js-relative-date" title="2014-02-12 10:22:44">21 days ago</time></a>
+                </div>
+              </div>
+
+              <div class="comment-content">
+                <div class="edit-comment-hide">
+                  <div class="comment-body markdown-body markdown-format js-comment-body">
+                    <p>Something is wrong with Blockchain API. It seems they've taken measures to protect themselves against the recent DDoS attacks to the Bitcoin network.</p>
+                    <p>Find out what we need to do to make API calls work again.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-comment-wrapper js-comment-container">
+          <a href="/tonylampada"><img alt="tonylampada" class="timeline-comment-avatar js-avatar" data-user="218821" height="48" src="https://0.gravatar.com/avatar/4dbc40e7a6fa89a3568a926378c22ace?d=https%3A%2F%2Fidenticons.github.com%2F36820d9cff981312031789b1900ade2c.png&amp;r=x&amp;s=140" width="48"></a>
+          <div class="timeline-comment timeline-comment-owner-comment">
+            <div id="issue-27429351" class="comment js-comment js-task-list-container">
+              <div class="timeline-comment-header ">
+                <div class="timeline-comment-header-text">
+                  <strong>
+                    <a href="http://github.com/tonylampada" class="author">tonylampada</a>
+                  </strong>
+                  commented
+                  <a href="#issue-27429351" class="timestamp"><time class="js-relative-date" title="2014-02-12 10:22:44">21 days ago</time></a>
                 </div>
               </div>
 
