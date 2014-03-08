@@ -1,9 +1,17 @@
 <div>
-  <a href ng-click="toggle_expand(node)" ng-show="node.children && node.children.length > 0">
-    <i ng-class="{'icon-plus-sign': !node.expanded, 'icon-minus-sign': node.expanded}"></i>
-  </a>
-  	{[{ node.label }]}
-  <ul ng-if="node.children" ng-show="node.expanded">
-    <li ng-include="'include/treenodeIV.html'" ng-repeat="node in node.children"></li>
-  </ul>
+  <div ng-if="node.type == 'dir'">
+    <a href ng-click="toggle_expand(node)">
+      <i ng-class="{'icon-folder-close': !node.expanded, 'icon-folder-open': node.expanded}"></i>
+    </a>
+    {[{ node.name }]}
+    <img src="../img/loader.gif" ng-show="node.loading">
+    <ul ng-if="node.children" ng-show="node.loaded && node.expanded">
+      <li ng-include="'include/treenodeIV.html'" ng-repeat="node in node.children | orderBy: directory_first"></li>
+    </ul>
+  </div>
+  <div ng-if="node.type == 'file'">
+    <i class="icon-file"></i>
+    <a href ng-click="open_file(node)">{[{ node.name }]}</a>
+    <img src="../img/loader.gif" ng-show="node.loading">
+  </div>
 </div>

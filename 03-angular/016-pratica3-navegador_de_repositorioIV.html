@@ -14,7 +14,7 @@
     function MyCtrl($scope, $log, $timeout, Github){
       
       //Github user autocomplete
-      var DELAY = 200;
+      var DELAY = 800;
       var timer;
       $scope.searchowner_keyup = function(evt){
         if(timer){
@@ -45,8 +45,58 @@
         })
       }
 
-      //list first issues
+      //get first level
       $scope.onselect_repo = function(){
+        $scope.roots = [
+          {
+            name: "/",
+            path: "",
+            type: "dir"
+          }
+        ];
+        $scope.toggle_expand($scope.roots[0]);
+      }
+
+      $scope.toggle_expand = function(node){
+        if(node.type == "dir"){
+          if(!node.loaded){
+            node.loading = true;
+            Github.get_contents($scope.search_owner, $scope.selected_repo.name, "/"+node.path).success(function(contents){
+              node.loading = false;
+              node.loaded = true;
+              node.children = contents;
+              node.expanded = true;
+            });
+          } else {
+            node.expanded = !node.expanded;
+          }
+        }
+      }
+
+      $scope.open_file = function(node){
+        if(node.type == 'file'){
+          if(!node.loaded){
+            node.loading = true;
+            Github.get_contents($scope.search_owner, $scope.selected_repo.name, "/"+node.path).success(function(file){
+              node.loading = false;
+              node.loaded = true;
+              node.file_contents = Github.decode_file_contents(file.content);
+              $scope.opened_file = node;
+              $scope.show_file_popup = true;
+            })
+          } else {
+            $scope.opened_file = node;
+            $scope.show_file_popup = true;
+          }
+        }
+      }
+
+      $scope.close = function(){
+        $scope.show_file_popup = false;
+      }
+
+      $scope.directory_first = function(node){
+        return (node.type == 'dir' ? '0' : '1') + node.name;
       }
 
     }
@@ -97,6 +147,22 @@
       <li><a href="015-pratica3-navegador_de_repositorio.html">Teeeeem. Vamo navegar nos códigos do Github :-)</a></li>
     </ul>
   </div>
+
+
+  <div class="transparent-layer" ng-show="show_file_popup">
+
+    <div class="modal" style="position: relative; top: auto; left: auto; right: auto; margin: 0 auto 20px; z-index: 1; max-width: 100%;margin-top: 50px;min-height: 400px;max-height:80%;min-width:600px;">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="close()">×</button>
+        <h3>{[{ opened_file.name }]}</h3>
+      </div>
+      <div class="modal-body" style="max-height:80%;">
+        <pre>{[{opened_file.file_contents}]}</pre>
+      </div>
+    </div>
+
+  </div>
+
 
 </body>
 
