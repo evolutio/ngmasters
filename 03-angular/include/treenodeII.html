@@ -1,0 +1,6 @@
+<div>
+  {[{ node.label }]}
+  <ul ng-if="node.children">
+    <li ng-include="'include/treenodeII.html'" ng-repeat="node in node.children"></li>
+  </ul>
+</div>
