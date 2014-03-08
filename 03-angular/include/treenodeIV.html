@@ -1,0 +1,9 @@
+<div>
+  <a href ng-click="toggle_expand(node)" ng-show="node.children && node.children.length > 0">
+    <i ng-class="{'icon-plus-sign': !node.expanded, 'icon-minus-sign': node.expanded}"></i>
+  </a>
+  	{[{ node.label }]}
+  <ul ng-if="node.children" ng-show="node.expanded">
+    <li ng-include="'include/treenodeIV.html'" ng-repeat="node in node.children"></li>
+  </ul>
+</div>

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AngularJS</title>
+  <link rel="stylesheet" href="../css/bootstrap.css">
+  <link rel="stylesheet" href="../css/github.css">
+  <link rel="stylesheet" href="../css/app.css">
+  <script src="../lib/angular.min.js"></script>
+  <script src="../lib/jquery-1.10.2.min.js"></script>
+  <script src="../js/base.js"></script>
+  <script src="../js/github.js"></script>
+  <script>
+    function MyCtrl($scope, $log, $timeout, Github){
+      
+      //Github user autocomplete
+      var DELAY = 200;
+      var timer;
+      $scope.searchowner_keyup = function(evt){
+        if(timer){
+          $timeout.cancel(timer)
+        }
+        timer = $timeout(function(){
+          $scope.searching_users = true;
+          if($scope.search_owner){
+            Github.search_users($scope.search_owner).
+              success(function(result){
+                $scope.searching_users = false;
+                $scope.githubusers = result.items;
+                $scope.showusers = true;
+              });
+          }
+          timer = null;
+        }, DELAY);
+      }
+
+      //Populate repo combo
+      $scope.selectowner = function(user){
+        $scope.search_owner = user.login;
+        $scope.showusers = false;
+        $scope.listing_repos = true;
+        Github.list_user_repos($scope.search_owner).success(function(repos){
+          $scope.listing_repos = false;
+          $scope.repos = repos;
+        })
+      }
+
+      //list first issues
+      $scope.onselect_repo = function(){
+      }
+
+    }
+  </script>
+</head>
+
+<body ng-app="myapp" ng-controller="MyCtrl">
+  <div class="container" style="margin: 15px;">
+    <h1>Navegador de issues</h1>
+    <hr>
+      
+    <span>
+        Owner:
+        <span style="position: relative;">
+            <input type="text" ng-model="search_owner" ng-keyup="searchowner_keyup($event)">
+            <img ng-show="searching_users" src="../img/loader.gif">
+            <div class="pop-options" ng-show="showusers">
+                <ul>
+                    <li ng-repeat="user in githubusers" ng-click="selectowner(user)">
+                      <img class="square32" ng-src="{[{ user.avatar_url }]}">
+                      {[{ user.login }]}
+                    </li>
+                </ul>
+            </div>
+        </span>
+        Repository:
+        <img ng-show="listing_repos" src="../img/loader.gif">
+        <select ng-model="selected_repo" 
+          ng-options="repo.name for repo in repos"
+          ng-change="onselect_repo()"></select>
+    </div>
+      
+    <ul class="tree">
+      <li ng-include="'include/treenodeIV.html'" ng-repeat="node in roots"></li>
+    </ul>
+
+    <hr>
+
+    <div class="alert alert-info">
+      Mais coisa importante aqui:
+      <ul>
+        <li>Factory!!!</li>
+      </ul>
+    </div>
+ 
+    <h3>Da hora!!! Tem mais??</h3>
+    <ul>
+      <li><a href="015-pratica3-navegador_de_repositorio.html">Teeeeem. Vamo navegar nos códigos do Github :-)</a></li>
+    </ul>
+  </div>
+
+</body>
+
+
+</html>
+
+
+

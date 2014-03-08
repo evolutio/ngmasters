@@ -13,47 +13,6 @@
   <script>
     function MyCtrl($scope, $log, $timeout, Github){
       $scope.roots = [
-        {
-          label: 'Animals',
-          children: [
-            {label: 'Birds'},
-            {
-              label: 'Mammals',
-              children:[
-                {label: 'Elephant'},
-                {label: 'Mouse'},
-              ]
-            },
-            {label: 'Reptiles'}
-          ]
-        },
-        {
-          label: 'Animals',
-          children: [
-            {label: 'Birds'},
-            {
-              label: 'Mammals',
-              children:[
-                {label: 'Elephant'},
-                {label: 'Mouse'},
-              ]
-            },
-            {label: 'Reptiles'}
-          ]
-        },
-        {
-          label: 'Plants',
-          children: [
-            {
-              label: 'Flowers',
-              children:[
-                {label: 'Rose'},
-                {label: 'Tulip'},
-              ]
-            },
-            {label: 'Trees'}
-          ]
-        }
       ];
 
       $scope.toggle_expand = function(node){
