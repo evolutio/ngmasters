@@ -105,8 +105,11 @@
 
 <body ng-app="myapp" ng-controller="MyCtrl">
   <div class="container" style="margin: 15px;">
-    <h1>Navegador de issues</h1>
+    <h1>Navegador de repositório - passo IV</h1>
     <hr>
+    <div class="alert alert-info">
+      <p>Encontre um repositório no Github, navegue nos arquivos, e veja o conteúdo.</p>
+    </div>
       
     <span>
         Owner:
@@ -127,7 +130,7 @@
         <select ng-model="selected_repo" 
           ng-options="repo.name for repo in repos"
           ng-change="onselect_repo()"></select>
-    </div>
+    </span>
       
     <ul class="tree">
       <li ng-include="'include/treenodeIV.html'" ng-repeat="node in roots"></li>
@@ -136,15 +139,18 @@
     <hr>
 
     <div class="alert alert-info">
-      Mais coisa importante aqui:
+      Olha algumas técnicas interessantes aqui:
       <ul>
-        <li>Factory!!!</li>
+        <li>node.loading</li>
+        <li>cache: node.loaded</li>
       </ul>
     </div>
  
-    <h3>Da hora!!! Tem mais??</h3>
+    <h3>Isso é sensacional! Eu sinto que já sei tudo de Angular!</h3>
     <ul>
-      <li><a href="015-pratica3-navegador_de_repositorio.html">Teeeeem. Vamo navegar nos códigos do Github :-)</a></li>
+      <li>Não meu amigo, tem muita coisa bacana ainda pela frente.</li>
+      <li>Mas antes...</li>
+      <li><a href="017-recapitulando.html">vamos só recapitular o que a gente aprendeu</a></li>
     </ul>
   </div>
 

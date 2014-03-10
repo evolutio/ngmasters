@@ -13,6 +13,47 @@
   <script>
     function MyCtrl($scope, $log, $timeout, Github){
       $scope.roots = [
+        {
+          label: 'Animals',
+          children: [
+            {label: 'Birds'},
+            {
+              label: 'Mammals',
+              children:[
+                {label: 'Elephant'},
+                {label: 'Mouse'},
+              ]
+            },
+            {label: 'Reptiles'}
+          ]
+        },
+        {
+          label: 'Animals',
+          children: [
+            {label: 'Birds'},
+            {
+              label: 'Mammals',
+              children:[
+                {label: 'Elephant'},
+                {label: 'Mouse'},
+              ]
+            },
+            {label: 'Reptiles'}
+          ]
+        },
+        {
+          label: 'Plants',
+          children: [
+            {
+              label: 'Flowers',
+              children:[
+                {label: 'Rose'},
+                {label: 'Tulip'},
+              ]
+            },
+            {label: 'Trees'}
+          ]
+        }
       ];
 
       $scope.toggle_expand = function(node){
@@ -24,16 +65,28 @@
 
 <body ng-app="myapp" ng-controller="MyCtrl">
   <div class="container" style="margin: 15px;">
-    <h1>Uma árvore com Angular</h1>
+    <h1>Navegador de repositório - passo III</h1>
     <hr>
+    <div class="alert alert-info">
+      <p> Adiciona uns controlinhos pra expandir a árvore.</p>
+    </div>
       
     <ul class="tree">
       <li ng-include="'include/treenodeIII.html'" ng-repeat="node in roots"></li>
     </ul>
 
-    <h3>Da hora!!! Tem mais??</h3>
+    <div class="alert alert-info">
+      Lição importante aqui:
+      <ul>
+        <li>Redefinimos "node" dentro do ng-repeat</li>
+        <li>Isso é possível pq ng-repeat cria um novo escopo.</li>
+        <li>Vamos falar de escopos aninhados mais pra frente</li>
+      </ul>
+    </div>
+
+    <h3>Animal! Mas cadê o "navegador de repositório"?</h3>
     <ul>
-      <li><a href="015-pratica3-navegador_de_repositorio.html">Teeeeem. Vamo navegar nos códigos do Github :-)</a></li>
+      <li><a href="016-pratica3-navegador_de_repositorioIV.html">Tá aqui :-)</a></li>
     </ul>
   </div>
 

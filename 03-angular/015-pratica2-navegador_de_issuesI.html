@@ -106,6 +106,9 @@
   <div class="container" style="margin: 15px;">
     <h1>Navegador de issues</h1>
     <hr>
+    <div class="alert alert-info">
+      <p>Encontre um repositório no Github, e veja as issues.</p>
+    </div>
       
     <span>
         Owner:
@@ -126,7 +129,7 @@
         <select ng-model="selected_repo" 
           ng-options="repo.name for repo in repos"
           ng-change="onselect_repo()"></select>
-    </div>
+    </span>
       
     <table class="table" style="width: 450px;">
       <tr>
