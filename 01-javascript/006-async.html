@@ -48,6 +48,16 @@
       <button onclick="chega()">chega()</button>
 
     <h3 style="margin-top: 30px;">
+      * APIs assíncronas: callbacks x promessas </h3>
+      <button onclick="soma_assincrona_callback(1, 1, function(result){alert(result)})">soma_assincrona_callback(1, 1, function(result){alert(result)})"</button><br>
+      <button onclick="soma_assincrona_promessa(1, 1).then(function(result){alert(result)})">soma_assincrona_promessa(1, 1).then(function(result){alert(result)})"</button><br>
+
+    <div class="alert alert-info">
+      Discussão boa: <a href="http://stackoverflow.com/questions/21141817/why-are-callbacks-more-tightly-coupled-than-promises"> Why are callbacks more tightly couple than promises</a>
+    </div>
+
+
+    <h3 style="margin-top: 30px;">
       * Um gostinho de Ajax</h3>
       <button onclick="ajax_sim()">ajax_sim()</button>
 

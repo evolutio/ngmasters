@@ -26,6 +26,24 @@ function chega(){
 	clearInterval(timer);
 }
 
+function soma_assincrona_callback(a, b, callback){
+	setTimeout(function(){
+		callback(a+b);
+	}, 1000);
+}
+
+function soma_assincrona_promessa(a, b){
+	var promessa = {
+		then: function(callback){
+			promessa.callback = callback;
+		}
+	};
+	setTimeout(function(){
+		promessa.callback(a+b);
+	}, 1000);
+	return promessa;
+}
+
 function ajax_sim(){
 	var url = 'https://api.github.com/repos/freedomsponsors/www.freedomsponsors.org/issues'
 	$.get(url).success(function(result){
