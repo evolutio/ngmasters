@@ -12,39 +12,39 @@ Instruções:
 
 ## 01 - Javascript pra gente grande
 
-* História do Javascript
-* Variáveis
-* Arrays e objetos
-* Wat?
-* json
-* Funções
-* Programação assíncrona
-* Closure
-* Prototype
-* This
+* [ ] História do Javascript
+* [x] Variáveis
+* [x] Arrays e objetos
+* [x] Wat?
+* [x] json
+* [x] Funções
+* [x] Programação assíncrona
+* [x] Closure
+* [x] Prototype
+* [x] This
 
 ## 02 - JQuery
 
-* O DOM. Dom x Sax
-* Manipulando o DOM
-* Implementação de uma TODO-list
-* A mesma TODO-list com AngularJS
+* [ ] O DOM. Dom x Sax
+* [x] Manipulando o DOM
+* [x] Implementação de uma TODO-list
+* [x] A mesma TODO-list com AngularJS
 
 ## 03 - Angular: O feijão com arroz
 
-* Hello world
-* Binding
-* {[{ Client }]} x {{ server }}
-* ng-model
-* ng-class, ng-show, ng-hide, ng-if
-* O Controller
-* ng-click
-* ng-repeat, ng-filter
-* ng-include
-* $digest()
-* Egghead.io - AngularJS - $index, $event, $log
-* Vamos entender o TODO-list com angular
-* Outro exemplo: Árvore navegável
+* [x] Hello world
+* [x] Binding
+* [x] {[{ Client }]} x {{ server }}
+* [x] ng-model
+* [x] ng-class, ng-show, ng-hide, ng-if
+* [x] O Controller
+* [x] ng-click
+* [x] ng-repeat, ng-filter
+* [x] ng-include
+* [x] $digest()
+* [x] Egghead.io - AngularJS - $index, $event, $log
+* [x] Vamos entender o TODO-list com angular
+* [x] Outro exemplo: Árvore navegável
 
 ## 04 - Angular e Ajax
 
