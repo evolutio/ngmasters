@@ -12,8 +12,9 @@ Instruções:
 
 ## 01 - Javascript pra gente grande
 
-- [ ] História do Javascript
-- [x] Variáveis
+ - [ ] História do Javascript
+ - [x] Variáveis
+
 - [x] Arrays e objetos
 - [x] Wat?
 - [x] json
