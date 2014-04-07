@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <title>AngularJS</title>
 <link rel="stylesheet" href="../css/bootstrap.css">
+<link rel="stylesheet" href="../css/curso.css">
 <link rel="stylesheet" href="003-todo.css">
 <script src="../lib/jquery-1.10.2.min.js"></script>
 <script src="../lib/angular.min.js"></script>
@@ -53,40 +54,42 @@
     </table>
   </div>
 
-  <h3 style="margin-top: 30px; color: blue;">
-    Veja como isso resolve os problemas levantados...</h3>
+  <div class="content">
+    <h2>Veja como isso resolve os problemas levantados...</h2>
 
-  <h3 style="margin-top: 30px;">
-    1) Lógica != apresentação</h3>
-  <div class="alert alert-info" id="explicadom">
-    A apresentação (HTML) e a lógica (javascript) estão<br>
-    implementadas em lugares separados.
+    <section>
+      <h3>
+        1) Lógica != apresentação</h3>
+      <p>
+        A apresentação (HTML) e a lógica (javascript) estão<br>
+        implementadas em lugares separados.
+      </p>
+
+      <h3>2) Mais fácil de debugar</h3>
+      <p>
+        Relação mais óbvia entre eventos e código (ng-click, ng-keyup)
+      </p>
+
+      <h3>3) Código mais robusto</h3>
+      <p>
+        Alterações na apresentação são muito menos prováveis de
+        quebrar funcionalidades, pois a lógica não conhece <strong>nada</strong>
+        sobre a apresentacao.
+      </p>
+
+      <h3>E uma vantagem adicional</h3>
+      <p>
+        <strong>Zero javascript</strong> pra fazer a ligação da checkbox com o css da linha
+      </p>
+    </section>
+
+    <footer>
+      <h3>UAU, que massa! (mas eu não entendi nada do código... :S)</h3>
+      <ul>
+        <li><a href="../03-angular/001-helloworld.html">Tranquilo! Vamos do começo: Hello World com Angular</a></li>
+      </ul>
+    </footer>
   </div>
-
-  <h3 style="margin-top: 30px;">
-    2) Mais fácil de debugar</h3>
-  <div class="alert alert-info" id="explicadom">
-    Relação mais óbvia entre eventos e código (ng-click, ng-keyup)
-  </div>
-
-  <h3 style="margin-top: 30px;">
-    3) Código mais robusto</h3>
-  <div class="alert alert-info" id="explicadom">
-    Alterações na apresentação são muito menos prováveis de <br>
-    quebrar funcionalidades, pois a lógica não conhece <strong>nada</strong><br>
-    sobre a apresentacao.
-  </div>
-
-  <h3 style="margin-top: 30px; color: blue;">
-    E uma vantagem adicional</h3>
-  <div class="alert alert-info" id="explicadom">
-    <strong>Zero javascript</strong> pra fazer a ligação da checkbox com o css da linha
-  </div>
-
-  <h3 style="margin-top: 30px;">UAU, que massa! (mas eu não entendi nada do código... :S)</h3>
-  <ul>
-    <li><a href="../03-angular/001-helloworld.html">Tranquilo! Vamos do começo: Hello World com Angular</a></li>
-  </ul>
 </div>
 
 </body>
