@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AngularJS</title>
+  <link rel="stylesheet" href="../css/bootstrap.css">
+  <script src="../lib/angular.min.js"></script>
+</head>
+<body ng-app>
+<div class="container" style="margin: 15px;">
+  <h1>GET x POST</h1>
+
+  <h3>GET e POST? O que é isso?</h3>
+  <ul>
+    <li>São os dois métodos mais usados pelo HTTP</li>
+    <li>(Sendo que o GET ganha disparado na frente)</li>
+    <li>Convenção: GET não deve alterar estado, pra "mexer no banco" vc deve usar POST</li>
+    <li>GET manda parâmetros na url?p1=v1&p2=v2</li>
+    <li>POST tipicamente manda parâmetros "por baixo dos panos"</li>
+    <li>POST também pode mandar parêmetros na URL, mas não faça isso!</li>
+  </ul>
+
+  <h3>Preciso obedecer essas convenções? Por que?</h3>
+  <ul>
+    <li>É bom obedecer sim!</li>
+    <li>Browsers podem cachear resultados de GETs</li>
+    <li>O backend tipicamente implementa proteção CSRF para POSTs</li>
+  </ul>
+
+  <h3>CSR o que???</h3>
+  <ul>
+    <li>CSRF == Cross-site request forgery. É uma proteção a mais contra roubo de sessão.</li>
+    <li>Cada nova página recebe um csrf_token diferente</li>
+    <li>Quando o navegador vai fazer um POST, tem que mandar o token junto.</li>
+  </ul>
+
+  <h3>O que isso tem a ver com Ajax?</h3>
+  <ul>
+    <li>Vc deve construir Apis AJAX que usem get e post de maneira adequada:</li>
+    <li>TwitterAPI.listTwittersOfUser(user) - isso precisa ser um GET</li>
+    <li>TwitterAPI.newTweet(text) - isso precisa ser um POST</li>
+    <li>Vc precisa de um jeito fácil de fazer gets e posts com AJAX.</li>
+  </ul>
+</div>
+
+</body>
+</html>
