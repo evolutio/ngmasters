@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>AngularJS</title>
-<link rel="stylesheet" href="../css/bootstrap.css">
+<link rel="stylesheet" href="../css/curso.css">
 <script type="text/javascript">
 
 var pessoas = [
@@ -14,34 +14,29 @@ var pessoas = [
 </script>
 </head>
 <body>
-<div class="container" style="margin: 15px;">
-  <h1>Serializando dados com JSON</h1>
+  <div class="container content">
+    <h1>Serializando dados com JSON</h1>
 
-  <div>
+    <section>
 
-    <h3 style="margin-top: 30px;">
-      * O que é JSON</h3>
-    <div class="alert alert-info">
-      Um formato para serialização de objetos,
-      que por acaso é javascript válido.
-    </div>
+      <h3> O que é JSON</h3>
+      <p>
+        Um formato para serialização de objetos,
+        que por acaso é javascript válido.
+      </p>
 
-    <h3 style="margin-top: 30px;">
-      * JSON.stringify</h3>
+      <h3>JSON.stringify</h3>
       <button onclick="console.log(JSON.stringify(pessoas))">JSON.stringify(pessoas)</button>
 
-    <h3 style="margin-top: 30px;">
-      * stringify bonitinho</h3>
+      <h3>stringify bonitinho</h3>
       <button onclick="console.log(JSON.stringify(pessoas, null, 4))">JSON.stringify(pessoas, null, 4)</button>
 
-    <h3 style="margin-top: 30px;">
-      * JSON.parse</h3>
-    <ul>
-      <li>Sem aspas nos atributos não é JSON válido!</li>
-    </ul>
+      <h3>JSON.parse</h3>
+      <ul>
+        <li>Sem aspas nos atributos não é JSON válido!</li>
+      </ul>
 
-    <h3 style="margin-top: 30px;">
-      * Backends que retornam JSON</h3>
+      <h3>Backends que retornam JSON</h3>
       <ul>
         <li>
           <a href="http://freedomsponsors.org">FreedomSponsors</a>: 
@@ -54,12 +49,16 @@ var pessoas = [
           etc, etc
         </li>
       </ul>
+    </section>
 
-  <h3 style="margin-top: 30px;">Beleza, PRÓXIMO!</h3>
-  <ul>
-    <li><a href="005-funcoes.html">Funcoes</a></li>
-  </ul>
-</div>
+    <footer>
+
+      <h3>Beleza, PRÓXIMO!</h3>
+      <ul>
+        <li><a href="005-funcoes.html">Funcoes</a></li>
+      </ul>
+    </footer>
+  </div>
 
 </body>
 </html>
