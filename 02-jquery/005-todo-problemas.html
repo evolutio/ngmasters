@@ -3,44 +3,43 @@
 <head>
 <meta charset="utf-8">
 <title>AngularJS</title>
-<link rel="stylesheet" href="../css/bootstrap.css">
+<link rel="stylesheet" href="../css/curso.css">
 <script src="../lib/jquery-1.10.2.min.js"></script>
 </head>
 <body>
-<div class="container" style="margin: 15px;">
+<div class="container content">
   <h1>TODO list com JQuery: "Houston, we have a few problems"</h1>
 
-    <h3 style="margin-top: 30px;">
-      Lógica e apresentação misturadas no mesmo lugar</h3>
-    <div class="alert alert-info" id="explicadom">
-      A programação que gera HTML pra página se mistura <br>
-      com os eventos de negócio (adicionar TODOs, marcar como feito, etc).<br><br>
+  <section>
+    <h3>Lógica e apresentação misturadas no mesmo lugar</h3>
+    <p>A programação que gera HTML pra página se mistura
+    com os eventos de negócio (adicionar TODOs, marcar como feito, etc).</p>
+    <p>Programar fica mais fácil quando esses dois aspectos estão separados.</p>
 
-      Programar fica mais fácil quando esses dois aspectos estão separados.
-    </div>
+    <h3>Difícil de debugar</h3>
+    <p>
+      Um programador que não conhece o código 
+      (digamos, o seu futuro eu daqui 6 meses) 
+      pode ter dificuldades em responder perguntas como:
+    </p>
+    <ul>
+      <li>De onde tá vindo o conteúdo que preenche a tabela #todotable?</li>
+      <li>Qual código tá rodando quando marco a checkbox?</li>
+    </ul>
 
-    <h3 style="margin-top: 30px;">
-      Difícil de debugar</h3>
-    <div class="alert alert-info" id="explicadom">
-      Um programador que não conhece o código <br>
-      (digamos, o seu futuro eu daqui 6 meses) <br>
-      pode ter dificuldades em responder perguntas como:<br><br>
 
-      De onde tá vindo o conteúdo que preenche a tabela #todotable?<br>
-      Qual código tá rodando quando marco a checkbox?
-    </div>
+    <h3>Funcionalidade frágil. Depende da estrutura do DOM</h3>
+    <p>Se eu modificar a estrutura do HTML, posso acabar quebrando<br>
+      funcionalidades.</p>
+  </section>
 
-    <h3 style="margin-top: 30px;">
-      Funcionalidade frágil. Depende da estrutura do DOM</h3>
-    <div class="alert alert-info" id="explicadom">
-      Se eu modificar a estrutura do HTML, posso acabar quebrando<br>
-      funcionalidades.
-    </div>
+  <footer>
+    <h3>Olhando por esse lado, parece bem ruim mesmo. E agora?</h3>
+    <ul>
+      <li><a href="006-todo-angular.html">Vamos ver como seria com Angular</a></li>
+    </ul>
+  </footer>
 
-  <h3 style="margin-top: 30px;">Olhando por esse lado, parece bem ruim mesmo. E agora?</h3>
-  <ul>
-    <li><a href="006-todo-angular.html">Vamos ver como seria com Angular</a></li>
-  </ul>
 </div>
 
 </body>
