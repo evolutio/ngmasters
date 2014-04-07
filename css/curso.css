@@ -92,6 +92,16 @@ table {
 	margin-top: 15px;
 }
 
+.content pre {
+	font-family: monospace;
+	font-size: 0.75em;
+	overflow: auto;
+	border: 1px solid;
+	background-color: white;
+	padding: 10px 0;
+	/*color: white;*/
+}
+
 .content > footer {
 	border: solid 1px;
 	border-radius: 5px;

@@ -3,103 +3,99 @@
 <head>
 <meta charset="utf-8">
 <title>AngularJS</title>
-<link rel="stylesheet" href="../css/bootstrap.css">
+<link rel="stylesheet" href="../css/curso.css">
 <script src="008-prototype.js"></script>
 </head>
 <body>
-<div class="container" style="margin: 15px;">
+<div class="container content" style="margin: 15px;">
   <h1>Prototype</h1>
 
-  <div>
-
-    <h3 style="margin-top: 30px;">
-      * Prototype? Que é isso?</h3>
-    <div class="alert alert-info">
+  <section>
+    <h3>Prototype? Que é isso?</h3>
+    <p>
       Vamos por partes.<br><br>
-      Todo objeto tem um [protótipo], que é um outro objeto.<br>
-      Quando vc busca um atributo num objeto, o js vê se o *próprio objeto* tem a property,<br>
-      se tiver, retorna, senão, ele procura o atributo no [protótipo].
-    </div>
+      Todo objeto tem um [protótipo], que é um outro objeto.
+      Quando vc busca um atributo num objeto, o js vê se o <strong>próprio objeto</strong> tem a property, se tiver, retorna, senão, ele procura o atributo no [protótipo].
+    </p>
+  </section>
 
+  <section>
+    <h3>Exemplinho 1</h3>
+    <pre>
+  var o1 = {a:1, b:2}
+  var o2 = {b:20, c:30}
+  //No chrome, vc pode acessar o [protótipo] diretamente usando .__proto__
+  //Não é pra vc fazer isso, e é provável que isso não funciona em outros browsers!
+  o1.__proto__
+  o1.__proto__.__proto__
+  o1.__proto__ == o2.__proto__
+  
+  o1.__proto__.k = 1
 
-    <h3 style="margin-top: 30px;">
-      * Exemplinho 1</h3>
-    <div class="highlight"><pre>
-      var o1 = {a:1, b:2}
-      var o2 = {b:20, c:30}
-      //No chrome, vc pode acessar o [protótipo] diretamente usando .__proto__
-      //Não é pra vc fazer isso, e é provável que isso não funciona em outros browsers!
-      o1.__proto__
-      o1.__proto__.__proto__
-      o1.__proto__ == o2.__proto__
-      
-      o1.__proto__.k = 1
+  //Buscando uma variavel do prototipo
+  o1.k
+  o2.k
+  o1.hasOwnProperty('k')
 
-      //Buscando uma variavel do prototipo
-      o1.k
-      o2.k
-      o1.hasOwnProperty('k')
+  //Mas quando a gente *seta* um atributo, está escrevendo no próprio objeto, sempre:
+  o1.k = 100
+  o2.k = 200
+  o1.k
+  o2.k
+  o1.hasOwnProperty('k')
 
-      //Mas quando a gente *seta* um atributo, está escrevendo no próprio objeto, sempre:
-      o1.k = 100
-      o2.k = 200
-      o1.k
-      o2.k
-      o1.hasOwnProperty('k')
+  //Eu posso usar um objeto como [protótipo de outro]
+  o1.__proto__ = o2
+  o1
+  o1.a
+  o1.b
+  o1.c
+  o1.hasOwnProperty('a')
+  o1.hasOwnProperty('b')
+  o1.hasOwnProperty('c')
+    </pre>
+  </section>
 
-      //Eu posso usar um objeto como [protótipo de outro]
-      o1.__proto__ = o2
-      o1
-      o1.a
-      o1.b
-      o1.c
-      o1.hasOwnProperty('a')
-      o1.hasOwnProperty('b')
-      o1.hasOwnProperty('c')
-    </pre></div>
+  <section>
+    <h3>Protótipos de função</h3>
+    <p>Funções tem um atributo "prototype"</p>
+    <p>Esse atributo <strong>não é</strong> o [protótipo] da função.</p>
 
-    <h3 style="margin-top: 30px;">
-      * Protótipos de função</h3>
-    <div class="alert alert-info">
-      Funções tem um atributo "prototype".<br><br>
-      Esse atributo NÃO É o [protótipo] da função.
-    </div>
+    <pre>
+  function F(){}
+  F.prototype
+  F.prototype.a = 10
+  F.a
+  F.__proto__
+  F.__proto__.a = 20
+  F.a
+    </pre>
 
-    <div class="highlight"><pre>
-      function F(){}
-      F.prototype
-      F.prototype.a = 10
-      F.a
-      F.__proto__
-      F.__proto__.a = 20
-      F.a
-    </pre></div>
+    <p>F.prototype será o [protótipo] de um objeto criado com "new F()".</p>
 
-    <div class="alert alert-info">
-      F.prototype será o [protótipo] de um objeto criado com "new F()".<br>
-    </div>
+    <pre>
+  o1 = new F()
+  o1.a
 
-    <div class="highlight"><pre>
-      o1 = new F()
-      o1.a
+  //E pra que serve esse negócio??
+    </pre>
 
-      //E pra que serve esse negócio??
-    </pre></div>
+    <p>
+      Isso serve pra fazer programação orientada a objetos, sem usar classes.
+    </p>
+    <h3>Exemplo:</h3>
+    <button onclick="cc()">cc()</button>
 
-    <div class="alert alert-info">
-      Isso serve pra fazer programação orientada a objetos, sem usar classes.<br>
-    </div>
-      Exemplo: <button onclick="cc()">cc()</button>
+    <h3>E dá até pra fazer herança!</h3>
+    <button onclick="heranca()">heranca()</button>
+  </section>
 
-    <div class="alert alert-info">
-      Dá até pra fazer herança!<br>
-    </div>
-      Exemplo: <button onclick="heranca()">heranca()</button>
-
-  <h3 style="margin-top: 30px;">Caramba, acho que entendi... TEM MAIS?</h3>
-  <ul>
-    <li><a href="009-this.html">Tem. Vamos falar sobre o <strong>this</strong></a></li>
-  </ul>
+  <footer>
+    <h3>Caramba, acho que entendi... TEM MAIS?</h3>
+    <ul>
+      <li><a href="009-this.html">Tem. Vamos falar sobre o <strong>this</strong></a></li>
+    </ul>
+  </footer>
 </div>
 
 </body>
