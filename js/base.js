@@ -11,12 +11,13 @@ if (typeof String.prototype.endsWith != 'function') {
   };
 }
 
-var myapp = angular.module("myapp", []);
-myapp.config(function($interpolateProvider){
+window.Global = {};
+
+Global.myapp = angular.module("myapp", []);
+Global.myapp.config(function($interpolateProvider){
 	$interpolateProvider.startSymbol('{[{').endSymbol('}]}');
 });
 
-window.Global = {}
 Global.friendly_date = function(d){
     var delta = new Date().getTime() - d.getTime();
     var seconds = Math.floor(delta / 1000);

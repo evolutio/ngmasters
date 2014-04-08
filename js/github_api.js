@@ -1,4 +1,4 @@
-myapp.factory('Github', function($http){
+Global.myapp.factory('Github', function($http){
 	return {
 		list_issues: function(owner, repo, page){
 			if(!page){
