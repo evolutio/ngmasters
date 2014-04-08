@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AngularJS</title>
+<link rel="stylesheet" href="../css/curso.css">
+</head>
+<body>
+<div class="container content">
+  <h1>Angular pra gente grande = diretivas</h1>
+
+  <section>
+    <p>
+      Usando diretivas vc pode:
+    </p>
+
+    <ul>
+      <li>Criar tags customizadas, tipo:</li>
+    </ul>
+
+    <pre>
+  &lt;div&gt;
+    &lt;!-- componente que busca issues no Github --&gt;
+    &lt;github-issue-list&gt;&lt;/github-issue-list&gt;
+  &lt;/div&gt;
+    </pre>
+
+    <ul>
+      <li>Modificar o comportamento de elementos existentes</li>
+    </ul>
+
+    <pre>
+  &lt;!-- Uma diretiva "droppable" que transforma qualquer 
+  elemento num alvo de drag and drop --&gt;
+  &lt;div class="list" droppable ondrop="addItem(item)"&gt;
+  &lt;/div&gt;
+    </pre>
+
+  </section>
+
+  <section>
+    <h3>Tô entendo aonde vc quer chegar...</h3>
+
+    <p>Exatamente. <strong>Reuso</strong>! Crie seus componentes como diretivas, e saia reusando por aí.</p>
+
+    <p>É isso que faz do Angular uma parada tão foda.</p>
+  </section>
+
+  <footer>
+    <h3>Sem mais lero lero...</h3>
+    <ul>
+      <li><a href="002-custom_tag.html">Criando uma custom tag...</a></li>
+    </ul>
+  </footer>
+</div>
+
+</body>
+</html>

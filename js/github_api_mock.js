@@ -117,4 +117,3 @@ Global.myapp.factory('Github', function($timeout){
         }
 	}
 });
-

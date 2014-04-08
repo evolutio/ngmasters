@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AngularJS</title>
+  <link rel="stylesheet" href="../css/bootstrap.css">
+  <link rel="stylesheet" href="../css/app.css">
+  <script src="../lib/angular.min.js"></script>
+  <script>
+
+    //Bizu do stackoverflow
+    //http://stackoverflow.com/questions/646628/how-to-check-if-a-string-startswith-another-string
+    if (typeof String.prototype.startsWith != 'function') {
+      String.prototype.startsWith = function (str){
+        return this.slice(0, str.length) == str;
+      };
+    }
+    if (typeof String.prototype.endsWith != 'function') {
+      String.prototype.endsWith = function (str){
+        return this.slice(-str.length) == str;
+      };
+    }
+
+    var myapp = angular.module("myapp", []);
+    myapp.config(function($interpolateProvider){
+        $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
+    });
+
+    function MyCtrl($scope){
+        $scope.phones = [
+            {
+                "age": 0, 
+                "id": "motorola-xoom-with-wi-fi", 
+                "imageUrl": "../img/phones/motorola-xoom-with-wi-fi.0.jpg", 
+                "name": "Motorola XOOM\u2122 with Wi-Fi", 
+                "snippet": "The Next, Next Generation\r\n\r\nExperience the future with Motorola XOOM with Wi-Fi, the world's first tablet powered by Android 3.0 (Honeycomb)."
+            }, 
+            {
+                "age": 1, 
+                "id": "motorola-xoom", 
+                "imageUrl": "../img/phones/motorola-xoom.0.jpg", 
+                "name": "MOTOROLA XOOM\u2122", 
+                "snippet": "The Next, Next Generation\n\nExperience the future with MOTOROLA XOOM, the world's first tablet powered by Android 3.0 (Honeycomb)."
+            }
+        ];
+
+        $scope.select = function(p){
+            $scope.selected_phone = p;
+            p.is_selected = !p.is_selected;
+        };
+
+        $scope.filtro = '';
+        $scope.ordem = 'name';
+        $scope.comecacomfiltro = function(phone){
+            return phone.name.toLowerCase().startsWith($scope.filtro.toLowerCase());
+        };
+        $scope.comecacom = function(f){
+            return function(phone){
+                return phone.name.toLowerCase().startsWith($scope.filtro.toLowerCase());
+            };
+        };
+    }
+  </script>
+</head>
+
+<body ng-app="myapp" ng-controller="MyCtrl">
+  <div class="container" style="margin: 15px;">
+    <h1>ng-repeat + filter + sort</h1>
+    <hr>
+    <div>
+      <div>
+        Filtar:
+        <input type="text" ng-model="filtro">
+      </div>
+      <div>
+        Ordenar:
+        <select ng-model="ordem">
+          <option value="name" selected>Modelo</option>
+          <option value="snippet">Descrição</option>
+        </select>
+        <input type="checkbox" ng-model="aocontrario"> Ordem inversa
+      </div>
+      <div ng-show="selected_phone" class="row">
+        <div class="span6">
+          <img ng-src="{[{selected_phone.imageUrl}]}" class="bordinha">
+        </div>
+        <div class="span6">
+          <div>
+            <div>
+              id: {[{ selected_phone.id }]}
+            </div>
+            <div>
+              age: {[{ selected_phone.age }]}
+            </div>
+            <div>
+              Modelo: {[{ selected_phone.name }]}
+            </div>
+            <div>
+              Descrição: {[{ selected_phone.snippet }]}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <table class="table">
+          <tr>
+            <th></th>
+            <th>Modelo</th>
+            <th>Descrição</th>
+          </tr>
+          <tr ng-repeat="phone in phones | filter: comecacom(filtro) | orderBy: 'name': true"
+            ng-click="select(phone)"
+            ng-class="{selected: phone.is_selected}">
+            <td><img ng-src="{[{phone.imageUrl}]}" class="thumb40"></td>
+            <td>{[{phone.name}]}</td>
+            <td>{[{phone.snippet}]}</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="alert alert-info">
+        Tony, não esquece:
+        <ul>
+          <li>Trocar a ordem</li>
+          <li>select(phone)</li>
+          <li>selecionar só um</li>
+        </ul>
+      </div>
+
+      <h3>Entendi, mas essa experiência de ordenação não ficou legal...</h3>
+      <ul>
+        <li><a href="010-sortBy_mais_inteligente.html">Um sort mais legal</a></li>
+      </ul>
+    </div>
+  </div>
+
+</body>
+
+
+</html>
+
+
+
