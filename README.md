@@ -46,25 +46,26 @@ Instruções:
 - [x] Vamos entender o TODO-list com angular
 - [x] Outro exemplo: Árvore navegável
 
-## 04 - Angular e Ajax
+## 04 - Ajax e outras coisinhas
 
-* Ajax com JQuery
-* $http
-* Servicos customizados
-* Wrapper $http
-* Mockando Ajax
+- [x] GET x POST
+- [x] Wrapper http
+- [x] Mockando Ajax
+- [x] O sistema de módulos
+- [x] Controller sem gambis
 
 ## 05 - AngularJS pra gente grande: diretivas
 
-* Custom tags
-* Transclusão
-* Pegadinha: The dot
-* Escopo isolado: @ e =
-* Egghead.io - AngularJS - Sharing Data Between Controllers
-* Escopo isolado: =? e &
-* Diretivas de tag (A)
-* Egghead.io - AngularJS - $scope vs. scope
-* Componentes prontos pra usar: AngularUI, Autocomplete, TinyMCE...
+- [x] Custom tags
+- [x] Escopo isolado: @ e =
+- [x] Transclusão
+- [x] Binding opcional: =?
+- [x] Relação entre escopos
+- Egghead.io - AngularJS - Sharing Data Between Controllers
+- Escopo isolado: &
+- Diretivas de tag (A)
+- Egghead.io - AngularJS - $scope vs. scope
+- Componentes prontos pra usar: AngularUI, Autocomplete, TinyMCE...
 
 ## 06 - eventos
 
