@@ -6,6 +6,11 @@
   <link rel="stylesheet" href="../css/bootstrap.css">
   <link rel="stylesheet" href="../css/app.css">
   <script src="../lib/angular.min.js"></script>
+
+  <script src="../js/base.js"></script>
+  <script src="../js/ajax.js"></script>
+  <script src="../js/phone_api.js"></script>
+  <script src="../js/components/phonedetail.js"></script>
   <script>
 
     //Bizu do stackoverflow
@@ -21,12 +26,7 @@
       };
     }
 
-    var myapp = angular.module("myapp", []);
-    myapp.config(function($interpolateProvider){
-        $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
-    });
-
-    function MyCtrl($scope){
+    function MyCtrl($scope, PhoneApi){
         $scope.phones = [
             {
                 "age": 0, 
@@ -45,62 +45,28 @@
         ];
 
         $scope.select = function(p){
-            $scope.selected_phone = p;
-            p.is_selected = !p.is_selected;
-        };
-
-        $scope.filtro = '';
-        $scope.ordem = 'name';
-        $scope.comecacomfiltro = function(phone){
-            return phone.name.toLowerCase().startsWith($scope.filtro.toLowerCase());
-        };
-        $scope.comecacom = function(f){
-            return function(phone){
-                return phone.name.toLowerCase().startsWith($scope.filtro.toLowerCase());
-            };
+            $scope.loading = true;
+            PhoneApi.get_phone(p.id).success(function(data){
+                $scope.loading = false;
+                $scope.selected_phone = data;
+                $scope.selected_phone.selected_image = data.images[0];
+            });
         };
     }
   </script>
 </head>
 
 <body ng-app="myapp" ng-controller="MyCtrl">
-  <div class="container" style="margin: 15px;">
-    <h1>ng-repeat + filter + sort</h1>
+  <div class="container" style="margin-left: 35px">
+    <h1>Primeira diretiva - custom tag</h1>
     <hr>
     <div>
-      <div>
-        Filtar:
-        <input type="text" ng-model="filtro">
+
+      <img src="../img/loader.gif" ng-show="loading">
+      <div ng-show="selected_phone && !loading" class="row">
+        <phone-detail></phone-detail> <!-- Muito lindo isso nénão :-) ... -->
       </div>
-      <div>
-        Ordenar:
-        <select ng-model="ordem">
-          <option value="name" selected>Modelo</option>
-          <option value="snippet">Descrição</option>
-        </select>
-        <input type="checkbox" ng-model="aocontrario"> Ordem inversa
-      </div>
-      <div ng-show="selected_phone" class="row">
-        <div class="span6">
-          <img ng-src="{[{selected_phone.imageUrl}]}" class="bordinha">
-        </div>
-        <div class="span6">
-          <div>
-            <div>
-              id: {[{ selected_phone.id }]}
-            </div>
-            <div>
-              age: {[{ selected_phone.age }]}
-            </div>
-            <div>
-              Modelo: {[{ selected_phone.name }]}
-            </div>
-            <div>
-              Descrição: {[{ selected_phone.snippet }]}
-            </div>
-          </div>
-        </div>
-      </div>
+
       <div>
         <table class="table">
           <tr>
@@ -108,7 +74,7 @@
             <th>Modelo</th>
             <th>Descrição</th>
           </tr>
-          <tr ng-repeat="phone in phones | filter: comecacom(filtro) | orderBy: 'name': true"
+          <tr ng-repeat="phone in phones"
             ng-click="select(phone)"
             ng-class="{selected: phone.is_selected}">
             <td><img ng-src="{[{phone.imageUrl}]}" class="thumb40"></td>
@@ -118,16 +84,7 @@
         </table>
       </div>
 
-      <div class="alert alert-info">
-        Tony, não esquece:
-        <ul>
-          <li>Trocar a ordem</li>
-          <li>select(phone)</li>
-          <li>selecionar só um</li>
-        </ul>
-      </div>
-
-      <h3>Entendi, mas essa experiência de ordenação não ficou legal...</h3>
+      <h3>a</h3>
       <ul>
         <li><a href="010-sortBy_mais_inteligente.html">Um sort mais legal</a></li>
       </ul>
@@ -138,6 +95,3 @@
 
 
 </html>
-
-
-
