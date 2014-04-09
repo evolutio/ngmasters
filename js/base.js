@@ -11,7 +11,9 @@ if (typeof String.prototype.endsWith != 'function') {
   };
 }
 
-window.Global = {};
+if(!window.Global){
+    window.Global = {};
+}
 
 Global.myapp = angular.module("myapp", []);
 Global.myapp.config(function($interpolateProvider){

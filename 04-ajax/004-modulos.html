@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AngularJS</title>
+  <link rel="stylesheet" href="../css/curso.css">
+</head>
+
+<body >
+  <div class="container content">
+    <h1>Módulos.</h1>
+
+    <section>
+      <h3>Essa história de tuchar tudo no Global.myapp não tá legal.</h3>
+
+      <p>O Angular tem um sistema de módulos que permite separar melhor as responsabilidades entre as partes que compõem tua aplicação.</p>
+
+      <p>Ao invés de:</p>
+
+      <pre>
+  //---- base.js -----
+  if(!window.Global){
+      window.Global = {};
+  }
+
+  Global.myapp = angular.module("myapp", []);
+  
+  Global.myapp.config(function($interpolateProvider){
+    $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
+  });
+
+  //---- ajax.js -----
+  Global.myapp.config(
+      function($httpProvider){
+          //Essa configuração pode ser dependente de como seu backend implementa a proteção CSRF
+          $httpProvider.defaults.headers.common['X-CSRFToken'] = Global.CSRF_TOKEN; // alguem precisa ter setado isso aqui!
+          $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+          $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
+      }
+  );
+
+  Global.myapp.factory('ajax', function($http){...});
+
+  //---- github_api2.js ----
+  Global.myapp.factory('Github', function(ajax){...});  
+      </pre>
+
+      <p>Faz mais sentido fazer algo do tipo:</p>
+
+      <pre>
+  //---- pagina.html -----
+  &lt;head&gt;
+    ...
+    &lt;script&gt;
+      if(!window.Global){
+          window.Global = {}
+      }
+      window.Global.angular_dependencies = [
+          'modgithubapi'
+      ];
+    &lt;/script&gt;
+    &lt;!-- E agora tanto faz a ordem dos arquivos! --&gt;
+    &lt;script src="../js/base.js"&gt;&lt;/script&gt;
+    &lt;script src="../js/github_api2.js"&gt;&lt;/script&gt;
+    &lt;script src="../js/ajax.js"&gt;&lt;/script&gt;
+  &lt;/head&gt;
+
+  //---- base.js -----
+  if(!window.Global){
+      window.Global = {};
+      if(!window.Global.angular_dependencies){
+        window.Global.angular_dependencies = [];
+      }
+  }
+
+  //dependencias mais flexíveis
+  Global.myapp = angular.module("myapp", window.Global.angular_dependencies);
+  
+  Global.myapp.config(function($interpolateProvider, $httpProvider){
+    $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
+    
+    //Configuração do CSRF passou pro base.js!
+    $httpProvider.defaults.headers.common['X-CSRFToken'] = Global.CSRF_TOKEN; // alguem precisa ter setado isso aqui!
+    $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+    $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
+  });
+
+  //---- ajax.js -----
+
+  //cria um novo módulo angular 'modajax', e sem sujar o window! :-)
+  function(){
+    var modajax = angular.module('modajax', [])
+    modajax.factory('ajax', function($http){...});
+  }();
+
+  //---- github_api2.js ----
+  function(){
+    angular.module('modgithubapi', ['modajax']).factory('Github', function(ajax){...});
+  }();
+      </pre>
+
+      <p>Nos próximos exemplos, vamos usar uma estrutura mais parecida com essa.</p>
+
+    </section>
+
+    <footer>
+      <h3>Acho que entendi, é agora que a gente vai falar de diretiva?</h3>
+      <ul>
+        <li>Tem só uma última coisa que a gente precisa tirar do caminho primeiro...</li>
+        <li><a href="005-controllers_no_padrao.html">A gente tá criando controller do jeito "errado"</a></li>
+      </ul>
+    </footer>
+  </div>
+
+</body>
+
+
+</html>
+
+
+

@@ -82,7 +82,25 @@ f();
 
     <section>
       <p>EVITE criar coisas globais</p>
-      <p> Mas se precisar, seja explícito! </p>    
+
+      <pre>
+  function(){
+    var v1 = 2+2;
+    function inicializa(){
+      //blabla    
+    }
+    inicializa();
+  }();
+      </pre>
+
+      <p> Mas se precisar, cria <strong>só uma</strong>, e seja explícito! </p>
+
+      <pre>
+  if(!window.Global){
+    window.Global = {};
+  }
+  window.Global.twitterURL = 'http://twitter.com';
+      </pre>
     </section>
 
 

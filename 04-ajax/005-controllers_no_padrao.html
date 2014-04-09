@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AngularJS</title>
+  <link rel="stylesheet" href="../css/curso.css">
+</head>
+
+<body >
+  <div class="container content">
+    <h1>Controllers, com zero gambiarra.</h1>
+
+    <section>
+      <h3>Tem dois problemas na maneira que a gente tá criando nossos controllers.</h3>
+
+      <pre>
+  //---- pagina.html -----
+  &lt;head&gt;
+    ...
+    &lt;script&gt;
+      function MyCtrl($scope, $log, $timeout, Github){
+        ...
+      }
+    &lt;/script&gt;
+  &lt;/head&gt;
+      </pre>
+
+      <ul>
+        <li><p>MyCtrl é uma função global, funções globais são do mal.</p></li>
+        <li><p>Os parâmetros não sobreviveriam a uma minificação de js</p></li>
+      </ul>
+
+      <p>Pra resolver o problema:</p>
+
+      <ul>
+        <li><p>1. Pendure os controllers num módulo angular</p></li>
+      </ul>
+
+      <pre>
+  //---- pagina.html -----
+  &lt;head&gt;
+    ...
+    &lt;script&gt;
+      window.Global.myapp.controller('MyCtrl', function MyCtrl($scope, $log, $timeout, Github){
+        ...
+      }); //já melhorou, mas ainda não tá 100%
+    &lt;/script&gt;
+  &lt;/head&gt;
+      </pre>
+
+      <ul>
+        <li><p>2. Declare o controller como um <strong>array</strong> ao invés de uma função</p></li>
+      </ul>
+
+      <pre>
+  //---- pagina.html -----
+  &lt;head&gt;
+    ...
+    &lt;script&gt;
+      window.Global.myapp.controller('MyCtrl', ['$scope', '$log', '$timeout', 'Github', function MyCtrl($scope, $log, $timeout, Github){
+        ...
+      }]); //Agora sim!
+    &lt;/script&gt;
+  &lt;/head&gt;
+      </pre>
+
+      <p>Nossos próximos controllers vão ser todos nesse padrãozinho aí.</p>
+
+    </section>
+
+    <footer>
+      <h3>Gostei, morte às gambiarras! AGORA a gente vai ver diretiva né??</h3>
+      <ul>
+        <li>É!</li>
+        <li><a href="../05-diretivas/001-diretivas.html">Diretivas</a></li>
+      </ul>
+    </footer>
+  </div>
+
+</body>
+
+
+</html>
+
+
+

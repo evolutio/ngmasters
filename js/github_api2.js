@@ -32,4 +32,4 @@ Global.myapp.factory('Github', function(ajax){
             return lines.join("");
         }
 	}
-})
+});
