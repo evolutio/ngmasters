@@ -7,26 +7,24 @@
   <link rel="stylesheet" href="../css/app.css">
   <script src="../lib/angular.min.js"></script>
 
-  <script src="../js/base2.js"></script>
-  <script src="../js/ajax2.js"></script>
-  <script src="../js/phone_api.js"></script>
+  <script>
+      if(!window.Global){
+          window.Global = {}
+      }
+      window.Global.angular_dependencies = [
+          'modphonedetail',
+          'modphoneapi'
+      ];
+  </script>
+
+  <!-- ordem dos scripts intencionalmente embaralhada ;) -->
   <script src="../js/components/phonedetail.js"></script>
+  <script src="../js/ajax2.js"></script>
+  <script src="../js/base2.js"></script>
+  <script src="../js/phone_api.js"></script>
   <script>
 
-    //Bizu do stackoverflow
-    //http://stackoverflow.com/questions/646628/how-to-check-if-a-string-startswith-another-string
-    if (typeof String.prototype.startsWith != 'function') {
-      String.prototype.startsWith = function (str){
-        return this.slice(0, str.length) == str;
-      };
-    }
-    if (typeof String.prototype.endsWith != 'function') {
-      String.prototype.endsWith = function (str){
-        return this.slice(-str.length) == str;
-      };
-    }
-
-    function MyCtrl($scope, PhoneApi){
+    Global.myapp.controller('MyCtrl', ['$scope', 'PhoneApi', function($scope, PhoneApi){
         $scope.phones = [
             {
                 "age": 0, 
@@ -52,7 +50,8 @@
                 $scope.selected_phone.selected_image = data.images[0];
             });
         };
-    }
+    }]);
+    
   </script>
 </head>
 

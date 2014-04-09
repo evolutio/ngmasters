@@ -84,13 +84,13 @@ f();
       <p>EVITE criar coisas globais</p>
 
       <pre>
-  function(){
+  (function(){
     var v1 = 2+2;
     function inicializa(){
       //blabla    
     }
     inicializa();
-  }();
+  })();
       </pre>
 
       <p> Mas se precisar, cria <strong>só uma</strong>, e seja explícito! </p>
@@ -101,6 +101,11 @@ f();
   }
   window.Global.twitterURL = 'http://twitter.com';
       </pre>
+
+      <ul>
+        <li>Ainda tem a vantagem do Autocomplete...</li>
+      </ul>
+
     </section>
 
 
