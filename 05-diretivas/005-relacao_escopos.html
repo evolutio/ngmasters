@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AngularJS</title>
+  <link rel="stylesheet" href="../css/curso.css">
+  <script src="../lib/angular.min.js"></script>
+  <script>
+    window.Global = {};
+    Global.myapp = angular.module('myapp', []);
+
+    Global.myapp.directive('d1', function(){
+        return {
+            restrict: 'E',
+            replace: true,
+            template: '<div><input type="text" ng-model="message"></div>' //poisé, isso funciona tb ;)
+        }
+    });
+
+    Global.myapp.directive('d2', function(){
+        return {
+            restrict: 'E',
+            replace: true,
+            scope:{
+                msg: '='
+            },
+            template: '<div><input type="text" ng-model="msg"></div>'
+        }
+    });
+    Global.myapp.directive('d3', function(){
+        return {
+            restrict: 'E',
+            replace: true,
+            scope:{
+                msg: '=?'
+            },
+            template: '<div><input type="text" ng-model="msg"></div>'
+        }
+    });
+    Global.myapp.directive('d4', function(){
+        return {
+            restrict: 'E',
+            replace: true,
+            scope:{
+                data: '='
+            },
+            template: '<div><input type="text" ng-model="data.msg"></div>'
+        }
+    });
+
+    Global.myapp.controller('c1', ['$scope', function($scope){}]);
+  </script>
+</head>
+<body ng-app="myapp">
+<div class="container content">
+  <h1>Mais sobre escopos: herança e compartilhamento</h1>
+
+  <section>
+    <h3>1. Escopo único</h3>
+    <div><input type="text" ng-model="message"></div>
+    <d1></d1>
+    <d1></d1>
+  </section>
+
+  <section>
+    <h3>2. Escopo isolado, com binding bidirecional</h3>
+    <div><input type="text" ng-model="message2"></div>
+    <d2 msg="message2"></d2>
+    <d2 msg="message2"></d2>
+  </section>
+
+  <section>
+    <h3>3. Escopo isolado, com binding opcional</h3>
+    <div><input type="text" ng-model="message3"></div>
+    <d3 msg="message3"></d3>
+    <d3></d3>
+  </section>
+
+  <section>
+    <h3>4. Escopo isolado, com ponto</h3>
+    <div><input type="text" ng-model="data4.msg"></div>
+    <d4 data="data4"></d4>
+    <d4 data="data4"></d4>
+  </section>
+
+  <section>
+    <h3>5. Herança entre escopos, sem o ponto</h3>
+    <div><input type="text" ng-model="message5"></div>
+    <div ng-controller="c1"><input type="text" ng-model="message5"></div>
+    <div ng-controller="c1"><input type="text" ng-model="message5"></div>
+
+    <p>WTF happened here??</p>
+
+    <ul>
+      <li>Herança entre escopos!</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>6. Herança entre escopos, com o ponto</h3>
+    <div><input type="text" ng-model="data6.message"></div>
+    <div ng-controller="c1"><input type="text" ng-model="data6.message"></div>
+    <div ng-controller="c1"><input type="text" ng-model="data6.message"></div>
+
+    <p>Será magia?</p>
+  </section>
+
+  <section>
+    <h3>Lições valiosas:</h3>
+    
+    <p>Herança é pra leitura, não pra escrita.</p>
+    <p>Herança entre escopos <strong>não ocorre</strong> com diretivas de escopo isolado.</p>
+    <p>setMessage() e getData().setMessage() têm resultados bem diferentes.</p>
+    <p>O Angular cria escopos filho implícitos em alguns casos:</p>
+
+    <ul>
+      <li>ng-repeat</li>
+      <li>transclude</li>
+      <li>ng-include</li>
+      <li>talvez outros</li>
+    </ul>
+
+    <p>Prefira sempre <pre>  ng-click="toggle_state()"</pre> a <pre>  ng-click="state=!state"</pre> 
+      (<a href="004-transclusao.html">vamos ver a popup de novo!</a>)</p>
+
+    <p> Em outras palavras: lugar de mudar estado é no controller, não no template.</p>
+  </section>
+
+  <footer>
+    <h3>Sem mais lero lero...</h3>
+    <ul>
+      <li><a href="002-custom_tag.html">Criando uma custom tag...</a></li>
+    </ul>
+  </footer>
+</div>
+
+</body>
+</html>

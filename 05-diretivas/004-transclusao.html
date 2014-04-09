@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AngularJS</title>
+  <link rel="stylesheet" href="../css/bootstrap_full.css">
+  <link rel="stylesheet" href="../css/app.css">
+  <script src="../lib/angular.min.js"></script>
+
+  <script>
+      if(!window.Global){
+          window.Global = {}
+      }
+      window.Global.angular_dependencies = [
+          'modphonedetail',
+          'modpopup'
+      ];
+  </script>
+
+  <!-- ordem dos scripts intencionalmente embaralhada ;) -->
+  <script src="../js/components/phonedetail2.js"></script>
+  <script src="../js/components/popup.js"></script>
+  <script src="../js/base2.js"></script>
+  <script>
+
+    Global.myapp.controller('MyCtrl', ['$scope', function($scope){
+        $scope.xoom = {
+            "additionalFeatures": "Front-facing camera. Sensors: proximity, ambient light, barometer, gyroscope.", 
+            "hardware": {
+                "accelerometer": true, 
+                "audioJack": "3.5mm", 
+                "cpu": "1 GHz Dual Core Tegra 2", 
+                "fmRadio": false, 
+                "physicalKeyboard": false, 
+                "usb": "USB 2.0"
+            }, 
+            "id": "motorola-xoom", 
+            "images": [
+                "/img/phones/motorola-xoom.0.jpg", 
+                "/img/phones/motorola-xoom.1.jpg", 
+                "/img/phones/motorola-xoom.2.jpg"
+            ], 
+            "name": "MOTOROLA XOOM\u2122", 
+            "sizeAndWeight": {
+                "dimensions": [
+                    "249.0 mm (w)", 
+                    "168.0 mm (h)", 
+                    "12.7 mm (d)"
+                ], 
+                "weight": "726.0 grams"
+            }, 
+            "storage": {
+                "flash": "32000MB", 
+                "ram": "1000MB"
+            }
+        };
+
+        $scope.show1 = function(){
+          $scope.visible1 = true;
+        };
+
+        $scope.show2 = function(){
+          $scope.visible2 = true;
+        };
+
+        // $scope.fecha1 = function(){
+        //   $scope.visible1 = false;
+        // }
+
+    }]);
+    
+  </script>
+</head>
+
+<body ng-app="myapp" ng-controller="MyCtrl">
+  <div class="container" style="margin-left: 35px">
+    <h1>Transclusão</h1>
+    <hr>
+    <button ng-click="show1()">Popup1</button>
+    <hr>
+    <button ng-click="show2()">Popup2</button>
+    
+    <mypopup titulo="Hello" visible="visible1">
+      <div>Mundão <strong>sem porteira!</strong></div>
+      <!-- <button ng-click="fecha1()">Fechar</button> -->
+    </mypopup>
+
+    <mypopup titulo="{[{ xoom.name }]}" visible="visible2">
+      <phone-detail phone="xoom"></phone-detail>
+    </mypopup>
+    <hr>
+  
+    <div class="alert alert-info">
+      Importante:
+      <ul>
+        <li>mypopup ao invés de popup. Por que? (Quase o mesmo motivo do "titulo")</li>
+      </ul>
+    </div>
+   
+    <h3>Que legal isso :-) Manda mais aih!</h3>
+    <ul>
+      <li><a href="005-relacao_escopos.html">Relação entre escopos</a></li>
+    </ul>
+
+  </div>
+
+
+
+</body>
+
+
+</html>
