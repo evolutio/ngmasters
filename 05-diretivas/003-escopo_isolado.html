@@ -18,7 +18,7 @@
   </script>
 
   <!-- ordem dos scripts intencionalmente embaralhada ;) -->
-  <script src="../js/components/phonedetail.js"></script>
+  <script src="../js/components/phonedetail2.js"></script>
   <script src="../js/ajax2.js"></script>
   <script src="../js/base2.js"></script>
   <script src="../js/phone_api.js"></script>
@@ -42,7 +42,9 @@
             }
         ];
 
-        $scope.select = function(p){
+        $scope.select = function(ind){
+            var p = $scope.phones[ind];
+            $scope.selected_index = ind;
             $scope.loading = true;
             PhoneApi.get_phone(p.id).success(function(data){
                 $scope.loading = false;
@@ -57,13 +59,16 @@
 
 <body ng-app="myapp" ng-controller="MyCtrl">
   <div class="container" style="margin-left: 35px">
-    <h1>Primeira diretiva - custom tag</h1>
+    <h1>Diretiva de escopo isolado</h1>
     <hr>
     <div>
 
       <img src="../img/loader.gif" ng-show="loading">
       <div ng-show="selected_phone && !loading" class="row">
-        <phone-detail></phone-detail> <!-- Muito lindo isso nénão :-) ... -->
+        <phone-detail 
+          titulo="{[{ 'selecionado: '+selected_index }]}" 
+          phone="selected_phone">
+        </phone-detail>
       </div>
 
       <div>
@@ -74,7 +79,7 @@
             <th>Descrição</th>
           </tr>
           <tr ng-repeat="phone in phones"
-            ng-click="select(phone)"
+            ng-click="select($index)"
             ng-class="{selected: phone.is_selected}">
             <td><img ng-src="{[{phone.imageUrl}]}" class="thumb40"></td>
             <td>{[{phone.name}]}</td>
@@ -102,4 +107,6 @@
   </div>
 
 </body>
+
+
 </html>
