@@ -88,15 +88,15 @@
   //---- ajax.js -----
 
   //cria um novo módulo angular 'modajax', e sem sujar o window! :-)
-  function(){
+  (function(){
     var modajax = angular.module('modajax', [])
     modajax.factory('ajax', function($http){...});
-  }();
+  })();
 
   //---- github_api2.js ----
-  function(){
+  (function(){
     angular.module('modgithubapi', ['modajax']).factory('Github', function(ajax){...});
-  }();
+  })();
       </pre>
 
       <p>Nos próximos exemplos, vamos usar uma estrutura mais parecida com essa.</p>
