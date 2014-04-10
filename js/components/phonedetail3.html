@@ -1,0 +1,28 @@
+<div ng-show="model.selected_phone">
+  <div class="span6">
+    <h3>{[{ 'selecionado: ' + model.selected_index + ' / ' + model.selected_phone.name }]}</h3>
+    <img ng-src="{{model.selected_phone.selected_image}}" class="bordinha">
+    <div class="row">
+      <img ng-repeat="image in model.selected_phone.images" ng-src="{{image}}" class="thumb40" ng-click="select_image(image)">
+    </div>
+  </div>
+  <div class="span6">
+    <div>
+      <div>
+        id: {{ model.selected_phone.id }}
+      </div>
+      <div>
+        Dimensions: {{ model.selected_phone.sizeAndWeight.dimensions }}
+      </div>
+      <div>
+        Flash: {{ model.selected_phone.storage.flash }}
+      </div>
+      <div>
+        CPU: {{ model.selected_phone.hardware.cpu }}
+      </div>
+      <div>
+        Additional Features: {{ model.selected_phone.additionalFeatures }}
+      </div>
+    </div>
+  </div>
+</div>

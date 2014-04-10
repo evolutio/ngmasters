@@ -1,0 +1,20 @@
+
+<div>
+  <div>
+    <img src="../img/loader.gif" ng-show="loading">
+  </div>
+  <table class="table">
+    <tr>
+      <th></th>
+      <th>Modelo</th>
+      <th>Descrição</th>
+    </tr>
+    <tr ng-repeat="phone in phones"
+      ng-click="select($index)"
+      ng-class="{selected: phone.is_selected}">
+      <td><img ng-src="{[{phone.imageUrl}]}" class="thumb40"></td>
+      <td>{[{phone.name}]}</td>
+      <td>{[{phone.snippet}]}</td>
+    </tr>
+  </table>
+</div>

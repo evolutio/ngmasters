@@ -61,8 +61,8 @@ Instruções:
 - [x] Transclusão
 - [x] Binding opcional: =?
 - [x] Relação entre escopos
-- Egghead.io - AngularJS - Sharing Data Between Controllers
-- Escopo isolado: &
+- [x] Compartilhando dados entre controllers
+- [x] Escopo isolado: &
 - Diretivas de tag (A)
 - Egghead.io - AngularJS - $scope vs. scope
 - Componentes prontos pra usar: AngularUI, Autocomplete, TinyMCE...

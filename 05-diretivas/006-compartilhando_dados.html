@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AngularJS</title>
+  <link rel="stylesheet" href="../css/bootstrap.css">
+  <link rel="stylesheet" href="../css/app.css">
+  <script src="../lib/angular.min.js"></script>
+
+  <script>
+      if(!window.Global){
+          window.Global = {}
+      }
+      window.Global.angular_dependencies = [
+          'modphonedirectives'
+      ];
+  </script>
+
+  <!-- ordem dos scripts intencionalmente embaralhada ;) -->
+  <script src="../js/components/phonedirectives.js"></script>
+  <script src="../js/ajax2.js"></script>
+  <script src="../js/base2.js"></script>
+  <script src="../js/phone_api.js"></script>
+  <script>
+
+    Global.myapp.controller('MyCtrl', ['$scope', function($scope){
+    }]);
+    
+  </script>
+</head>
+
+<body ng-app="myapp" ng-controller="MyCtrl">
+  <div class="container" style="margin-left: 35px">
+    <h1>Compartilhando dados entre controllers</h1>
+    <hr>
+    <div>
+
+      <phone-detail></phone-detail>
+      <phone-list></phone-list>
+
+      <div class="alert alert-info">
+        Veja:
+        <ul>
+          <li>Escopo isolado, modelo compartilhado (selected_index, selected_phone)!</li>
+          <li>Use com sabedoria. Abuso = difícil de debugar. "Preciso mesmo disso?"</li>
+        </ul>
+      </div>
+ 
+      <h3>Entendi! Que mais?</h3>
+      <ul>
+        <li><a href="007-callbacks.html">Diretivas com callbacks (&)</a></li>
+      </ul>
+    </div>
+  </div>
+
+</body>
+
+
+</html>

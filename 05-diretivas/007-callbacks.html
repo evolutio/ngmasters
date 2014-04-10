@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AngularJS</title>
+  <link rel="stylesheet" href="../css/bootstrap_full.css">
+  <link rel="stylesheet" href="../css/app.css">
+  <script src="../lib/angular.min.js"></script>
+
+  <script>
+      if(!window.Global){
+          window.Global = {}
+      }
+      window.Global.angular_dependencies = [
+          'modpopup2'
+      ];
+  </script>
+
+  <!-- ordem dos scripts intencionalmente embaralhada ;) -->
+  <script src="../js/components/popup_dois.js"></script>
+  <script src="../js/base2.js"></script>
+  <script>
+
+    Global.myapp.controller('MyCtrl', ['$scope', function($scope){
+        $scope.show1 = function(){
+          $scope.visible1 = true;
+        };
+
+        $scope.show2 = function(){
+          $scope.visible2 = true;
+        };
+
+        $scope.onclose1 = function(){
+          alert('fechou a primeira');
+        }
+
+        $scope.onclose2 = function(vezes){
+          alert('fechou a segunda '+vezes+' vezes');
+        }
+
+    }]);
+    
+  </script>
+</head>
+
+<body ng-app="myapp" ng-controller="MyCtrl">
+  <div class="container" style="margin-left: 35px">
+    <h1>Diretivas com callbacks - &</h1>
+    <hr>
+    <button ng-click="show1()">Popup1</button>
+    <hr>
+    <button ng-click="show2()">Popup2</button>
+    
+    <mypopup2 titulo="Hello" visible="visible1" onclose="onclose1()">
+      <div>Mundão <strong>sem porteira!</strong></div>
+    </mypopup2>
+
+    <mypopup3 titulo="Eiii!" visible="visible2" onclose="onclose2(counter)">
+      <div>Quantas vezes eu já vim aqui??</div>
+    </mypopup3>
+    <hr>
+  
+    <div class="alert alert-info">
+      Vc usa isso quando:
+      <ul>
+        <li>A diretiva precisa avisar um "evento" pro cliente.</li>
+      </ul>
+    </div>
+   
+    <h3>Legal, parece útil. Acabou?</h3>
+    <p>Essas diretivas que a gente viu permitem criar novos componentes.</p>
+    <p>Mas as vezes é interessante poder modificar o comportamento de um elemento qualquer. Pra isso a gente usa uma diretiva <strong>de atributo</strong>.</p>
+
+    <ul>
+      <li><a href="008-diretivas_de_atributo.html">Diretivas de atributo</a></li>
+    </ul>
+
+  </div>
+
+
+
+</body>
+
+
+</html>

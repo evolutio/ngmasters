@@ -4,9 +4,11 @@
 			get_phone: function(id){
 				var url="/phones/"+id+".json";
 				return ajax.get(url);
+			},
+			list_all: function(id){
+				var url="/phones.json";
+				return ajax.get(url);
 			}
 		}
 	}]);
 })();
-
-Global.myapp;
