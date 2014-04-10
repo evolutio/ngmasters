@@ -63,40 +63,26 @@ Instruções:
 - [x] Relação entre escopos
 - [x] Compartilhando dados entre controllers
 - [x] Escopo isolado: &
+- $watch e $on
 - [x] Diretivas de tag (A)
 - [x] $scope vs. scope
 - [x] Integração com plugins JQuery
 - [x] Componentes prontos pra usar: AngularUI
 
-## 06 - eventos
-
-* watch
-* $on
-
-## 07 - Services
-* Services
-* Promises
-
-## 08 - Animações
+## 06 - Animações
 * Animações
 
-## 09 - Módulos e dependências
-
-* Criando modulos
-* Regras de dependencias
-* Extensões
-
-## 10 - ng-view
+## 07 - ng-view
 * Rotas
 * URLs
 
-## 11 - Testing
+## 08 - Testing
 * Testacular
 * Selenium
 
-## 12 - AngularJS: guia de boas práticas
+## 09 - AngularJS: guia de boas práticas
 
-## 13 - AngularJS: Desvantagens não-óvias
+## 10 - AngularJS: Desvantagens não-óvias
 
 * Desvantagens (AngularJS não é bala de prata!)
 * Quando não usar
