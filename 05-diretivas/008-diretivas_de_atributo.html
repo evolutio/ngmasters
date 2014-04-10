@@ -5,134 +5,160 @@
   <title>AngularJS</title>
   <link rel="stylesheet" href="../css/curso.css">
   <script src="../lib/angular.min.js"></script>
+  <script src="../lib/jquery-1.11.0.js"></script>
+  <script src="../lib/jquery.tooltip.js"></script>
   <script>
     window.Global = {};
     Global.myapp = angular.module('myapp', []);
-
-    Global.myapp.directive('d1', function(){
-        return {
-            restrict: 'E',
-            replace: true,
-            template: '<div><input type="text" ng-model="message"></div>' //poisé, isso funciona tb ;)
-        }
+    Global.myapp.config(function($interpolateProvider){
+      $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
     });
 
-    Global.myapp.directive('d2', function(){
+    Global.myapp.controller('MyCtrl', ['$scope', function($scope){
+        $scope.umavariavelqualquer = 'oi mamae';
+
+        $scope.teste = function(){
+            $scope.umavariavelqualquer += $scope.umavariavelqualquer;          
+        };
+    }]);
+
+    Global.myapp.directive('seclicar', function(){
         return {
-            restrict: 'E',
-            replace: true,
-            scope:{
-                msg: '='
-            },
-            template: '<div><input type="text" ng-model="msg"></div>'
-        }
-    });
-    Global.myapp.directive('d3', function(){
-        return {
-            restrict: 'E',
-            replace: true,
-            scope:{
-                msg: '=?'
-            },
-            template: '<div><input type="text" ng-model="msg"></div>'
-        }
-    });
-    Global.myapp.directive('d4', function(){
-        return {
-            restrict: 'E',
-            replace: true,
-            scope:{
-                data: '='
-            },
-            template: '<div><input type="text" ng-model="data.msg"></div>'
+            restrict: 'A',
+            link: function(scope, element, attrs){
+                $(element).click(function(){
+                    alert(attrs.mostra);
+                    console.log(scope.umavariavelqualquer);
+                });
+            }
         }
     });
 
-    Global.myapp.controller('c1', ['$scope', function($scope){}]);
+    Global.myapp.directive('seclicar2', function(){
+        return function(scope, element, attrs){
+            $(element).click(function(){
+                alert(attrs.mostra);
+                console.log(scope.umavariavelqualquer);
+            });
+        };
+    });
+
+    Global.myapp.directive('hoverzinho', function(){
+        return {
+            restrict: 'A',
+            scope: {},
+            link: function(scope, element, attrs){
+                $(element).hover(function(){
+                    console.log(scope.umavariavelqualquer);
+                });
+            }
+        }
+    });
+
+    Global.myapp.directive('hoverzinho2', function(){
+        return {
+            restrict: 'A',
+            scope: {
+                mostra: '@'
+            },
+            link: function(scope, element, attrs){
+                $(element).hover(function(){
+                    console.log(scope.mostra);
+                });
+            }
+        }
+    });
+
+    Global.myapp.directive('reloginho', function(){
+        return {
+            restrict: 'A',
+            scope: {},
+            replace: false,
+            template: '<div>{[{now}]}</div>',
+            controller: ['$scope', '$interval', function($scope, $interval){
+                $scope.now = new Date();
+                $interval(function(){
+                    $scope.now = new Date();
+                }, 1000)
+            }]
+        }
+    });
+
+    Global.myapp.directive('tooltip', function(){
+        return function(scope, element, attrs){
+            $(element).tooltip({
+              content: attrs.title
+            });
+        };
+    });
   </script>
 </head>
-<body ng-app="myapp">
+<body ng-app="myapp" ng-controller="MyCtrl">
 <div class="container content">
-  <h1>Mais sobre escopos: herança e compartilhamento</h1>
+  <h1>Diretivas de atributo</h1>
 
   <section>
-    <h3>1. Escopo único</h3>
-    <div><input type="text" ng-model="message"></div>
-    <d1></d1>
-    <d1></d1>
+    <h3>Tipo A, função link</h3>
+    <div seclicar mostra="Oiiiiii">Clica aí</div>
   </section>
 
   <section>
-    <h3>2. Escopo isolado, com binding bidirecional</h3>
-    <div><input type="text" ng-model="message2"></div>
-    <d2 msg="message2"></d2>
-    <d2 msg="message2"></d2>
+    <h3>A mesma coisa, com um atalho.</h3>
+    <div seclicar2 mostra="Oi de novoooo">Clica aí</div>
   </section>
 
   <section>
-    <h3>3. Escopo isolado, com binding opcional</h3>
-    <div><input type="text" ng-model="message3"></div>
-    <d3 msg="message3"></d3>
-    <d3></d3>
+    <h3>Com escopo isolado</h3>
+    <div hoverzinho>Passa o mouse em cima</div>
   </section>
 
   <section>
-    <h3>4. Escopo isolado, com ponto</h3>
-    <div><input type="text" ng-model="data4.msg"></div>
-    <d4 data="data4"></d4>
-    <d4 data="data4"></d4>
+    <h3>Passando parametros</h3>
+    <div hoverzinho2 mostra="{[{umavariavelqualquer}]}">Passa o mouse de novo</div>
   </section>
 
   <section>
-    <h3>5. Herança entre escopos, sem o ponto</h3>
-    <div><input type="text" ng-model="message5"></div>
-    <div ng-controller="c1"><input type="text" ng-model="message5"></div>
-    <div ng-controller="c1"><input type="text" ng-model="message5"></div>
-
-    <p>WTF happened here??</p>
+    <h3>Templates e controllers</h3>
+    <div reloginho>Esse texto vai sumir</div>
 
     <ul>
-      <li>Herança entre escopos!</li>
+      <li>Valem as mesmas regras das diretivas do tipo E</li>
+      <li>Atenção pro efeito do "replace"</li>
+      <li>$scope x scope? Nome x posição!</li>
     </ul>
   </section>
 
   <section>
-    <h3>6. Herança entre escopos, com o ponto</h3>
-    <div><input type="text" ng-model="data6.message"></div>
-    <div ng-controller="c1"><input type="text" ng-model="data6.message"></div>
-    <div ng-controller="c1"><input type="text" ng-model="data6.message"></div>
+    <h3>Integração com JQuery</h3>
 
-    <p>Será magia?</p>
-  </section>
-
-  <section>
-    <h3>Lições valiosas:</h3>
-    
-    <p>Herança é pra leitura, não pra escrita.</p>
-    <p>Herança entre escopos <strong>não ocorre</strong> com diretivas de escopo isolado.</p>
-    <p>setMessage() e getData().setMessage() têm resultados bem diferentes.</p>
-    <p>O Angular cria escopos filho implícitos em alguns casos:</p>
+    <span class="tooltip" title="Olha... uma tooltip!">
+      Passa o mouse aih de novo...
+    </span>
 
     <ul>
-      <li>ng-repeat</li>
-      <li>transclude</li>
-      <li>ng-include</li>
-      <li>talvez outros</li>
+      <li>Até funciona, mas melhor não fazer isso...</li>
     </ul>
 
-    <p>Prefira sempre <pre>  ng-click="toggle_state()"</pre> a <pre>  ng-click="state=!state"</pre> 
-      (<a href="004-transclusao.html">vamos ver a popup de novo!</a>)</p>
+    <span tooltip title="Tooltip com Angular, aih sim :-)">
+      Se nesse pc tem mouse... passa ni mim!
+    </span>    
 
-    <p>Em outras palavras: lugar de mudar estado é no controller, não no template. Faça isso e as coisas hão de ser mais estáveis!</p>
   </section>
 
   <footer>
-    <h3>Boa dica... que mais?</h3>
+    <h3>Interessante... Tem uma aplicação mais prática pra esse tipo de diretiva?</h3>
     <ul>
-      <li><a href="006-compartilhando_dados.html">Compartilhar dados entre controllers</a></li>
+      <li>Tem sim, <a href="009-wrapper_jquery.html">wrappers de plugins JQuery</a></li>
     </ul>
   </footer>
+
+  <script>
+    $('.tooltip').tooltip();
+  </script>
+
 </div>
+
+
 
 </body>
 </html>
