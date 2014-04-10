@@ -63,9 +63,10 @@ Instruções:
 - [x] Relação entre escopos
 - [x] Compartilhando dados entre controllers
 - [x] Escopo isolado: &
-- Diretivas de tag (A)
-- Egghead.io - AngularJS - $scope vs. scope
-- Componentes prontos pra usar: AngularUI, Autocomplete, TinyMCE...
+- [x] Diretivas de tag (A)
+- [x] $scope vs. scope
+- [x] Integração com plugins JQuery
+- [x] Componentes prontos pra usar: AngularUI
 
 ## 06 - eventos
 

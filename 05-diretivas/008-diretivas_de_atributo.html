@@ -129,7 +129,8 @@
   </section>
 
   <section>
-    <h3>Integração com JQuery</h3>
+    <h3>Integração com plugins JQuery</h3>
+    <p>(Peguei o bizu no <a href="http://pedronauck.com/angularjs/sobre-diretivas-e-como-usar-corretamente-plugins-jquery-com-angularjs">blog do pedronauck!)</a></p>
 
     <span class="tooltip" title="Olha... uma tooltip!">
       Passa o mouse aih de novo...
@@ -145,14 +146,29 @@
 
   </section>
 
-  <footer>
-    <h3>Interessante... Tem uma aplicação mais prática pra esse tipo de diretiva?</h3>
+  <section>
+    <h3>Outros tipos de restrict</h3>
+
+    <p>Além do A e do E</p>
+
     <ul>
-      <li>Tem sim, <a href="009-wrapper_jquery.html">wrappers de plugins JQuery</a></li>
+      <li>C - class="nomedadiretiva"</li>
+      <li>M - &lt;!-- directive:nomedadiretiva --&gt; (Mas se vc usar isso aqui eu vou aí te bater...)</li>
+    </ul>
+  </section>
+
+  <footer>
+    <h3>Show de bola! E tem alguma coisa pronta que eu posso sair usando?</h3>
+
+    <p>Ô se tem! E tem um cara que merece um destaque especial:</p>
+
+    <ul>
+      <li><a href="http://angular-ui.github.io/">Angular-UI</a></li>
     </ul>
   </footer>
 
-  <script>
+  <!-- Horrivel! Não faça isso! -->
+  <script> 
     $('.tooltip').tooltip();
   </script>
 
