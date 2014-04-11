@@ -1,3 +1,14 @@
+Resumo arquitetura.
+Recapitulando
+Animações
+Minificação
+Repo browser do jeito certo
+Autenticação GitHub
+Desvantagens https://sourcegraph.com/blog/switching-from-angularjs-to-server-side-html
+Rotas
+
+
+
 # Exemplos didáticos de AngularJS
 
 Instruções:
@@ -63,7 +74,7 @@ Instruções:
 - [x] Relação entre escopos
 - [x] Compartilhando dados entre controllers
 - [x] Escopo isolado: &
-- $watch e $on
+- [x] $watch e $on
 - [x] Diretivas de tag (A)
 - [x] $scope vs. scope
 - [x] Integração com plugins JQuery

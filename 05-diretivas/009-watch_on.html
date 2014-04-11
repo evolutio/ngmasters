@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AngularJS</title>
+  <link rel="stylesheet" href="../css/curso.css">
+  <script src="../lib/angular.min.js"></script>
+  <script src="../lib/jquery-1.11.0.js"></script>
+  <script src="../lib/jquery.tooltip.js"></script>
+  <script>
+    window.Global = {};
+    Global.myapp = angular.module('myapp', []);
+    Global.myapp.config(function($interpolateProvider){
+      $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
+    });
+
+    Global.myapp.directive('d1', function(){
+        return {
+            restrict: 'E',
+            scope: {
+                p1: '@',
+                p2: '='
+            },
+            replace: true,
+            template: '<div>[ {[{p1}]} / {[{p2.msg}]} ]</div>',
+            controller: ['$scope', function($scope){
+                $scope.$watch('p1', function(newvalue,oldvalue){
+                    console.log('p1: ' + oldvalue + ' --> ' + newvalue);
+                });
+                $scope.$watch('p2.msg', function(newvalue,oldvalue){
+                    console.log('p2: ' + oldvalue + ' --> ' + newvalue);
+                });
+            }]
+        }
+    });
+
+    Global.myapp.controller('MyCtrl', ['$scope', function($scope){
+        $scope.$on('jujuba', function(evt, data){
+            console.log('MyCtrl jujuba: '+data.count);
+        });
+        var counter = 0;
+        $scope.chocolate = function(){
+            counter++;
+            $scope.$broadcast('chocolate', {count: counter})
+        }
+    }]);
+
+
+    Global.myapp.directive('d2', function(){
+        return {
+            restrict: 'E',
+            scope: {},
+            replace: true,
+            template: '<div><button ng-click="jujuba()">Jujuba</button></div>',
+            controller: ['$scope', '$rootScope', function($scope, $rootScope){
+                var counter = 0;
+                $scope.$on('chocolate', function(evt, data){
+                    console.log('d2 chocolate: '+data.count);
+                });
+                $scope.jujuba = function(){
+                    counter++;
+                    $scope.$emit('jujuba', {count: counter});
+                };
+            }]
+        }
+    });
+
+    Global.myapp.directive('d3', function(){
+        return {
+            restrict: 'E',
+            scope: {},
+            replace: true,
+            template: '<div>d3</div>',
+            controller: ['$scope', function($scope){
+                $scope.$on('chocolate', function(evt, data){
+                    console.log('d3 chocolate: '+data.count);
+                });
+                $scope.$on('jujuba', function(evt, data){
+                    console.log('d3 jujuba: '+data.count);
+                });
+            }]
+        }
+    });
+  </script>
+</head>
+<body ng-app="myapp" ng-controller="MyCtrl">
+<div class="container content">
+  <h1>$watch e $on</h1>
+
+  <section>
+    <h3>$watch</h3>
+    <input type="text" ng-model="t1">
+    <input type="text" ng-model="t2.msg">
+    <button ng-click="t2 = {}">Reset t2</button>
+
+    <d1 p1="{[{ t1 }]}" p2="t2"></d1>
+  </section>
+
+  <section>
+    <h3>emit, broadcast, on</h3>
+    <button ng-click="chocolate()">Chocolate</button>
+    <hr>
+    <d2></d2>
+    <hr>
+    <d3></d3>
+    <hr>
+    <h3>Resuminho</h3>
+    <ul>
+      <li>$emit joga o evento pra cima</li>
+      <li>$broadcast joga o evento pra baixo</li>
+      <li>Pra escopos em hierarquias diferentes, $rootScope.$broadcast</li>
+    </ul>
+  </section>
+
+
+  <footer>
+    <h3>Cool! Podemos fazer um resumão do que a gente viu?</h3>
+
+    <p>Vamo!</p>
+
+    <ul>
+      <li><a href="010-resumo_conteudos">1. O que a gente aprendeu até aqui.</a></li>
+      <li><a href="011-resumo_arquitetura">2. Uma receita de arquitetura que funciona.</a></li>
+    </ul>
+  </footer>
+
+</div>
+</body>
+</html>
