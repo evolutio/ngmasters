@@ -1,11 +1,10 @@
 Autenticação GitHub
+
 Animações
 Minificação
 Repo browser do jeito certo
 Desvantagens https://sourcegraph.com/blog/switching-from-angularjs-to-server-side-html
 Rotas
-
-
 
 # Exemplos didáticos de AngularJS
 
