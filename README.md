@@ -1,9 +1,7 @@
-Resumo arquitetura.
-Recapitulando
+Autenticação GitHub
 Animações
 Minificação
 Repo browser do jeito certo
-Autenticação GitHub
 Desvantagens https://sourcegraph.com/blog/switching-from-angularjs-to-server-side-html
 Rotas
 

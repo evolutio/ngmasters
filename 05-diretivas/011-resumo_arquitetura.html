@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AngularJS</title>
+  <link rel="stylesheet" href="../css/curso.css">
+</head>
+
+<body >
+  <div class="container content">
+    <h1>Revisão - Arquitetura</h1>
+
+    <section>
+      <h3>Esse é um jeito</h3>
+
+      <p>Disclaimer: essa arquitetura é <strong>uma arquitetura</strong> (não necessariamente) <strong>a arquitetura</strong>.</p>
+
+      <ul>
+        <li>
+          <p>Crie um "pinduricator" único pra todas as variáveis globais da sua aplicação. Certifique-se que todos no time conheçam e concordem com isso.</p>
+        </li>
+        <li>
+          <p>Evite criar variáveis globais desnecessariamente - (function(){...})()</p>
+        </li>
+        <li>
+          <p>Separe a aplicação em módulos - angular.module('modabc', []) - cada módulo no seu próprio arquivo .js</p>
+        </li>
+        <li>
+          <p>Use um wrapper ajax pra simplificar a api do $http</p>
+        </li>
+        <li>
+          <p>Sempre faça chamadas ajax a partir de uma API de negócio (ex: GithubApi) ao invés de falar ajax diretamente com as URLs</p>
+        </li>
+      </ul>
+    </section>
+
+
+    <section>
+      <h3>Receitinha de bolo (exemplo)</h3>
+
+      <pre>
+  ========= PAGINA.html =========
+
+  &lt;script&gt;
+      // 1. inicialização do pinduricator global
+      if(!window.Global){
+          window.Global = {}
+      }
+
+      // declara quais módulos (raiz) eu preciso
+      // por exemplo, nao preciso declara aqui o 'modajax' 
+      // porque o 'modphoneapi' já depende dele
+      window.Global.angular_dependencies = [
+          'modphonedetail',
+          'modphoneapi'
+      ];
+  &lt;/script&gt;
+
+  &lt;!-- 2. Carrega todos os módulos que a página precisa. 
+  A ordem dos js não importa (good)! --&gt;
+  &lt;script src="../js/components/phonedetail.js"&gt;&lt;/script&gt;
+  &lt;script src="../js/ajax2.js"&gt;&lt;/script&gt;
+  &lt;script src="../js/base2.js"&gt;&lt;/script&gt;
+  &lt;script src="../js/phone_api.js"&gt;&lt;/script&gt;
+  &lt;script&gt;
+
+    // 3. Root controller. Declare na própria página 
+    // Não, não tem problema 
+    // (a menos que esse código fique muito grande...
+    // aí vc cria uma diretiva)
+    Global.myapp.controller('MyCtrl', ['$scope', 'PhoneApi', function($scope, PhoneApi){
+
+    }]);
+    
+  &lt;/script&gt;
+
+  ========= phone_api.js =========
+  (function(){
+      angular.module('modphoneapi', ['modajax']).factory('PhoneApi', ['ajax', function(ajax){
+          //...
+      }]);
+  })();
+
+  ========= phonedetail.js =========
+  (function(){
+      angular.module('modphonedetail', []).directive('phoneDetail', function() {
+          //...
+      });
+  })();
+
+  ========= etc ========
+      </pre>
+
+      <ul>
+      	<li>E isso funciona bem com um sistema de templates de back-end</li>
+      </ul>
+
+    </section>
+
+    <footer>
+      <h3>Tem mais</h3>
+      <ul>
+        <li><a href="011-resumo_arquitetura.html">2. Uma receita de arquitetura que funciona.</a></li>
+      </ul>
+    </footer>
+  </div>
+
+</body>
+
+
+</html>
+
+
+
