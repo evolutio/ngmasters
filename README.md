@@ -1,5 +1,3 @@
-Autenticação GitHub
-
 Animações
 Minificação
 Repo browser do jeito certo
