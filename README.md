@@ -4,6 +4,15 @@ Repo browser do jeito certo
 Desvantagens https://sourcegraph.com/blog/switching-from-angularjs-to-server-side-html
 Rotas
 
+verbatim
+sort nao funciona
+SatckOverflow
+router
+pinduricator, api de negocio = classe de servico, glossario
+tdd
+
+
+
 # Exemplos didáticos de AngularJS
 
 Instruções:
