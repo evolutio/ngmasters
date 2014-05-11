@@ -6,7 +6,6 @@ Rotas
 
 verbatim
 sort nao funciona
-SatckOverflow
 router
 pinduricator, api de negocio = classe de servico, glossario
 tdd

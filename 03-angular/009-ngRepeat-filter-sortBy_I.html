@@ -247,7 +247,7 @@
             <th>Modelo</th>
             <th>Descrição</th>
           </tr>
-          <tr ng-repeat="phone in phones | filter: comecacom(filtro) | orderBy: 'name': true"
+          <tr ng-repeat="phone in phones | filter: comecacom(filtro) | orderBy: ordem: aocontrario"
             ng-click="select(phone)"
             ng-class="{selected: phone.is_selected}">
             <td><img ng-src="{[{phone.imageUrl}]}" class="thumb40"></td>
