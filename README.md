@@ -1,16 +1,26 @@
-Animações
-Minificação
-Repo browser do jeito certo
+* 05-diretivas/010-navegador_de_repositorios_estrutura.html
+* 05-diretivas/011-navegador_de_repositorios_usando_diretivas.html
+* Aih sim, resumos
+
+* 06-grunt/001-introducao.html
+* 06-grunt/002-setup.html
+* 06-grunt/003-concatena_minifica.html
+* 06-grunt/004-inline_templates.html
+* 06-grunt/005-comparacao_performance.html
+
+* 07-mais_angular/001-rotas_e_ngview.html
+* 07-mais_angular/002-rotas_e_ngview_exemplo.html
+* 07-mais_angular/003-animacoes.html
+
+* 08-tdd/001-introducao.html
+* 08-tdd/002-framework_de_teste_com_grunt_xyz.html
+* 08-tdd/003-outras_fontes.html
+
+* 09-desvantagens/001-nao_ha_bala_de_prata.html
+* 09-desvantagens/002-quando_nao_usar.html
+
 Desvantagens https://sourcegraph.com/blog/switching-from-angularjs-to-server-side-html
-Rotas
-
-verbatim
-sort nao funciona
-router
 pinduricator, api de negocio = classe de servico, glossario
-tdd
-
-
 
 # Exemplos didáticos de AngularJS
 
