@@ -11,7 +11,7 @@
   	if(!window.Global){
   	  window.Global = {};
   	}
-  	Global.angular_dependencies = ['mod-gh-repochooser'];
+  	Global.angular_dependencies = ['mod-gh-filetree'];
   </script>
 
   <script src="../lib/angular.min.js"></script>
@@ -21,11 +21,18 @@
   <script src="../js/ajax2.js"></script>
   <script src="../js/github_api3.js"></script>
 
-  <script src="../js/components/gh-repochooser/gh-repochooser.js"></script>
+  <script src="../js/components/gh-filetree/gh-filetree.js"></script>
   <script>
   	Global.myapp.controller('MyCtrl', ['$scope', function ($scope){
-      $scope.escolheuorepo = function(repo){
-      	alert('Escolheu o repo! ' + repo.name + ' (' + repo.stargazers_count + ' estrelas)');
+      $scope.umrepo = {
+        "name": "www.freedomsponsors.org",
+        "owner": {
+          "login": "freedomsponsors",
+        }
+      };
+
+      $scope.abrearquivo = function(repo, file){
+        alert("Abre o arquivo: " + file.name);
       }
     }]);
     
@@ -34,15 +41,15 @@
 
 <body ng-app="myapp" ng-controller="MyCtrl">
   <div class="container" style="margin: 15px;">
-    <h1>gh-repochooser</h1>
+    <h1>gh-filetree</h1>
 
     <hr>
-    <gh-repochooser onchooserepo="escolheuorepo(repo)"></gh-repochooser>     
+    <gh-filetree repo="umrepo" onclickfile="abrearquivo(repo, file)"></gh-filetree>
     <hr>
  
-    <h3>Legal, qual era o próximo componente mesmo?</h3>
+    <h3>Tá e pra abrir o arquivo?</h3>
     <ul>
-      <li><a href="comp-filetree.html">comp-filetree(=repo, &onclickfile)</a></li>
+      <li><a href="comp-mypopup.html">Usa a mypopup!</a></li>
     </ul>
   </div>
 

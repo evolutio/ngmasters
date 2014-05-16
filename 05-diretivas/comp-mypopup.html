@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AngularJS</title>
+  <link rel="stylesheet" href="../css/bootstrap_full.css">
+  <link rel="stylesheet" href="../css/github.css">
+  <link rel="stylesheet" href="../css/app.css">
+
+  <script>
+  	if(!window.Global){
+  	  window.Global = {};
+  	}
+  	Global.angular_dependencies = ['modpopup', 'modgithubapi'];
+  </script>
+
+  <script src="../lib/angular.min.js"></script>
+  <script src="../lib/jquery-1.10.2.min.js"></script>
+  
+  <script src="../js/base2.js"></script>
+  <script src="../js/ajax2.js"></script>
+  <script src="../js/github_api3.js"></script>
+
+  <script src="../js/components/gh-filetree/gh-filetree.js"></script>
+  <script src="../js/components/popup.js"></script>
+  <script>
+  	Global.myapp.controller('MyCtrl', ['$scope', 'Github', function ($scope, Github){
+      $scope.arquivo = {
+        name: 'setup.md',
+        path: '/doc/setup.md'
+      };
+
+      $scope.loading = true;
+      Github.get_contents('freedomsponsors', 'www.freedomsponsors.org', $scope.arquivo.path).success(function(result){
+        $scope.arquivo.file_contents = Github.decode_file_contents(result.content);
+        $scope.loading = false;
+        $scope.mostra = true;
+      });
+
+
+    }]);
+    
+  </script>
+</head>
+
+<body ng-app="myapp" ng-controller="MyCtrl">
+  <div class="container" style="margin: 15px;">
+    <h1>gh-filetree</h1>
+
+    <img src="../img/loader.gif" ng-show="loading">
+
+    <mypopup titulo="{[{ arquivo.name }]}" visible="mostra">
+      <pre>{[{ arquivo.file_contents }]}</pre>
+    </mypopup>
+    <hr>
+ 
+    <h3>E pra juntar tudo?</h3>
+    <ul>
+      <li><a href="comp-reponavigator.html">É só botar tudo numa diretivazona!</a></li>
+    </ul>
+  </div>
+
+</body>
+</html>
+
+
+

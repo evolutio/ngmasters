@@ -1,0 +1,17 @@
+<div>
+  <div ng-if="node.type == 'dir'">
+    <a href ng-click="toggle_expand(node)">
+      <i ng-class="{'icon-folder-close': !node.expanded, 'icon-folder-open': node.expanded}"></i>
+    </a>
+    {[{ node.name }]}
+    <img src="../img/loader.gif" ng-show="node.loading">
+    <ul ng-if="node.children" ng-show="node.loaded && node.expanded">
+      <li ng-include="'/js/components/gh-filetree/treenode.html'" ng-repeat="node in node.children | orderBy: directory_first"></li>
+    </ul>
+  </div>
+  <div ng-if="node.type == 'file'">
+    <i class="icon-file"></i>
+    <a href ng-click="click_file(node)">{[{ node.name }]}</a>
+    <img src="../img/loader.gif" ng-show="node.loading">
+  </div>
+</div>
