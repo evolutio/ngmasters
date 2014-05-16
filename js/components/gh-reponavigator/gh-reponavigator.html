@@ -1,0 +1,14 @@
+<div>
+  <div class="alert alert-info">
+    <p>Encontre um repositório no Github, navegue nos arquivos, e veja o conteúdo.</p>
+  </div>
+
+  <gh-repochooser onchooserepo="escolheuorepo(repo)"></gh-repochooser>
+  <hr>
+  <gh-filetree repo="selected_repo" onclickfile="abrearquivo(repo, file)"></gh-filetree>
+
+  <mypopup titulo="{[{ current_file.name }]}" visible="showpopup">
+    <pre>{[{ current_file.file_contents }]}</pre>
+  </mypopup>
+
+</div>
