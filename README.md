@@ -1,7 +1,3 @@
-* 05-diretivas/010-navegador_de_repositorios_estrutura.html
-* 05-diretivas/011-navegador_de_repositorios_usando_diretivas.html
-* Aih sim, resumos
-
 ROTAS
 
 * 06-grunt/001-introducao.html

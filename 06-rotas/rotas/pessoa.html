@@ -1,0 +1,14 @@
+<section>
+  <p ng-show="loading">Carregando...</p>
+  <div ng-show="!loading">
+	  <h3>{[{person.name}]}</h3>
+	  <ul>
+	    <li>id: {[{ person.id }]}</li>
+	    <li>Idade: {[{ person.idade }]}</li>
+	  </ul>
+	  <p>
+		<a href="#/pessoa">Voltar pra lista de pessoas</a>
+	  </p>
+  </div>
+
+</section>

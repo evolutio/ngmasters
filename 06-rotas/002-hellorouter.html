@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AngularJS</title>
+  <link rel="stylesheet" href="../css/curso.css">
+  <script src="../lib/jquery-1.10.2.min.js"></script>
+
+  <script>
+    if(!window.Global){
+      window.Global = {};
+    }
+    Global.angular_dependencies = [
+      'ngRoute',
+      'mod_view_pessoas',
+      'mod_view_pessoa',
+      'mod_service_people'];
+  </script>
+
+  <script src="../lib/angular.js"></script>
+  <script src="../lib/angular-route.min.js"></script>
+  <script src="../lib/jquery-1.10.2.min.js"></script>
+  <script src="../js/base2.js"></script>
+  <script src="../js/mock_utils.js"></script>
+
+  <script src="rotas/view_pessoas.js"></script>
+  <script src="rotas/view_pessoa.js"></script>
+  <script src="rotas/service_people.js"></script>
+
+  <script>
+    Global.myapp.config(['$routeProvider', function($routeProvider) {
+      $routeProvider.
+          when('/pessoa', {templateUrl: 'rotas/pessoas.html', controller: 'PessoasCtrl'}).
+          when('/pessoa/:pessoaId', {templateUrl: 'rotas/pessoa.html', controller: 'PessoaCtrl'}).
+          otherwise({redirectTo: '/pessoa'});
+    }]);
+  </script>
+
+
+</head>
+
+<body ng-app="myapp">
+  <div class="container content">
+    <h1>Rotas</h1>
+
+    <section>
+      <h3>Novos amigos:</h3>
+
+      <ol>
+        <li>
+          <p>ng-view (diretiva tipo A)</p>
+        </li>
+        <li>
+          <p>$routeProvider (Serviço angular) - passa no config do app raiz</p>
+        </li>
+        <li>
+          <p>$routeParams - passa pros controllers de cada view</p>
+        </li>
+      </ol>
+    </section>
+
+    <div ng-view></div>
+
+  </div>
+
+</body>
+
+
+</html>
+
+
+
