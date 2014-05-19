@@ -30,9 +30,9 @@
   <script>
     Global.myapp.config(['$routeProvider', function($routeProvider) {
       $routeProvider.
-          when('/pessoa', {templateUrl: 'rotas/pessoas.html', controller: 'PessoasCtrl'}).
-          when('/pessoa/:pessoaId', {templateUrl: 'rotas/pessoa.html', controller: 'PessoaCtrl'}).
-          otherwise({redirectTo: '/pessoa'});
+        when('/pessoa', {templateUrl: 'rotas/pessoas.html', controller: 'PessoasCtrl'}).
+        when('/pessoa/:pessoaId', {templateUrl: 'rotas/pessoa.html', controller: 'PessoaCtrl'}).
+        otherwise({redirectTo: '/pessoa'});
     }]);
   </script>
 
@@ -60,6 +60,19 @@
     </section>
 
     <div ng-view></div>
+
+    <footer>
+      <h3>Animal. Dá pra fazer umas coisas legais com isso!</h3>
+      
+      <p>Sim! Principalmente se vc precisa de uma SPA com URLs amigáveis e suporte ao botão back ;-)</p>
+
+      <p>Ah, eu esqueci que tinha mais uma última coisinha importante: </p>
+
+      <ul>
+        <li><a href="003-animacoes.html">ng-view animado</a></li>
+      </ul>
+    </footer>
+
 
   </div>
 
