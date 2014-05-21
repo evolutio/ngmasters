@@ -1,9 +1,19 @@
 
-* 06-grunt/001-introducao.html
-* 06-grunt/002-setup.html
-* 06-grunt/003-concatena_minifica.html
-* 06-grunt/004-inline_templates.html
-* 06-grunt/005-comparacao_performance.html
+
+python/python
+devel/git
+devel/git-gui
+devel/gitk
+devel/git
+utils/dos2unix
+net/openssh
+
+
+* 07-grunt/001-introducao.html
+* 07-grunt/002-setup.html
+* 07-grunt/003-concatena_minifica.html
+* 07-grunt/004-inline_templates.html
+* 07-grunt/005-comparacao_performance.html
 
 * 08-tdd/001-introducao.html
 * 08-tdd/002-framework_de_teste_com_grunt_xyz.html
