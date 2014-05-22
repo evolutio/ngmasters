@@ -92,6 +92,10 @@ table {
 	margin-top: 15px;
 }
 
+.content section img {
+	max-width: 100%;
+}
+
 .content pre {
 	font-family: monospace;
 	font-size: 0.75em;
