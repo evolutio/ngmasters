@@ -14,10 +14,21 @@
   	Global.angular_dependencies = ['mod-gh-reponavigator'];
   </script>
 
-  <script src="../lib/angular.js"></script>
+  <script src="../lib/angular.min.js"></script>
   <script src="../lib/jquery-1.10.2.min.js"></script>
   
+
   <script src="../build/js/myapp.js"></script>
+  <!-- ######################
+  ##### 300 milhoes de requests substituidos por um só
+
+  <script src="../js/base2.js"></script>
+  <script src="../js/ajax2.js"></script>
+  <script src="../js/github_api3.js"></script>
+  <script src="../js/components/gh-repochooser/gh-repochooser.js"></script>
+  <script src="../js/components/gh-reponavigator/gh-reponavigator.js"></script>
+  <script src="../js/components/gh-filetree/gh-filetree.js"></script>
+  <script src="../js/components/popup.js"></script> -->
 
   <script>
   	Global.myapp.controller('MyCtrl', ['$scope', function ($scope){
@@ -33,11 +44,6 @@
     <hr>
     <gh-reponavigator></gh-reponavigator>     
     <hr>
- 
-    <h3>Estou sem palavras...</h3>
-    <ul>
-      <li><a href="010-navegador_de_repositorios_estrutura.html">Rs, vamo voltar aqui :-)</a></li>
-    </ul>
 
   </div>
 

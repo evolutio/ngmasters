@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AngularJS</title>
+  <link rel="stylesheet" href="../css/curso.css">
+  <script src="../lib/angular.min.js"></script>
+
+  <script>
+    var myapp = angular.module('myapp', []);
+    myapp.run(['$templateCache', function($templateCache){
+      $templateCache.put('/07-grunt/hello.html', '<p>Olá papai</p>');
+    }]);
+  </script>
+</head>
+
+<body ng-app="myapp">
+  <div class="container content">
+    <h1>Cacheando templates com Angular</h1>
+
+    <section>
+      <h3>$templateCache</h3>
+
+      <div ng-include="'hello.html'"></div>
+      <div ng-include="'/07-grunt/hello.html'"></div>
+    </section>
+
+    <footer>
+      <h3>Hum, e o que tem o grunt com isso?</h3>
+      <p>Vamos ver vamos ver!</p>
+      <ul>
+        <li><a href="005-grunt_template_cache.html">cacheando templates com o grunt</a></li>
+      </ul>
+    </footer>
+  </div>
+
+</body>
+
+
+</html>
+
+
+
