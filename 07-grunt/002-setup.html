@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AngularJS</title>
+  <link rel="stylesheet" href="../css/curso.css">
+</head>
+
+<body>
+  <div class="container content">
+    <h1>Grunt - instalação</h1>
+
+    <section>
+      <h3>Node.js</h3>
+
+      <p>No windows: baixa e instala - <a href="http://nodejs.org/">nodejs.org</a></p>
+
+      <p>No linux: baixa e instala</p>
+      <pre>  sudo apt-get install nodejs npm</pre>
+
+      <p>Testa: abre o dos (ou bash) e digita "node" (ou "nodejs")</p>
+      <img src="../img/nodejs.png">
+    </section>
+
+    <section>
+      <h3>Grunt</h3>
+      <p>O node tem uma outra ferramenta associada, o npm, que é um gerenciador de pacotes. É ele que a gente vai usar pra instalar o grunt (e muitas outras coisas depois). É só abrir um terminal e mandar:</p>
+
+      <pre>  sudo npm install -g grunt-cli</pre>
+      <p>Pronto. Isso instala o grunt no seu sistema operacional. Vc só precisa fazer isso uma vez na vida.</p>
+      <p>Testa: só rodar o comando "grunt" no terminal, deve aparecer algo do tipo:</p>
+      <img src="../img/grunt_terminal.png">
+    </section>
+    
+
+    <section>
+      <h3>package.json</h3>
+      
+      <p>O package.json é um arquivo json que diz pro npm uma lista de coisas pra ele baixar</p>
+
+      <pre>  
+  cd grunt
+  npm install --save-dev
+      </pre>
+
+      <ul>
+        <li>--save-dev = "Instala tudo no diretório atual"</li>
+        <li>Olha, apareceu uma pasta "node_modules"</li>
+      </ul>
+    </section>
+    
+    <section>
+      <h3>Gruntfile.js</h3>
+      
+      <p>O Gruntfile.js é um arquivo javascript que diz pro grunt as tarefas que ele tem que executar.</p>
+
+      <p>É javascript. Quem roda esse cara é o Node.js</p>
+
+    </section>
+    
+    <footer>
+      <h3>Vamo ver como usar esse grunt então?</h3>
+      <p>Uhum</p>
+      <ul>
+        <li><a href="003-concatena_minifica.html">Concatena / minifica</a></li>
+      </ul>
+    </footer>
+  </div>
+
+</body>
+
+
+</html>
+
+
+

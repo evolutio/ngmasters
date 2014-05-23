@@ -1,27 +1,84 @@
 module.exports = function(grunt) {
 
-  var mockapi = grunt.option('mockapi') || false;
+  //1. Carrega plugins
+  grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-angular-templates');
 
-  var api_js = mockapi ? "src/js/api/api_mock.js" : "src/js/api/api.js";
+  var concamina_tasks = [
+    'clean:before',
+    'concat:build', 
+    'uglify:build', 
+    'copy:myapp', 
+    'clean:after', 
+  ];
 
-  grunt.log.writeln('=========== BUILD OPTIONS ===========');
-  grunt.log.writeln('api_js = '+api_js);
-  grunt.log.writeln('=====================================');
+  var concamina_cachetemlpates_tasks = [
+    'clean:before',
+    'concat:build', 
+    'ngtemplates',
+    'concat:withtemplates', 
+    'uglify:build', 
+    'copy:myapp', 
+    // 'clean:after', 
+  ];
 
-  // Project configuration.
+  //2. Registra tarefas
+  grunt.registerTask('concamina', concamina_tasks);
+  grunt.registerTask('concamina_cache', concamina_cachetemlpates_tasks);
+
+  //3. Configura tarefas
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     clean: {
-      before: ['build', 'tmp'],
-      after: ['tmp']
+      before: ['../build', '../tmp'],
+      after: ['../tmp']
+    },
+    concat: {
+      build: {
+        src: [
+          '../js/base2.js',
+          '../js/ajax2.js',
+          '../js/github_api3.js',
+          '../js/components/gh-*/**/*.js',
+          '../js/components/popup.js',
+        ],
+        dest: '../tmp/myapp.js'
+      },
+      withtemplates: {
+        src: [
+          '../tmp/myapp.js',
+          '../tmp/myapp-templates.js'
+        ],
+        dest: '../tmp/myapp.js'
+      }
+    },
+    uglify: {
+      options: {
+        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n',
+      },
+      build: {
+        src: ['../tmp/myapp.js'],
+        dest: '../tmp/myapp.min.js'
+      }
+    },
+    copy: {
+      myapp: {
+        cwd: '../tmp',
+        expand: true,
+        src: '**/*.js',
+        dest: '../build/js/',
+      },
     },
     ngtemplates: {
-      estante_content: {
-        src: 'js/estante/**/*.html',
-        dest: 'tmp/estante-templates.js',
-        cwd: 'src/',
+      myapp: {
+        src: 'js/**/*.html',
+        dest: '../tmp/myapp-templates.js',
+        cwd: '../',
         options: {
-          prefix: '/build/',
+          prefix: '/',
           htmlmin: {
             collapseBooleanAttributes:      true,
             collapseWhitespace:             true,
@@ -35,109 +92,5 @@ module.exports = function(grunt) {
         }
       }
     },
-    concat: {
-      build: {
-        src: [
-          'src/js/estante/estante.js', 
-          'src/js/estante/utils.js', 
-          'src/js/estante/**/*.js', 
-          'tmp/estante-templates.js', 
-          api_js],
-        dest: 'tmp/estante.js'
-      }
-    },
-    ngmin: {
-      fix_angular_declarations: {
-        src: 'tmp/estante.js',
-        dest: 'tmp/estante.js'
-      }
-    },
-    uglify: {
-      options: {
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n',
-        sourceMap: true,
-        mangle: true //setar isso pra falso faz ele usar os nomes de variaveis originais. Mais facil de debugar, arquivo maior.
-      },
-      build: {
-        src: ['tmp/estante.js'],
-        dest: 'tmp/estante.min.js'
-      }
-    },
-    sass: {
-      compressed: {
-        options: {
-          style: 'compressed'
-        },
-        files: {
-          'build/css/estante.min.css': 'src/sass/estante.scss'
-        }
-      },
-      expanded: {
-        options: {
-          style: 'expanded'
-        },
-        files: {
-          'build/css/estante.css': 'src/sass/estante.scss'
-        }
-      }
-    },
-    copy: {
-      angulartemplates: {
-        cwd: 'src/js',
-        expand: true,
-        src: '**/*.html',
-        dest: 'build/js/',
-      },
-      jslib: {
-        cwd: 'src/js',
-        expand: true,
-        src: 'lib/**',
-        dest: 'build/js/',
-      },
-      estante_js: {
-        cwd: 'tmp',
-        expand: true,
-        src: ['estante.js', 'estante.min.js', 'estante.min.map'],
-        dest: 'build/js/estante/',
-      },
-      css: {
-        cwd: 'src/css',
-        expand: true,
-        src: '**/*',
-        dest: 'build/css/',
-      },
-      build: {
-        src: ['fonts/**','img/**'],
-        dest: 'build/',
-      }
-    }
   });
-
-  // Load the plugin that provides the "uglify" task.
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-sass');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-angular-templates');
-  grunt.loadNpmTasks('grunt-ngmin');
-
-  // Default task(s).
-  var tasks = [
-    'clean:before',
-    'ngtemplates',
-    'concat', 
-    'ngmin:fix_angular_declarations',
-    'uglify:build', 
-    'copy:estante_js', 
-    'copy:angulartemplates', 
-    'copy:jslib', 
-    'sass:compressed',
-    'sass:expanded',
-    'copy:css',
-    'copy:build',
-//    'clean:after'
-  ];
-  grunt.registerTask('default', tasks);
-
 };

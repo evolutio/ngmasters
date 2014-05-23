@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AngularJS</title>
+  <link rel="stylesheet" href="../css/bootstrap_full.css">
+  <link rel="stylesheet" href="../css/github.css">
+  <link rel="stylesheet" href="../css/app.css">
+
+  <script>
+  	if(!window.Global){
+  	  window.Global = {};
+  	}
+  	Global.angular_dependencies = ['mod-gh-reponavigator'];
+  </script>
+
+  <script src="../lib/angular.js"></script>
+  <script src="../lib/jquery-1.10.2.min.js"></script>
+  
+  <script src="../build/js/myapp.js"></script>
+
+  <script>
+  	Global.myapp.controller('MyCtrl', ['$scope', function ($scope){
+    }]);
+    
+  </script>
+</head>
+
+<body ng-app="myapp" ng-controller="MyCtrl">
+  <div class="container" style="margin: 15px;">
+    <h1>gh-reponavigator</h1>
+
+    <hr>
+    <gh-reponavigator></gh-reponavigator>     
+    <hr>
+ 
+    <h3>Estou sem palavras...</h3>
+    <ul>
+      <li><a href="010-navegador_de_repositorios_estrutura.html">Rs, vamo voltar aqui :-)</a></li>
+    </ul>
+
+  </div>
+
+</body>
+</html>
+
+
+
