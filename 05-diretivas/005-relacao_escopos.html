@@ -6,10 +6,9 @@
   <link rel="stylesheet" href="../css/curso.css">
   <script src="../lib/angular.min.js"></script>
   <script>
-    window.Global = {};
-    Global.myapp = angular.module('myapp', []);
+    angular.module('myapp', []);
 
-    Global.myapp.directive('d1', function(){
+    angular.module('myapp').directive('d1', function(){
         return {
             restrict: 'E',
             replace: true,
@@ -17,7 +16,7 @@
         }
     });
 
-    Global.myapp.directive('d2', function(){
+    angular.module('myapp').directive('d2', function(){
         return {
             restrict: 'E',
             replace: true,
@@ -27,7 +26,7 @@
             template: '<div><input type="text" ng-model="msg"></div>'
         }
     });
-    Global.myapp.directive('d3', function(){
+    angular.module('myapp').directive('d3', function(){
         return {
             restrict: 'E',
             replace: true,
@@ -37,7 +36,7 @@
             template: '<div><input type="text" ng-model="msg"></div>'
         }
     });
-    Global.myapp.directive('d4', function(){
+    angular.module('myapp').directive('d4', function(){
         return {
             restrict: 'E',
             replace: true,
@@ -48,7 +47,7 @@
         }
     });
 
-    Global.myapp.controller('c1', ['$scope', function($scope){}]);
+    angular.module('myapp').controller('c1', ['$scope', function($scope){}]);
   </script>
 </head>
 <body ng-app="myapp"> <!-- Olha, sem controller, pode? PODE! -->

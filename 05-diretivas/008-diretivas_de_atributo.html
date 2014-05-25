@@ -9,12 +9,11 @@
   <script src="../lib/jquery.tooltip.js"></script>
   <script>
     window.Global = {};
-    Global.myapp = angular.module('myapp', []);
-    Global.myapp.config(function($interpolateProvider){
+    angular.module('myapp', []).config(function($interpolateProvider){
       $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
     });
 
-    Global.myapp.controller('MyCtrl', ['$scope', function($scope){
+    angular.module('myapp').controller('MyCtrl', ['$scope', function($scope){
         $scope.umavariavelqualquer = 'oi mamae';
 
         $scope.teste = function(){
@@ -22,7 +21,7 @@
         };
     }]);
 
-    Global.myapp.directive('seclicar', function(){
+    angular.module('myapp').directive('seclicar', function(){
         return {
             restrict: 'A',
             link: function(scope, element, attrs){
@@ -34,7 +33,7 @@
         }
     });
 
-    Global.myapp.directive('seclicar2', function(){
+    angular.module('myapp').directive('seclicar2', function(){
         return function(scope, element, attrs){
             $(element).click(function(){
                 alert(attrs.mostra);
@@ -43,7 +42,7 @@
         };
     });
 
-    Global.myapp.directive('hoverzinho', function(){
+    angular.module('myapp').directive('hoverzinho', function(){
         return {
             restrict: 'A',
             scope: {},
@@ -55,7 +54,7 @@
         }
     });
 
-    Global.myapp.directive('hoverzinho2', function(){
+    angular.module('myapp').directive('hoverzinho2', function(){
         return {
             restrict: 'A',
             scope: {
@@ -69,7 +68,7 @@
         }
     });
 
-    Global.myapp.directive('reloginho', function(){
+    angular.module('myapp').directive('reloginho', function(){
         return {
             restrict: 'A',
             scope: {},
@@ -84,7 +83,7 @@
         }
     });
 
-    Global.myapp.directive('tooltip', function(){
+    angular.module('myapp').directive('tooltip', function(){
         return function(scope, element, attrs){
             $(element).tooltip({
               content: attrs.title

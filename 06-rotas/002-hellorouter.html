@@ -28,7 +28,7 @@
   <script src="rotas/service_people.js"></script>
 
   <script>
-    Global.myapp.config(['$routeProvider', function($routeProvider) {
+    angular.module('myapp').config(['$routeProvider', function($routeProvider) {
       $routeProvider.
         when('/pessoa', {templateUrl: 'rotas/pessoas.html', controller: 'PessoasCtrl'}).
         when('/pessoa/:pessoaId', {templateUrl: 'rotas/pessoa.html', controller: 'PessoaCtrl'}).
@@ -66,10 +66,10 @@
       
       <p>Sim! Principalmente se vc precisa de uma SPA com URLs amigáveis e suporte ao botão back ;-)</p>
 
-      <p>Ah, eu esqueci que tinha mais uma última coisinha importante: </p>
+      <p>Bom galera, o que eu tinha pra falar <strong>de Angular</strong> acabou. Mas tem um outro assunto importante que é o seguinte:</p>
 
       <ul>
-        <li><a href="003-animacoes.html">ng-view animado</a></li>
+        <li><a href="../07-grunt/001-introducao.html">Performance, minificação e o GruntJS</a></li>
       </ul>
     </footer>
 

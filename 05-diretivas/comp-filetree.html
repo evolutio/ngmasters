@@ -23,7 +23,7 @@
 
   <script src="../js/components/gh-filetree/gh-filetree.js"></script>
   <script>
-  	Global.myapp.controller('MyCtrl', ['$scope', function ($scope){
+  	angular.module('myapp').controller('MyCtrl', ['$scope', function ($scope){
       $scope.umrepo = {
         "name": "www.freedomsponsors.org",
         "owner": {

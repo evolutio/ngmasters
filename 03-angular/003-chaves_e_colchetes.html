@@ -17,14 +17,25 @@
   <h1><span ng-non-bindable>{[{ Client }]} x {{ server }}</span></h1>
 
   <div class="alert alert-info">
-    <p>Muitas vezes a sintaxe <span class="code">{{ variavel }}</span> conflita com a sintaxe de <br>
+    <p>Muitas vezes a sintaxe <code>{{ variavel }}</code> conflita com a sintaxe de <br>
       substituição de variáveis no backend.</p>
-    <p>Nesse caso vc pode configurar o angular pra usar uma sintaxe diferente.</p>
-    <p>Sugestão: <span ng-non-bindable>{[{ variavel }]}</span></p>
+    <hr>
+
+    <p>--&gt; Solução 1: Usar <code>{% verbatim %} {{var_angular}} <% endverbatim %></code></p>
+    <p> Só que não...</p>
+    <ul>
+      <li>Pode causar confusão: "essa <code>{{ variavel }}</code> é do back ou do front?!"</li>
+      <li>Não dá pra fazer algo do tipo<code>&lt;img src="{{variavel_back}}" class="{{variavel_front}}"&gt;</code></li>
+    </ul>
+    <hr>
+
+    <p>--&gt; Solução 2: Configurar o angular pra usar uma sintaxe diferente.</p>
+    <p>Sugestão: <span ng-non-bindable><code>{[{ variavel }]}</code></span></p>
   </div>
 
   <input ng-model="bla">
-  Ó: {[{ bla }]}
+  <p>Ó: {[{ bla }]}</p>
+
 
   <div class="alert alert-info">
     De agora pra frente nossos exemplos vão sempre usar <span ng-non-bindable>{[{ blau }]}</span> pra vc acostumar.

@@ -19,9 +19,9 @@
     Global.angular_dependencies = [];
   }
 
-  Global.myapp = angular.module('myapp', Global.angular_dependencies);
+  angular.module('myapp', Global.angular_dependencies);
 
-  Global.myapp.config(function($interpolateProvider, $httpProvider){
+  angular.module('myapp').config(function($interpolateProvider, $httpProvider){
     $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
     
     //Configuração do CSRF passou pro base.js!

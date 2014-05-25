@@ -1,7 +1,3 @@
-* 08-tdd/001-introducao.html
-* 08-tdd/002-framework_de_teste_com_grunt_xyz.html
-* 08-tdd/003-outras_fontes.html
-
 * 09-desvantagens/001-nao_ha_bala_de_prata.html
 * 09-desvantagens/002-quando_nao_usar.html
 

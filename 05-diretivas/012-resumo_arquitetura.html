@@ -60,6 +60,7 @@
           'modphonedetail',
           'modphoneapi'
       ];
+      Global.CSRF_TOKEN = '{{ csrf_token_que_veio_do_backend }}';
   &lt;/script&gt;
 
   &lt;!-- 2. Carrega todos os módulos que a página precisa. 
@@ -74,7 +75,7 @@
     // Não, não tem problema 
     // (a menos que esse código fique muito grande...
     // aí vc cria uma diretiva)
-    Global.myapp.controller('MyCtrl', ['$scope', 'PhoneApi', function($scope, PhoneApi){
+    angular.module('myapp').controller('MyCtrl', ['$scope', 'PhoneApi', function($scope, PhoneApi){
 
     }]);
     

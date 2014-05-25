@@ -26,7 +26,7 @@
       </pre>
 
       <ul>
-        <li><p>MyCtrl é uma função global, funções globais são do mal.</p></li>
+        <li><p>MyCtrl é uma função global, coisas globais são do mal.</p></li>
         <li><p>Os parâmetros não sobreviveriam a uma minificação de js</p></li>
       </ul>
 
@@ -41,7 +41,8 @@
   &lt;head&gt;
     ...
     &lt;script&gt;
-      window.Global.myapp.controller('MyCtrl', function MyCtrl($scope, $log, $timeout, Github){
+      angular.module('myapp').controller('MyCtrl', 
+        function($scope, $log, $timeout, Github){
         ...
       }); //já melhorou, mas ainda não tá 100%
     &lt;/script&gt;
@@ -57,7 +58,8 @@
   &lt;head&gt;
     ...
     &lt;script&gt;
-      window.Global.myapp.controller('MyCtrl', ['$scope', '$log', '$timeout', 'Github', function MyCtrl($scope, $log, $timeout, Github){
+      angular.module('myapp').controller('MyCtrl', 
+        ['$scope', '$log', '$timeout', 'Github', function($scope, $log, $timeout, Github){
         ...
       }]); //Agora sim!
     &lt;/script&gt;

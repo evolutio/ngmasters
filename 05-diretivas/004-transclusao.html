@@ -23,7 +23,7 @@
   <script src="../js/base2.js"></script>
   <script>
 
-    Global.myapp.controller('MyCtrl', ['$scope', function($scope){
+    angular.module('myapp').controller('MyCtrl', ['$scope', function($scope){
         $scope.xoom = {
             "additionalFeatures": "Front-facing camera. Sensors: proximity, ambient light, barometer, gyroscope.", 
             "hardware": {

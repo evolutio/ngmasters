@@ -24,7 +24,7 @@
   <script src="../js/phone_api.js"></script>
   <script>
 
-    Global.myapp.controller('MyCtrl', ['$scope', 'PhoneApi', function($scope, PhoneApi){
+    angular.module('myapp').controller('MyCtrl', ['$scope', 'PhoneApi', function($scope, PhoneApi){
         $scope.phones = [
             {
                 "age": 0, 

@@ -9,12 +9,11 @@
   <script src="../lib/jquery.tooltip.js"></script>
   <script>
     window.Global = {};
-    Global.myapp = angular.module('myapp', []);
-    Global.myapp.config(function($interpolateProvider){
+    angular.module('myapp', []).config(function($interpolateProvider){
       $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
     });
 
-    Global.myapp.directive('d1', function(){
+    angular.module('myapp').directive('d1', function(){
         return {
             restrict: 'E',
             scope: {
@@ -34,7 +33,7 @@
         }
     });
 
-    Global.myapp.controller('MyCtrl', ['$scope', function($scope){
+    angular.module('myapp').controller('MyCtrl', ['$scope', function($scope){
         $scope.$on('jujuba', function(evt, data){
             console.log('MyCtrl jujuba: '+data.count);
         });
@@ -46,7 +45,7 @@
     }]);
 
 
-    Global.myapp.directive('d2', function(){
+    angular.module('myapp').directive('d2', function(){
         return {
             restrict: 'E',
             scope: {},
@@ -65,7 +64,7 @@
         }
     });
 
-    Global.myapp.directive('d3', function(){
+    angular.module('myapp').directive('d3', function(){
         return {
             restrict: 'E',
             scope: {},

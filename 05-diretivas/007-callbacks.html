@@ -21,7 +21,7 @@
   <script src="../js/base2.js"></script>
   <script>
 
-    Global.myapp.controller('MyCtrl', ['$scope', function($scope){
+    angular.module('myapp').controller('MyCtrl', ['$scope', function($scope){
         $scope.show1 = function(){
           $scope.visible1 = true;
         };

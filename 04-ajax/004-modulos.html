@@ -13,12 +13,34 @@
     <section>
       <h3>Essa história de tuchar tudo no Global.myapp não tá legal.</h3>
 
-      <p>O Angular tem um sistema de módulos que permite separar melhor as responsabilidades entre as partes que compõem tua aplicação.</p>
-
-      <p>Ao invés de:</p>
+      <p>O Angular tem um sistema de módulos que permite separar melhor as responsabilidades entre as partes que compõem tua aplicação. Funciona assim:</p>
 
       <pre>
-  //---- base.js -----
+  // Criar 3 módulos:
+  var modulo1 = angular.module('mod1', []);
+  var modulo2 = angular.module('mod2', []);
+  var modulo3 = angular.module('mod3', ['mod1', 'mod2'])
+
+  // Passar o array = cria um novo módulo!
+  angular.module('mod1', []) == angular.module('mod1', [])
+  = false
+
+  // Pegar uma referência pra um módulo existente:
+  var moduloX = angular.module('modx')
+  = Erro
+
+  var modulo1 = angular.module('mod1')
+  = Object module
+
+  angular.module('mod1') == angular.module('mod1')
+  = true
+      </pre>
+
+      <p>Então a gente não precisa pendurar os módulos angular nas nossas variáveis globais (Global.myapp ou whatever). Ao invés de ter uma estrutura assim:</p>
+
+      <ul><li>base.js</li></ul>
+
+      <pre>
   if(!window.Global){
       window.Global = {};
   }
@@ -28,8 +50,10 @@
   Global.myapp.config(function($interpolateProvider){
     $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
   });
+      </pre>
 
-  //---- ajax.js -----
+      <ul><li>ajax.js</li></ul>
+      <pre>
   Global.myapp.config(
       function($httpProvider){
           //Essa configuração pode ser dependente de como seu backend implementa a proteção CSRF
@@ -40,32 +64,17 @@
   );
 
   Global.myapp.factory('ajax', function($http){...});
+      </pre>
 
-  //---- github_api2.js ----
+      <ul><li>github_api2.js</li></ul>
+      <pre>
   Global.myapp.factory('Github', function(ajax){...});  
       </pre>
 
-      <p>Faz mais sentido fazer algo do tipo:</p>
+      <p>Faz mais sentido criar uma estrutura assim:</p>
 
+      <ul><li>base2.js</li></ul>
       <pre>
-  //---- pagina.html -----
-  &lt;head&gt;
-    ...
-    &lt;script&gt;
-      if(!window.Global){
-          window.Global = {}
-      }
-      window.Global.angular_dependencies = [
-          'modgithubapi'
-      ];
-    &lt;/script&gt;
-    &lt;!-- E agora tanto faz a ordem dos arquivos! --&gt;
-    &lt;script src="../js/base.js"&gt;&lt;/script&gt;
-    &lt;script src="../js/github_api2.js"&gt;&lt;/script&gt;
-    &lt;script src="../js/ajax.js"&gt;&lt;/script&gt;
-  &lt;/head&gt;
-
-  //---- base.js -----
   if(!window.Global){
       window.Global = {};
   }
@@ -74,9 +83,10 @@
   }
 
   //dependencias mais flexíveis
-  Global.myapp = angular.module("myapp", window.Global.angular_dependencies);
+  angular.module("myapp", window.Global.angular_dependencies);
   
-  Global.myapp.config(function($interpolateProvider, $httpProvider){
+  // A responsabilidade de configurar o CSRF saiu do ajax.js e veio pro base.js!
+  angular.module("myapp").config(function($interpolateProvider, $httpProvider){
     $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
     
     //Configuração do CSRF passou pro base.js!
@@ -84,16 +94,40 @@
     $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
     $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
   });
+      </pre>
 
-  //---- ajax.js -----
+      <ul><li>pagina.html</li></ul>
+      <pre>
+  &lt;head&gt;
+    ...
+    &lt;script&gt;
+      if(!window.Global){
+          window.Global = {}
+      }
+      Global.angular_dependencies = [
+          'modgithubapi'
+      ];
+      Global.CSRF_TOKEN = '{{ csrf_token_que_veio_do_backend }}';
+    &lt;/script&gt;
+    &lt;!-- E agora tanto faz a ordem dos arquivos! --&gt;
+    &lt;script src="../js/base2.js"&gt;&lt;/script&gt;
+    &lt;script src="../js/github_api3.js"&gt;&lt;/script&gt;
+    &lt;script src="../js/ajax2.js"&gt;&lt;/script&gt;
+  &lt;/head&gt;
+      </pre>
 
+      <ul><li>ajax2.js</li></ul>
+      <pre>
   //cria um novo módulo angular 'modajax', e sem sujar o window! :-)
   (function(){
     var modajax = angular.module('modajax', [])
     modajax.factory('ajax', function($http){...});
   })();
 
-  //---- github_api2.js ----
+      </pre>
+
+      <ul><li>github_api3.js</li></ul>
+      <pre>
   (function(){
     angular.module('modgithubapi', ['modajax']).factory('Github', function(ajax){...});
   })();
