@@ -1,11 +1,5 @@
-* 09-desvantagens/001-nao_ha_bala_de_prata.html
-* 09-desvantagens/002-quando_nao_usar.html
-
 * Revisar trechos que precisam de código na página
-
-
-Desvantagens https://sourcegraph.com/blog/switching-from-angularjs-to-server-side-html
-pinduricator, api de negocio = classe de servico, glossario
+* pinduricator, api de negocio = classe de servico, glossario
 
 # Exemplos didáticos de AngularJS
 
@@ -34,7 +28,6 @@ Instruções:
 
 ## 02 - JQuery
 
-- [ ] O DOM. Dom x Sax
 - [x] Manipulando o DOM
 - [x] Implementação de uma TODO-list
 - [x] A mesma TODO-list com AngularJS
@@ -78,20 +71,14 @@ Instruções:
 - [x] Integração com plugins JQuery
 - [x] Componentes prontos pra usar: AngularUI
 
-## 06 - Animações
-* Animações
+## 06 - Rotas
+* [x] Rotas
 
-## 07 - ng-view
-* Rotas
-* URLs
+## 07 - Gruntjs
+* [x] Setup
+* [x] Concatenação / minificação
+* [x] Template caching
+* [x] Performance++
 
-## 08 - Testing
-* Testacular
-* Selenium
-
-## 09 - AngularJS: guia de boas práticas
-
-## 10 - AngularJS: Desvantagens não-óvias
-
-* Desvantagens (AngularJS não é bala de prata!)
-* Quando não usar
+## 08 - Espinhos
+* [x] Desvantagens não-óvias
