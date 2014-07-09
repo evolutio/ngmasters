@@ -4,10 +4,14 @@
 <meta charset="utf-8">
 <title>AngularJS</title>
 <link rel="stylesheet" href="../css/curso.css">
+<script src="../lib/jquery-1.11.0.js"></script>
 <script src="007-closure.js"></script>
 </head>
 <body>
-<div class="container content" >
+  <div class="head">
+    <span style="font-weight:bold">ng-<span style="color: rgb(125, 25, 51);">masters</span></span>: AngularJS na prática
+  </div>
+<div class="container content">
   <h1>Closure</h1>
 
   <section>
@@ -22,6 +26,7 @@
   <section>
     <h3>Exemplinho 1</h3>
     <button onclick="closure_101()">closure_101()</button>
+    <pre jsfunctioncontent="closure_101"></pre>
   </section>
 
   <section>
@@ -33,9 +38,11 @@
 
     <h3>Exemplo: Conta corrente</h3>
       <button onclick="cc()">cc()</button>
+    <pre jsfunctioncontent="cc"></pre>
 
     <h3>Outro exemplo: logando erros</h3>
     <button onclick="dapau()">dapau()</button>
+    <pre jsfunctioncontent="dapau"></pre>
   </section>
 
 <footer>

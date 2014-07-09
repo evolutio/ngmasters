@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <title>AngularJS</title>
 <link rel="stylesheet" href="../css/curso.css">
+<script src="../lib/jquery-1.11.0.js"></script>
 <script type="text/javascript">
 
 
@@ -97,6 +98,14 @@ function foriiiiin(){
 
 }
 
+//nem olha pra ca aqui ainda... :-)
+$(function(){
+  $('[jsfunctioncontent]').each(function(index, el){
+    el.innerHTML = window[el.getAttribute('jsfunctioncontent')]+"";
+  });
+});
+
+
 </script></head>
 <body>
   <div class="head">
@@ -111,11 +120,17 @@ function foriiiiin(){
       <h3>Criar / manipular arrays</h3>
       <button onclick="meus_arrays()">meus_arrays()</button>
 
+      <pre jsfunctioncontent="meus_arrays"></pre>
+
       <h3>Criar / manipular objetos</h3>
       <button onclick="meus_objetos()">meus_objetos()</button>
 
+      <pre jsfunctioncontent="meus_objetos"></pre>
+
       <h3>for in</h3>
       <button onclick="foriiiiin()">foriiiiin()</button>
+
+      <pre jsfunctioncontent="foriiiiin"></pre>
     </section>
 
     <footer>

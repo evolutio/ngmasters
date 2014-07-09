@@ -78,3 +78,10 @@ function dapau(){
 	var x = undefined;
 	x.do_somenthing();
 }
+
+//nem olha pra ca aqui ainda... :-)
+$(function(){
+  $('[jsfunctioncontent]').each(function(index, el){
+    el.innerHTML = window[el.getAttribute('jsfunctioncontent')]+"";
+  });
+});

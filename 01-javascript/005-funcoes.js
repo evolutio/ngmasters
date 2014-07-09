@@ -34,3 +34,10 @@ var reduce = function(array, f_reducer){
 	return array[0];
 }
 
+
+//nem olha pra ca aqui ainda... :-)
+$(function(){
+  $('[jsfunctioncontent]').each(function(index, el){
+    el.innerHTML = window[el.getAttribute('jsfunctioncontent')]+"";
+  });
+});

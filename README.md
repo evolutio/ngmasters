@@ -1,9 +1,14 @@
 * Revisar trechos que precisam de código na página
 * pinduricator, api de negocio = classe de servico, glossario
 
-# Exemplos didáticos de AngularJS
+# Introdução
 
-Instruções:
+Este é o material principal do curso ng-masters.
+As aulas serão baseadas nos exemplos que tem aqui. 
+Fique à vontade pra fuçar no código :-)
+
+
+# Instruções:
 
 * Clona
 * Roda o servidorzinho (`./run.sh`)

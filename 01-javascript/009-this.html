@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <title>AngularJS</title>
 <link rel="stylesheet" href="../css/curso.css">
+<script src="../lib/jquery-1.11.0.js"></script>
 <script src="009-this.js"></script>
 </head>
 <body>
@@ -38,6 +39,16 @@
       </pre>
 
       <h3>Vamos ver um exemplo mais concreto...</h3>
+      Seja:
+      <pre>
+  var o = {name: 'Objeto'};
+  o.alertnow = function(){
+    alert(this);
+  }
+  o.alertlater = function(){
+    setTimeout(function(){alert(this)}, 1000);
+  }
+      </pre>
       <button onclick="o.alertnow()">o.alertnow()</button> /
       <button onclick="o.alertlater()">o.alertlater()</button>
 
@@ -48,6 +59,8 @@
 
       <button onclick="set_onerror1()">set_onerror1()</button> /
       <button onclick="dapau()">dapau()</button>
+      <pre jsfunctioncontent="dapau"></pre>
+      <pre jsfunctioncontent="set_onerror1"></pre>
 
       <p>
         Viu o tamanho da zona?? Um jeito de resolver é assim:
@@ -55,6 +68,7 @@
 
       <button onclick="set_onerror2()">set_onerror2()</button> /
       <button onclick="dapau()">dapau()</button>
+      <pre jsfunctioncontent="set_onerror2"></pre>
 
       <p>
         Moral da história:

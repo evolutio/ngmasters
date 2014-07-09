@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <title>AngularJS</title>
 <link rel="stylesheet" href="../css/curso.css">
-<script src="006-async.js"></script>
 <script src="../lib/jquery-1.10.2.min.js"></script>
+<script src="006-async.js"></script>
 </head>
 <body>
   <div class="head">
@@ -40,19 +40,26 @@
   <section>
     <h3>Exemplinho 1</h3>
     <button onclick="alert_in_3()">alert_in_3()</button>
+    <pre jsfunctioncontent="helloworld"></pre>
+    <pre jsfunctioncontent="alert_in_3"></pre>
 
     <h3>Exemplinho 2</h3>
     <button onclick="alert_in_3_denovo()">alert_in_3_denovo()</button>
+    <pre jsfunctioncontent="alert_in_3_denovo"></pre>
 
     <h3>Polling</h3>
     <button onclick="ei_ei_ei()">ei_ei_ei()</button> / 
     <button onclick="chega()">chega()</button>
+    <pre jsfunctioncontent="ei_ei_ei"></pre>
+    <pre jsfunctioncontent="chega"></pre>
   </section>
 
   <section>
     <h3>APIs assíncronas: callbacks x promessas </h3>
     <button onclick="soma_assincrona_callback(1, 1, function(result){alert(result)})">soma_assincrona_callback(1, 1, function(result){alert(result)})"</button><br>
+    <pre jsfunctioncontent="soma_assincrona_callback"></pre>
     <button onclick="soma_assincrona_promessa(1, 1).then(function(result){alert(result)})">soma_assincrona_promessa(1, 1).then(function(result){alert(result)})"</button><br>
+    <pre jsfunctioncontent="soma_assincrona_promessa"></pre>
     <p>
       Discussão boa: <a href="http://stackoverflow.com/questions/21141817/why-are-callbacks-more-tightly-coupled-than-promises"> Why are callbacks more tightly couple than promises</a>
     </p>
@@ -61,9 +68,11 @@
   <section>
     <h3>Um gostinho de Ajax</h3>
     <button onclick="ajax_sim()">ajax_sim()</button>
+    <pre jsfunctioncontent="ajax_sim"></pre>
 
     <h3>Ajax errado</h3>
     <button onclick="ajax_nao()">ajax_nao()</button>
+    <pre jsfunctioncontent="ajax_nao"></pre>
   </section>
 
   <footer>

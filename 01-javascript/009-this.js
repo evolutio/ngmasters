@@ -53,3 +53,10 @@ function set_onerror2(){
 	var logger = new ErrorLogger()
 	window.onerror = logger.log_error_generator();
 }
+
+//nem olha pra ca aqui ainda... :-)
+$(function(){
+  $('[jsfunctioncontent]').each(function(index, el){
+    el.innerHTML = window[el.getAttribute('jsfunctioncontent')]+"";
+  });
+});

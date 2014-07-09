@@ -66,3 +66,10 @@ function ajax_nao(){
 	var issues = getGithubIssues();
 	console.table(issues); // quéééééén!
 }
+
+//nem olha pra ca aqui ainda... :-)
+$(function(){
+  $('[jsfunctioncontent]').each(function(index, el){
+    el.innerHTML = window[el.getAttribute('jsfunctioncontent')]+"";
+  });
+});
