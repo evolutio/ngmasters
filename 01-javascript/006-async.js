@@ -33,13 +33,14 @@ function soma_assincrona_callback(a, b, callback){
 }
 
 function soma_assincrona_promessa(a, b){
+	var cb;
 	var promessa = {
 		then: function(callback){
-			promessa.callback = callback;
+			cb = callback;
 		}
 	};
 	setTimeout(function(){
-		promessa.callback(a+b);
+		cb(a+b);
 	}, 1000);
 	return promessa;
 }

@@ -28,8 +28,10 @@
     <pre>
   var o1 = {a:1, b:2}
   var o2 = {b:20, c:30}
-  //No chrome, vc pode acessar o [protótipo] diretamente usando .__proto__
-  //Não é pra vc fazer isso, e é provável que isso não funciona em outros browsers!
+  //No chrome, vc pode acessar o [protótipo] diretamente
+  //usando .__proto__
+  //Não é pra vc fazer isso, e é provável que isso não 
+  //funciona em outros browsers!
   o1.__proto__
   o1.__proto__.__proto__
   o1.__proto__ == o2.__proto__
@@ -41,7 +43,8 @@
   o2.k
   o1.hasOwnProperty('k')
 
-  //Mas quando a gente *seta* um atributo, está escrevendo no próprio objeto, sempre:
+  //Mas quando a gente *seta* um atributo, está 
+  //escrevendo no próprio objeto, sempre:
   o1.k = 100
   o2.k = 200
   o1.k

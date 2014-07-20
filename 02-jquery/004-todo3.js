@@ -2,6 +2,9 @@ $(document).ready(function(){
 
 	function loadTodos(){
 		$.get('/02-jquery/todos.json').success(function(todos){
+			if (typeof todos == 'string'){
+				todos = JSON.parse(todos);
+			}
 			for(var i=0; i < todos.length; i++){
 				addTodo(todos[i]);
 			}
