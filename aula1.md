@@ -24,13 +24,13 @@ Espera uns 10 minutinhos (Github pages novas demoram um pouco pra entrar no ar) 
 
 Ou seja, crie um repositório git com uma branch chamada gh-pages e poe algum html lá, de modo que vc possa abrir um link do tipo:
 
-http://seu_username.github.io/ng-masters/aula1.html; ou
-http://seu_username.github.io/ng-masters
+* http://seu_username.github.io/ng-masters/aula1.html; ou
+* http://seu_username.github.io/ng-masters
 
-Talvez ajude: https://www.youtube.com/watch?v=z9dnZMBkMnc
-Talvez ajude (2): http://rogerdudler.github.io/git-guide/index.pt_BR.html 
-Talvez ajude (3): http://fadamiao.github.io/git-start/
-Talvez ajude (4): http://dev.rbtech.info/curso-controle-versao-git-aula-1/ (se vc ainda nao manja de git, vai ter que aprender um dia mesmo, apoveita o embalo... :-))
+* Talvez ajude: https://www.youtube.com/watch?v=z9dnZMBkMnc
+* Talvez ajude (2): http://rogerdudler.github.io/git-guide/index.pt_BR.html 
+* Talvez ajude (3): http://fadamiao.github.io/git-start/
+* Talvez ajude (4): http://dev.rbtech.info/curso-controle-versao-git-aula-1/ (se vc ainda nao manja de git, vai ter que aprender um dia mesmo, apoveita o embalo... :-))
 
 # 5. Agora sim, o exercício:
 
