@@ -29,7 +29,8 @@ http://seu_username.github.io/ng-masters
 
 Talvez ajude: https://www.youtube.com/watch?v=z9dnZMBkMnc
 Talvez ajude (2): http://rogerdudler.github.io/git-guide/index.pt_BR.html 
-Talvez ajude (3): http://dev.rbtech.info/curso-controle-versao-git-aula-1/ (se vc ainda nao manja de git, vai ter que aprender um dia mesmo, apoveita o embalo... :-))
+Talvez ajude (3): http://fadamiao.github.io/git-start/
+Talvez ajude (4): http://dev.rbtech.info/curso-controle-versao-git-aula-1/ (se vc ainda nao manja de git, vai ter que aprender um dia mesmo, apoveita o embalo... :-))
 
 # 5. Agora sim, o exercício:
 
