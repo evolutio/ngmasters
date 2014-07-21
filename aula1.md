@@ -70,7 +70,7 @@ GithubRepo é "tipo uma classe" que sabe:
 
 Pra isso, cada "instância" dessa classe vai precisar armazenar estado, que nesse caso vai ser composto pelo nome do usuario github e do repositorio.
 
-Quando eu digitar nos inputs "freedomsponsors" e "www.freedomsponsors.org", ao clicar no botão, ele deverá mostrar na tabela as [issues do freedomsponsors](https://github.com/freedomsponsors/www.freedomsponsors.org/issues?state=open):
+Quando eu digitar nos inputs "freedomsponsors" e "www.freedomsponsors.org", ao clicar no botão, ele deverá mostrar na tabela as [issues do freedomsponsors](https://github.com/freedomsponsors/www.freedomsponsors.org/issues?state=open) que ela foi buscar via API (daqui https://api.github.com/repos/freedomsponsors/www.freedomsponsors.org/issues):
 
 | Numero | Titulo |
 | -------- | -------- |
