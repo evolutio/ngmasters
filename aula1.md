@@ -22,7 +22,7 @@ Espera uns 10 minutinhos (Github pages novas demoram um pouco pra entrar no ar) 
 
 # 4. Crie uma Github page "ng-masters"
 
-Ou seja, crie um repositório git com uma branch chamada gh-pages e poe algum html lá, de modo que vc possa abrir um link do tipo:
+Ou seja, crie um repositório git chamado "ng-masters" com uma branch chamada gh-pages e poe algum html lá, de modo que vc possa abrir um link do tipo:
 
 * http://seu_username.github.io/ng-masters/aula1.html; ou
 * http://seu_username.github.io/ng-masters
