@@ -1,6 +1,6 @@
 Global.mock_ajax = function($timeout, result){
     var callback;
-    var r = {
+    var promise = {
         success: function(cb){
             callback = cb;
             return r;
@@ -12,5 +12,5 @@ Global.mock_ajax = function($timeout, result){
     $timeout(function(){
         callback(result);
     }, 1000);
-    return r;
+    return promise;
 }

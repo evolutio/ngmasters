@@ -50,7 +50,7 @@
       var todo = $scope.todos[index];
       todo.removing = true;
       todoAPI.remove(todo.id).success(function(){
-        $scope.todos.splice(index, 1)[0];
+        $scope.todos.splice(index, 1);
       });
     };
 

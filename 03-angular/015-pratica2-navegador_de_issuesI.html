@@ -84,7 +84,8 @@
             $scope.selected_repo.owner.login, 
             $scope.selected_repo.name, 
             $scope.selected_issue.number).success(function(comments){
-              issue.comment_list = comments;
+              issue.comment_list = comments; // BOM!
+              // $scope.selected_issue.comment_list = comments; // MAU!
               $scope.loading_comments = false;
             });
         }
@@ -172,7 +173,6 @@
       E não esquece de mostrar:
       <ul>
         <li>O bug do issue.comment_list</li>
-        <li>Repetição do código nos comentários</li>
       </ul>
     </div>
  
