@@ -1,6 +1,3 @@
-* Revisar trechos que precisam de código na página
-* pinduricator, api de negocio = classe de servico, glossario
-
 # Introdução
 
 Este é o material principal do curso ng-masters.

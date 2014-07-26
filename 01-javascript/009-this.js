@@ -3,7 +3,9 @@ o.alertnow = function(){
 	alert(this);
 }
 o.alertlater = function(){
-	setTimeout(function(){alert(this)}, 1000);
+	setTimeout(function(){
+		alert(this)
+	}, 1000);
 }
 
 
