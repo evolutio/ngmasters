@@ -184,12 +184,12 @@
         ];
 
         $scope.filtro = "";
-        $scope.comecacomfiltro = function(phone){
+        $scope.comecacom = function(phone){
             return phone.name.toLowerCase().startsWith($scope.filtro.toLowerCase());
         };
-        $scope.comecacom = function(f){
+        $scope.comecacomf = function(f){
             return function(phone){
-                return phone.name.toLowerCase().startsWith($scope.filtro.toLowerCase());
+                return phone.name.toLowerCase().startsWith(f.toLowerCase());
             };
         };
     }
@@ -209,8 +209,8 @@
             <th>Modelo</th>
             <th>Descrição</th>
           </tr>
-          <!-- colinha: filtro, {name:filtro}, comecacom -->
-          <tr ng-repeat="phone in phones | filter: filtro">
+          <!-- colinha: filtro, {name:filtro}, comecacom, comecacomf(filtro) -->
+          <tr ng-repeat="phone in phones | filter: comecacomf(filtro)">
             <td><img ng-src="{[{phone.imageUrl}]}" class="thumb40"></td>
             <td>{[{phone.name}]}</td>
             <td>{[{phone.snippet}]}</td>

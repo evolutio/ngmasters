@@ -100,7 +100,7 @@
         <th>controls</th>
         <th>Título</th>
       </tr>
-      <tr ng-repeat="issue in issues">
+      <tr ng-repeat="issue in issues" ng-class="{selected: issue.is_selected}" ng-click="issue.is_selected=true">
         <td>{[{issue.number}]}</td>
         <td>{[{$index}]}</td>
         <td>

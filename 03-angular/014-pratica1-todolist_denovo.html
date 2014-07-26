@@ -19,7 +19,7 @@
         },
         remove: function(id){
           var cb;
-          var result = {
+          var promise = {
             success : function(callback){
               cb = callback;
             }
@@ -27,11 +27,11 @@
           $timeout(function(){
             cb();
           }, 1000);
-          return result;
+          return promise;
         },
         add: function(todo){
           var cb;
-          var result = {
+          var promise = {
             success: function(callback){
               cb = callback;
             }
@@ -39,7 +39,7 @@
           $timeout(function(){
             cb(++ID);
           },1000)
-          return result;
+          return promise;
         }
       };
     }
