@@ -49,7 +49,7 @@ E depois todo mundo morreu... :(
 Vc pode brincar com esse jogo aqui, implementado em javascript:
 http://projects.abelson.info/life/
 
-# 2. Implementar o "Angulife".
+# 2. Implementar o "AngulifeJS".
 
 Você vai criar um life usando AngularJS :-)
 
