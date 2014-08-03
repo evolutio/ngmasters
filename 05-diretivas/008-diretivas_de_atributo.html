@@ -6,7 +6,10 @@
   <link rel="stylesheet" href="../css/curso.css">
   <script src="../lib/angular.min.js"></script>
   <script src="../lib/jquery-1.11.0.js"></script>
-  <script src="../lib/jquery.tooltip.js"></script>
+  <!--<script src="../lib/jquery.tooltip.js"></script> -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+
   <script>
     window.Global = {};
     angular.module('myapp', []).config(function($interpolateProvider){
@@ -45,7 +48,6 @@
     angular.module('myapp').directive('hoverzinho', function(){
         return {
             restrict: 'A',
-            scope: {},
             link: function(scope, element, attrs){
                 $(element).hover(function(){
                     console.log(scope.umavariavelqualquer);
@@ -89,6 +91,21 @@
               content: attrs.title
             });
         };
+    });
+
+    angular.module('myapp').directive('algumasTooltips', function(){
+        return {
+            restrict: 'E',
+            scope: {},
+            replace: false,
+            templateUrl: '/05-diretivas/algumasTooltips.html',
+            controller: ['$scope', '$interval', function($scope, $interval){
+                $scope.now = new Date();
+                $interval(function(){
+                    $scope.now = new Date();
+                }, 1000)
+            }]
+        }
     });
   </script>
 </head>
@@ -149,6 +166,16 @@
   </section>
 
   <section>
+    <h3>Ah, deixa eu usar JQuery direto...?</h3>
+    <p>Vc que sabe, ó...</p>
+
+    <algumas-tooltips></algumas-tooltips>
+
+    <p>Sacou? Numa pagina angular, onde o dom pode ser modificado várias vezes durante a interação do usuário, fazer um "$('.tooltip').tooltip();" na hora que a página carrega não é suficiente!</p>
+
+  </section>
+
+  <section>
     <h3>Outros tipos de restrict</h3>
 
     <p>Além do A e do E</p>
@@ -162,10 +189,12 @@
   <footer>
     <h3>Show de bola! E tem alguma coisa pronta que eu posso sair usando?</h3>
 
-    <p>Ô se tem! E tem um cara que merece um destaque especial:</p>
+    <p>Ô se tem!</p>
 
     <ul>
       <li><a href="http://angular-ui.github.io/">Angular-UI</a></li>
+      <li><a href="http://www.revillweb.com/5-useful-angularjs-directives-modules-and-services/">
+        Outras</a></li>
     </ul>
 
     <h3>Aí sim!! Cabou diretiva então?</h3>
