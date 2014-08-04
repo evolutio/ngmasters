@@ -21,8 +21,8 @@
           $timeout.cancel(timer)
         }
         timer = $timeout(function(){
-          $scope.searching_users = true;
           if($scope.search_owner){
+            $scope.searching_users = true;
             Github.search_users($scope.search_owner).
               success(function(result){
                 $scope.searching_users = false;
@@ -85,7 +85,10 @@
             $scope.selected_repo.name, 
             $scope.selected_issue.number).success(function(comments){
               issue.comment_list = comments; // BOM!
-              // $scope.selected_issue.comment_list = comments; // MAU!
+              
+              //$scope.selected_issue.comment_list = comments; // MAU!
+              //cuidado com estado do $scope dentro de callbacks
+
               $scope.loading_comments = false;
             });
         }

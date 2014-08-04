@@ -20,7 +20,7 @@
 
                 if($scope.model.selected_phone){
                     if(!$scope.model.selected_phone.selected_image){
-                        $scope.model.selected_phone.selected_image = $scope.phone.images[0];
+                        $scope.model.selected_phone.selected_image = $scope.model.selected_phone.images[0];
                     }
                 }
                 $scope.select_image = function(img){

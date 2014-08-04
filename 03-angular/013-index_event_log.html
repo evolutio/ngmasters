@@ -100,12 +100,17 @@
         <th>controls</th>
         <th>Título</th>
       </tr>
-      <tr ng-repeat="issue in issues" ng-class="{selected: issue.is_selected}" ng-click="issue.is_selected=true">
+      <tr ng-repeat="issue in issues" ng-class="{selected: issue.is_selected}" 
+      ng-click="issue.is_selected=true">
         <td>{[{issue.number}]}</td>
         <td>{[{$index}]}</td>
         <td>
-          <button ng-show="$index > 0" ng-click="sobe($index)"><i class="icon-chevron-up"></i></button>
-          <button ng-show="$index < issues.length - 1" ng-click="desce($index)"><i class="icon-chevron-down"></i></button>
+          <button ng-show="$index > 0" ng-click="sobe($index)">
+            <i class="icon-chevron-up"></i>
+          </button>
+          <button ng-show="$index < issues.length - 1" ng-click="desce($index)">
+            <i class="icon-chevron-down"></i>
+          </button>
         </td>
         <td>{[{issue.title}]}</td>
       </tr>

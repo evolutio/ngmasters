@@ -5,7 +5,7 @@
 				var url="/phones/"+id+".json";
 				return ajax.get(url);
 			},
-			list_all: function(id){
+			list_all: function(){
 				var url="/phones.json";
 				return ajax.get(url);
 			}

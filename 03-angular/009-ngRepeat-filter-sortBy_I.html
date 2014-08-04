@@ -193,11 +193,22 @@
         $scope.comecacomfiltro = function(phone){
             return phone.name.toLowerCase().startsWith($scope.filtro.toLowerCase());
         };
-        $scope.comecacom = function(f){
+        $scope.comecacom = function(s){
             return function(phone){
-                return phone.name.toLowerCase().startsWith($scope.filtro.toLowerCase());
+                return phone.name.toLowerCase().startsWith(s.toLowerCase());
             };
         };
+
+        $scope.selecionados = function(){
+            var result = [];
+            for(var i in $scope.phones){
+                var phone = $scope.phones[i];
+                if(phone.is_selected){
+                    result.push(phone);
+                }
+            }
+            return result;
+        }
     }
   </script>
 </head>
@@ -255,6 +266,12 @@
             <td>{[{phone.snippet}]}</td>
           </tr>
         </table>
+      </div>
+
+      <div>
+        <ul>
+            <li ng-repeat="phone in selecionados()">{[{phone.name}]}</li>
+        </ul>
       </div>
 
       <div class="alert alert-info">

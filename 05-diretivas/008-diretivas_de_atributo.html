@@ -98,13 +98,7 @@
             restrict: 'E',
             scope: {},
             replace: false,
-            templateUrl: '/05-diretivas/algumasTooltips.html',
-            controller: ['$scope', '$interval', function($scope, $interval){
-                $scope.now = new Date();
-                $interval(function(){
-                    $scope.now = new Date();
-                }, 1000)
-            }]
+            templateUrl: '/05-diretivas/algumasTooltips.html'
         }
     });
   </script>
