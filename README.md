@@ -87,6 +87,10 @@
 * [Começando com o Git - Fábio Akita](http://www.akitaonrails.com/2010/08/17/screencast-comecando-com-git#.U-VXy3Wx2RR)
 * [Guia prático - Roger Dudler](http://rogerdudler.github.io/git-guide/index.pt_BR.html)
 
+## Javascript
+
+* [Blog do Pedro Nauck](http://pedronauck.com/) - Javascript, Angular e outras coisas também
+
 ## Angular JS
 
 * [ng-masters.com](http://ng-masters.com/) ;-)
