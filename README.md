@@ -1,19 +1,4 @@
-# Introdução
-
-Este é o material principal do curso ng-masters.
-As aulas serão baseadas nos exemplos que tem aqui. 
-Fique à vontade pra fuçar no código :-)
-
-
-# Instruções:
-
-* Clona
-* Roda o servidorzinho (`./run.sh`)
-* Abre http://localhost:9001
-
-É mais rápido que fazer um miojo.
-
-# Tópicos:
+# Aula 1
 
 ## 01 - Javascript pra gente grande
 
@@ -33,6 +18,8 @@ Fique à vontade pra fuçar no código :-)
 - [x] Manipulando o DOM
 - [x] Implementação de uma TODO-list
 - [x] A mesma TODO-list com AngularJS
+
+# Aula 2
 
 ## 03 - Angular: O feijão com arroz
 
@@ -58,6 +45,8 @@ Fique à vontade pra fuçar no código :-)
 - [x] O sistema de módulos
 - [x] Controller sem gambis
 
+# Aula 3
+
 ## 05 - AngularJS pra gente grande: diretivas
 
 - [x] Custom tags
@@ -72,6 +61,8 @@ Fique à vontade pra fuçar no código :-)
 - [x] $scope vs. scope
 - [x] Integração com plugins JQuery
 - [x] Componentes prontos pra usar: AngularUI
+
+# Aula 4
 
 ## 06 - Rotas
 * [x] Rotas
