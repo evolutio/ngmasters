@@ -75,3 +75,14 @@
 
 ## 08 - Espinhos
 * Desvantagens não-óvias
+
+# Links úteis
+
+## Git
+
+* [Como usar o git sem precisar ficar digitando senha - Tony Lâmpada](https://www.youtube.com/edit?video_id=z9dnZMBkMnc)
+* [Curso Básico para iniciantes](https://www.youtube.com/playlist?list=PLInBAd9OZCzzHBJjLFZzRl6DgUmOeG3H0)
+* [Pro-git (O livro de Git)](https://leanpub.com/pro-git/read)
+* [Kit de sobrevivência básico do Git no Windows - Renzo Nuccitelli](https://www.youtube.com/watch?v=Eogmb5FqyZA)
+* [Começando com o Git - Fábio Akita](http://www.akitaonrails.com/2010/08/17/screencast-comecando-com-git#.U-VXy3Wx2RR)
+* [Guia prático - Roger Dudler](http://rogerdudler.github.io/git-guide/index.pt_BR.html)
