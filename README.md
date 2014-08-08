@@ -86,3 +86,10 @@
 * [Kit de sobrevivência básico do Git no Windows - Renzo Nuccitelli](https://www.youtube.com/watch?v=Eogmb5FqyZA)
 * [Começando com o Git - Fábio Akita](http://www.akitaonrails.com/2010/08/17/screencast-comecando-com-git#.U-VXy3Wx2RR)
 * [Guia prático - Roger Dudler](http://rogerdudler.github.io/git-guide/index.pt_BR.html)
+
+## Angular JS
+
+* [ng-masters.com](http://ng-masters.com/) ;-)
+* [Angular JS Brasil](http://angularjsbrasil.com.br/)
+* [Angular JS Brasil (Grupo facebook)](https://www.facebook.com/groups/angularjsbrasil/)
+* [ng-newsletter](http://www.ng-newsletter.com/) - Assina, é massa!!!
