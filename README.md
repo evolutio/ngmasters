@@ -2,76 +2,76 @@
 
 ## 01 - Javascript pra gente grande
 
-- [x] História do Javascript
-- [x] Variáveis
-- [x] Arrays e objetos
-- [x] Wat?
-- [x] json
-- [x] Funções
-- [x] Programação assíncrona
-- [x] Closure
-- [x] Prototype
-- [x] This
+- História do Javascript
+- Variáveis
+- Arrays e objetos
+- Wat?
+- json
+- Funções
+- Programação assíncrona
+- Closure
+- Prototype
+- This
 
 ## 02 - JQuery
 
-- [x] Manipulando o DOM
-- [x] Implementação de uma TODO-list
-- [x] A mesma TODO-list com AngularJS
+- Manipulando o DOM
+- Implementação de uma TODO-list
+- A mesma TODO-list com AngularJS
 
 # Aula 2
 
 ## 03 - Angular: O feijão com arroz
 
-- [x] Hello world
-- [x] Binding
-- [x] {[{ Client }]} x {{ server }}
-- [x] ng-model
-- [x] ng-class, ng-show, ng-hide, ng-if
-- [x] O Controller
-- [x] ng-click
-- [x] ng-repeat, ng-filter
-- [x] ng-include
-- [x] $digest()
-- [x] Egghead.io - AngularJS - $index, $event, $log
-- [x] Vamos entender o TODO-list com angular
-- [x] Outro exemplo: Árvore navegável
+- Hello world
+- Binding
+- {[{ Client }]} x {{ server }}
+- ng-model
+- ng-class, ng-show, ng-hide, ng-if
+- O Controller
+- ng-click
+- ng-repeat, ng-filter
+- ng-include
+- $digest()
+- Egghead.io - AngularJS - $index, $event, $log
+- Vamos entender o TODO-list com angular
+- Outro exemplo: Árvore navegável
 
 ## 04 - Ajax e outras coisinhas
 
-- [x] GET x POST
-- [x] Wrapper http
-- [x] Mockando Ajax
-- [x] O sistema de módulos
-- [x] Controller sem gambis
+- GET x POST
+- Wrapper http
+- Mockando Ajax
+- O sistema de módulos
+- Controller sem gambis
 
 # Aula 3
 
 ## 05 - AngularJS pra gente grande: diretivas
 
-- [x] Custom tags
-- [x] Escopo isolado: @ e =
-- [x] Transclusão
-- [x] Binding opcional: =?
-- [x] Relação entre escopos
-- [x] Compartilhando dados entre controllers
-- [x] Escopo isolado: &
-- [x] $watch e $on
-- [x] Diretivas de tag (A)
-- [x] $scope vs. scope
-- [x] Integração com plugins JQuery
-- [x] Componentes prontos pra usar: AngularUI
+- Custom tags
+- Escopo isolado: @ e =
+- Transclusão
+- Binding opcional: =?
+- Relação entre escopos
+- Compartilhando dados entre controllers
+- Escopo isolado: &
+- $watch e $on
+- Diretivas de tag (A)
+- $scope vs. scope
+- Integração com plugins JQuery
+- Componentes prontos pra usar: AngularUI
 
 # Aula 4
 
 ## 06 - Rotas
-* [x] Rotas
+* Rotas
 
 ## 07 - Gruntjs
-* [x] Setup
-* [x] Concatenação / minificação
-* [x] Template caching
-* [x] Performance++
+* Setup
+* Concatenação / minificação
+* Template caching
+* Performance++
 
 ## 08 - Espinhos
-* [x] Desvantagens não-óvias
+* Desvantagens não-óvias
