@@ -13,6 +13,10 @@
                 $scope.close = function(){
                     $scope.visible = false;
                 }
+
+                $scope.$watch('visible', function(){
+                    console.log('mudou: '+$scope.visible);
+                });
             }]
         }
     });

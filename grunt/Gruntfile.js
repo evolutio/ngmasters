@@ -33,8 +33,8 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     clean: {
-      before: ['../build', '../tmp'],
-      after: ['../tmp']
+      before: ['build', 'tmp'],
+      after: ['tmp']
     },
     concat: {
       build: {
@@ -45,14 +45,14 @@ module.exports = function(grunt) {
           '../js/components/gh-*/**/*.js',
           '../js/components/popup.js',
         ],
-        dest: '../tmp/myapp.js'
+        dest: 'tmp/myapp.js'
       },
       withtemplates: {
         src: [
-          '../tmp/myapp.js',
-          '../tmp/myapp-templates.js'
+          'tmp/myapp.js',
+          'tmp/myapp-templates.js'
         ],
-        dest: '../tmp/myapp.js'
+        dest: 'tmp/myapp.js'
       }
     },
     uglify: {
@@ -60,32 +60,32 @@ module.exports = function(grunt) {
         banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n',
       },
       build: {
-        src: ['../tmp/myapp.js'],
-        dest: '../tmp/myapp.min.js'
+        src: ['tmp/myapp.js'],
+        dest: 'tmp/myapp.min.js'
       }
     },
     copy: {
       myapp: {
-        cwd: '../tmp',
+        cwd: 'tmp',
         expand: true,
         src: '**/*.js',
-        dest: '../build/js/',
+        dest: 'build/js/',
       },
     },
     ngtemplates: {
       myapp: {
         src: 'js/**/*.html',
-        dest: '../tmp/myapp-templates.js',
+        dest: 'tmp/myapp-templates.js',
         cwd: '../',
         options: {
           prefix: '/',
           htmlmin: {
-            collapseBooleanAttributes:      true,
+            collapseBooleanAttributes:      false,
             collapseWhitespace:             true,
             removeAttributeQuotes:          true,
             removeComments:                 true, // Only if you don't use comment directives!
-            removeEmptyAttributes:          true,
-            removeRedundantAttributes:      true,
+            removeEmptyAttributes:          false,
+            removeRedundantAttributes:      false,
             removeScriptTypeAttributes:     true,
             removeStyleLinkTypeAttributes:  true
           }
