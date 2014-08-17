@@ -20,8 +20,13 @@ describe("testes do Github API", function() {
 
     it('Github.search_users deve acessar api.github.com/search/users', inject(function($httpBackend, Github){
     	$httpBackend.expectGET('https://api.github.com/search/users?q=joao').respond('OK');
-    	Github.search_users('joao');
+    	var le_result = 'blau';
+        Github.search_users('joao').success(function(result){
+            le_result = result;
+        });
+        expect(le_result).equal('blau');
 		$httpBackend.flush();
+        expect(le_result).equal('OK');
 		console.log('(UFA ne...) Github.search_users("joao") = api.github.com/search/users?q=joao');
     }));
 
