@@ -14,11 +14,118 @@
     <h1>Grunt - Olha quanta coisa legal</h1>
 
     <section>
-      <ul>
-        <li> ngMin </li>
-        <li> watches </li>
-        <li> ... e TESTES (muita Karma nessa hora...) </li>
-      </ul>
+      <h3>ng-min</h3>
+      
+      <p>Nao precisa esquentar a cabeça com <code>function($scope)</code> x <code>['$scope', function($scope)]</code></p>
+      <pre>
+  # package.json
+  "grunt-karma": "~0.8.0",
+  "karma": "~0.12.8",
+  "karma-chrome-launcher": "~0.1.4",
+  "karma-coverage": "~0.1",
+  "karma-mocha": "~0.1",
+  "karma-phantomjs-launcher": "~0.1"
+
+  #Gruntfile.js
+
+  //...
+  grunt.loadNpmTasks('grunt-ngmin');
+
+  //...
+  var concamina_cachetemlpates_tasks = [
+  'clean:before',
+  'concat:build', 
+  'ngtemplates',
+  'ngmin:fix_angular_declarations', // <-----------
+  'concat:withtemplates', 
+  'uglify:build', 
+  'copy:myapp', 
+  // 'clean:after', 
+  ];
+
+  //...
+  ngmin:{
+    fix_angular_declarations: {
+        src: 'tmp/myapp.js',
+        dest: 'tmp/myapp.js'
+    }
+  }  
+      </pre>
+
+      <p> Veja a diferença no myapp.js, o que ele faz com o config que tava no base2.js...</p>
+
+    </section>
+
+    <section>
+      <h3>Watches...</h3>
+      
+      <p>Não precisa ficar buildando com o grunt toda hora...</p>
+      <pre>
+  # package.json
+  "grunt-contrib-watch": "^0.6.1",
+
+  #Gruntfile.js
+
+  //...
+  grunt.loadNpmTasks('grunt-contrib-watch');
+
+  //...
+    watch:{
+      js: {
+          files: [
+            '../js/base2.js',
+            '../js/ajax2.js',
+            '../js/github_api3.js',
+            '../js/components/gh-*/**/*.js',
+            '../js/components/popup.js',
+            '../js/**/*.html'
+          ],
+          tasks: ['concamina_cache']
+      },
+    }
+
+  # Console
+  grunt watch ou grunt watch:js
+      </pre>
+
+      <p>Roda o watch e esquece da vida... (mas cuidado com arquivo aberto no windows....!)</p>
+
+      <p>Hey, e esse código duplicado aí??</p>
+
+    </section>
+
+    <section>
+      <h3>.... e TESTES (muita Karma nessa hora...)</h3>
+      
+      <p>Sim, dá pra rodar testes no seu código angular usando grunt... Mas a gente vai dar sóooo uma olhadinha!</p>
+      <pre>
+  # package.json
+    "chai": "1.4.0",
+    "grunt-karma": "~0.8.0",
+    "karma": "~0.12.8",
+    "karma-chrome-launcher": "~0.1.4",
+    "karma-coverage": "~0.1",
+    "karma-mocha": "~0.1",
+    "karma-phantomjs-launcher": "~0.1",
+
+  #Gruntfile.js
+
+  //...
+  grunt.loadNpmTasks('grunt-karma');
+
+  //...
+    karma: {
+      unit: {
+        configFile: '../test/karma-unit.conf.js',
+        autoWatch: false,
+        browsers: ["Chrome"], // ou ["PhantomJS"] : 
+        singleRun: true
+      }
+    }
+      </pre>
+
+      <p>E mais: chrome x phantom:</p>
+
     </section>
 
     <footer>
