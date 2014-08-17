@@ -2,7 +2,7 @@ module.exports = function() {
   return {
     basePath: '../',
     frameworks: ['mocha'],
-    reporters: [],
+    reporters: ['progress'],
     browsers: ['Chrome'],
     autoWatch: true,
 
@@ -12,6 +12,7 @@ module.exports = function() {
     
     files : [
       'lib/angular.js',
+      'lib/angular-mocks.js',
       'lib/angular-route.min.js',
       'lib/jquery-1.11.0.js',
       'js/base2.js',

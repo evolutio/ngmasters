@@ -19,12 +19,7 @@
       <p>Nao precisa esquentar a cabeça com <code>function($scope)</code> x <code>['$scope', function($scope)]</code></p>
       <pre>
   # package.json
-  "grunt-karma": "~0.8.0",
-  "karma": "~0.12.8",
-  "karma-chrome-launcher": "~0.1.4",
-  "karma-coverage": "~0.1",
-  "karma-mocha": "~0.1",
-  "karma-phantomjs-launcher": "~0.1"
+  "grunt-ngmin": "~0.0.3",
 
   #Gruntfile.js
 
@@ -124,7 +119,11 @@
     }
       </pre>
 
-      <p>E mais: chrome x phantom:</p>
+      <p>E mais:</p> 
+      <ul>
+        <li>Chrome x phantom (<code>var phantom = grunt.option('phantom') || false;</code>)</li>
+        <li>Como que debuga?</li>
+      </ul>
 
     </section>
 
