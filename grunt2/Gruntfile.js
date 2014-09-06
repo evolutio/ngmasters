@@ -1,8 +1,6 @@
 module.exports = function(grunt) {
-    var phantom = grunt.option('phantom') || false;
 
     var dados_comuns_disponiveis_pra_todas_as_tasks = {
-        phantom: phantom,
         arquivosjs: [
             '../js/base2.js',
             '../js/ajax2.js',
