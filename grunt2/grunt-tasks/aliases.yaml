@@ -1,0 +1,19 @@
+
+concamina:
+  - 'clean:before'
+  - 'concat:build'
+  - 'uglify:build'
+  - 'copy:myapp'
+#  -  'clean:after'
+
+concamina_cache:
+  - 'clean:before'
+  - 'concat:build'
+  - 'ngtemplates'
+  - 'ngmin:fix_angular_declarations'
+  - 'concat:withtemplates'
+  - 'uglify:build'
+  - 'copy:myapp'
+
+test:
+  - 'karma:unit'
