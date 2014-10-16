@@ -8,15 +8,15 @@
   <script>
     angular.module('myapp', []);
 
-    angular.module('myapp').directive('d1', function(){
+    angular.module('myapp').directive('d1EscopoCompartilhado', function(){
         return {
             restrict: 'E',
             replace: true,
-            template: '<div><input type="text" ng-model="message"></div>' //poisé, isso funciona tb ;)
+            template: '<div><input type="text" ng-model="message1"></div>' //poisé, isso funciona tb ;)
         }
     });
 
-    angular.module('myapp').directive('d2', function(){
+    angular.module('myapp').directive('d2EscopoIsolado', function(){
         return {
             restrict: 'E',
             replace: true,
@@ -26,7 +26,7 @@
             template: '<div><input type="text" ng-model="msg"></div>'
         }
     });
-    angular.module('myapp').directive('d3', function(){
+    angular.module('myapp').directive('d3BindingOpcional', function(){
         return {
             restrict: 'E',
             replace: true,
@@ -36,7 +36,7 @@
             template: '<div><input type="text" ng-model="msg"></div>'
         }
     });
-    angular.module('myapp').directive('d4', function(){
+    angular.module('myapp').directive('d4DataPonto', function(){
         return {
             restrict: 'E',
             replace: true,
@@ -59,30 +59,30 @@
 
   <section>
     <h3>1. Escopo único</h3>
-    <div><input type="text" ng-model="message"></div>
-    <d1></d1>
-    <d1></d1>
+    <div><input type="text" ng-model="message1"></div>
+    <d1-escopo-compartilhado></d1-escopo-compartilhado>
+    <d1-escopo-compartilhado></d1-escopo-compartilhado>
   </section>
 
   <section>
     <h3>2. Escopo isolado, com binding bidirecional</h3>
     <div><input type="text" ng-model="message2"></div>
-    <d2 msg="message2"></d2>
-    <d2 msg="message2"></d2>
+    <d2-escopo-isolado msg="message2"></d2-escopo-isolado>
+    <d2-escopo-isolado msg="message2"></d2-escopo-isolado>
   </section>
 
   <section>
     <h3>3. Escopo isolado, com binding opcional</h3>
     <div><input type="text" ng-model="message3"></div>
-    <d3 msg="message3"></d3>
-    <d3></d3>
+    <d3-binding-opcional msg="message3"></d3-binding-opcional>
+    <d3-binding-opcional></d3-binding-opcional>
   </section>
 
   <section>
     <h3>4. Escopo isolado, com ponto</h3>
     <div><input type="text" ng-model="data4.msg"></div>
-    <d4 data="data4"></d4>
-    <d4 data="data4"></d4>
+    <d4-data-ponto data="data4"></d4-data-ponto>
+    <d4-data-ponto data="data4"></d4-data-ponto>
   </section>
 
   <section>
