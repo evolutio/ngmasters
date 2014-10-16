@@ -12,7 +12,7 @@
       $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
     });
 
-    angular.module('myapp').directive('d1', function(){
+    angular.module('myapp').directive('d1WatchP1p2', function(){
         return {
             restrict: 'E',
             scope: {
@@ -23,10 +23,10 @@
             template: '<div>[ {[{p1}]} / {[{p2.msg}]} ]</div>',
             controller: ['$scope', function($scope){
                 $scope.$watch('p1', function(newvalue,oldvalue){
-                    console.log('p1: ' + oldvalue + ' --> ' + newvalue);
+                    console.log('mudou o p1: ' + oldvalue + ' --> ' + newvalue);
                 });
                 $scope.$watch('p2.msg', function(newvalue,oldvalue){
-                    console.log('p2: ' + oldvalue + ' --> ' + newvalue);
+                    console.log('mudou o p2.msg: ' + oldvalue + ' --> ' + newvalue);
                 });
             }]
         }
@@ -36,10 +36,10 @@
         $scope.$on('jujuba', function(evt, data){
             console.log('MyCtrl jujuba: '+data.count);
         });
-        var counter = 0;
-        $scope.chocolate = function(){
-            counter++;
-            $scope.$broadcast('chocolate', {count: counter})
+        var lang = 'ptbr';
+        $scope.change_language = function(){
+            lang = lang == 'ptbr' ? 'enus' : 'ptbr';
+            $scope.$broadcast('change-language', {lang: lang})
         }
     }]);
 
@@ -49,11 +49,12 @@
             restrict: 'E',
             scope: {},
             replace: true,
-            template: '<div><button ng-click="jujuba()">Jujuba</button></div>',
+            template: '<div><div>LANG2={[{lang}]}</div><button ng-click="jujuba()">Jujuba</button></div>',
             controller: ['$scope', '$rootScope', function($scope, $rootScope){
                 var counter = 0;
-                $scope.$on('chocolate', function(evt, data){
-                    console.log('d2 chocolate: '+data.count);
+                $scope.$on('change-language', function(evt, data){
+                    $scope.lang = data.lang
+                    console.log('d2 change language: '+data.lang);
                 });
                 $scope.jujuba = function(){
                     counter++;
@@ -68,10 +69,11 @@
             restrict: 'E',
             scope: {},
             replace: true,
-            template: '<div>d3</div>',
+            template: '<div>d3 LANG3={[{lang}]}</div>',
             controller: ['$scope', function($scope){
-                $scope.$on('chocolate', function(evt, data){
-                    console.log('d3 chocolate: '+data.count);
+                $scope.$on('change-language', function(evt, data){
+                    $scope.lang = data.lang;
+                    console.log('d3 change language: '+data.lang);
                 });
                 $scope.$on('jujuba', function(evt, data){
                     console.log('d3 jujuba: '+data.count);
@@ -94,12 +96,12 @@
     <input type="text" ng-model="t2.msg">
     <button ng-click="t2 = {}">Reset t2</button>
 
-    <d1 p1="{[{ t1 }]}" p2="t2"></d1>
+    <d1-watch-p1p2 p1="{[{ t1 }]}" p2="t2"></d1-watch-p1p2>
   </section>
 
   <section>
     <h3>emit, broadcast, on</h3>
-    <button ng-click="chocolate()">Chocolate</button>
+    <button ng-click="change_language()">Change Language</button>
     <hr>
     <d2></d2>
     <hr>
