@@ -33,8 +33,8 @@
     });
 
     angular.module('myapp').controller('MyCtrl', ['$scope', function($scope){
-        $scope.$on('jujuba', function(evt, data){
-            console.log('MyCtrl jujuba: '+data.count);
+        $scope.$on('errou-questao', function(evt, data){
+            console.log('myapp errou questao: '+data.numero_questao + '/' + data.resposta);
         });
         var lang = 'ptbr';
         $scope.change_language = function(){
@@ -44,27 +44,27 @@
     }]);
 
 
-    angular.module('myapp').directive('d2', function(){
+    angular.module('myapp').directive('d2EmitErrouQuestaoListenChangeLanguage', function(){
         return {
             restrict: 'E',
             scope: {},
             replace: true,
-            template: '<div><div>LANG2={[{lang}]}</div><button ng-click="jujuba()">Jujuba</button></div>',
+            template: '<div><div>LANG2={[{lang}]}</div><button ng-click="errou_questao()">Errou Questao</button></div>',
             controller: ['$scope', '$rootScope', function($scope, $rootScope){
                 var counter = 0;
                 $scope.$on('change-language', function(evt, data){
                     $scope.lang = data.lang
                     console.log('d2 change language: '+data.lang);
                 });
-                $scope.jujuba = function(){
+                $scope.errou_questao = function(){
                     counter++;
-                    $scope.$emit('jujuba', {count: counter});
+                    $scope.$emit('errou-questao', {numero_questao: 4, resposta: "42"});
                 };
             }]
         }
     });
 
-    angular.module('myapp').directive('d3', function(){
+    angular.module('myapp').directive('d3ListenBoth', function(){
         return {
             restrict: 'E',
             scope: {},
@@ -75,8 +75,8 @@
                     $scope.lang = data.lang;
                     console.log('d3 change language: '+data.lang);
                 });
-                $scope.$on('jujuba', function(evt, data){
-                    console.log('d3 jujuba: '+data.count);
+                $scope.$on('errou-questao', function(evt, data){
+                    console.log('d3 errou questao: '+data.numero_questao + '/' + data.resposta);
                 });
             }]
         }
@@ -103,9 +103,9 @@
     <h3>emit, broadcast, on</h3>
     <button ng-click="change_language()">Change Language</button>
     <hr>
-    <d2></d2>
+    <d2-emit-errou-questao-listen-change-language></d2-emit-errou-questao-listen-change-language>
     <hr>
-    <d3></d3>
+    <d3-listen-both></d3-listen-both>
     <hr>
     <h3>Resuminho</h3>
     <ul>
