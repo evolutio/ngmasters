@@ -63,9 +63,9 @@
           $scope.visible2 = true;
         };
 
-        // $scope.fecha1 = function(){
-        //   $scope.visible1 = false;
-        // }
+        $scope.fecha1 = function(){
+          $scope.visible1 = false;
+        }
 
     }]);
     
@@ -82,7 +82,7 @@
     
     <mypopup titulo="Hello" visible="visible1">
       <div>Mundão <strong>sem porteira!</strong></div>
-      <!-- <button ng-click="fecha1()">Fechar</button> -->
+      <button ng-click="fecha1()">Fechar</button>
     </mypopup>
 
     <mypopup titulo="{[{ xoom.name }]}" visible="visible2">
