@@ -22,11 +22,12 @@ module.exports = function() {
       'js/components/gh-*/**/*.js',
       'js/components/popup.js',
       'js/components/phonedirectives.js',
+      'grunt2/build/js/myapp-templates.js',
 
       //Test-Specific Code
       'grunt/node_modules/chai/chai.js',
-      'test/lib/**/*.js',
-      {pattern: 'js/**/*.html', included: false}
+      'test/lib/**/*.js'
+      // {pattern: 'js/**/*.html', included: false}
     ],
 
     customLaunchers: {
