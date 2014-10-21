@@ -18,8 +18,10 @@ module.exports = function() {
       'js/base2.js',
       'js/ajax2.js',
       'js/github_api3.js',
+      'js/phone_api.js',
       'js/components/gh-*/**/*.js',
       'js/components/popup.js',
+      'js/components/phonedirectives.js',
 
       //Test-Specific Code
       'grunt/node_modules/chai/chai.js',

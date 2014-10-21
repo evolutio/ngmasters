@@ -30,32 +30,34 @@
         }
     });
 
+    modphonedirectives.controller('PhoneListCtrl', ['$scope', 'PhoneApi', 'PhoneModel', function ($scope, PhoneApi, PhoneModel) {
+        $scope.model = PhoneModel;
+
+        $scope.loading = true;
+        PhoneApi.list_all().success(function(phones){
+            $scope.phones = phones;
+            $scope.loading = false;
+        })
+
+        $scope.select = function(ind){
+            var p = $scope.phones[ind];
+            $scope.model.selected_index = ind;
+            $scope.loading = true;
+            PhoneApi.get_phone(p.id).success(function(data){
+                $scope.loading = false;
+                $scope.model.selected_phone = data;
+                $scope.model.selected_phone.selected_image = data.images[0];
+            });
+        };
+    }]);
+
     modphonedirectives.directive('phoneList', function() {
         return {
             restrict: 'E',
             replace: true,
             templateUrl: '/js/components/phonelist.html',
             scope: {}, //tah vendo, escopo ISOLADO!
-            controller: ['$scope', 'PhoneApi', 'PhoneModel', function ($scope, PhoneApi, PhoneModel) {
-                $scope.model = PhoneModel;
-
-                $scope.loading = true;
-                PhoneApi.list_all().success(function(phones){
-                    $scope.phones = phones;
-                    $scope.loading = false;
-                })
-
-                $scope.select = function(ind){
-                    var p = $scope.phones[ind];
-                    $scope.model.selected_index = ind;
-                    $scope.loading = true;
-                    PhoneApi.get_phone(p.id).success(function(data){
-                        $scope.loading = false;
-                        $scope.model.selected_phone = data;
-                        $scope.model.selected_phone.selected_image = data.images[0];
-                    });
-                };
-            }]
+            controller: 'PhoneListCtrl'
         }
     });
 
