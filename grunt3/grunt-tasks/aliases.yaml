@@ -1,0 +1,4 @@
+
+concamina:
+  - 'concat:build'
+  - 'uglify:build'

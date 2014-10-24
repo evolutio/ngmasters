@@ -10,7 +10,7 @@ concamina_cache:
   - 'clean:before'
   - 'concat:build'
   - 'ngtemplates'
-  - 'ngmin:fix_angular_declarations'
+  # - 'ngmin:fix_angular_declarations'
   - 'concat:withtemplates'
   - 'uglify:build'
   - 'copy:myapp'
