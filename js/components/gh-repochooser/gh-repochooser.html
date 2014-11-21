@@ -1,11 +1,11 @@
 <span>
     Owner:
     <span style="position: relative;">
-        <input type="text" ng-model="search_owner" ng-keyup="searchowner_keyup($event)">
-        <img ng-show="searching_users" src="../img/loader.gif">
-        <div class="pop-options" ng-show="showusers">
+        <input type="text" ng-model="gm.username_input" ng-keyup="searchowner_keyup($event)">
+        <img ng-show="gm.buscando_usuarios" src="../img/loader.gif">
+        <div class="pop-options" ng-show="gm.mostra_usuarios_encontrados">
             <ul>
-                <li ng-repeat="user in githubusers" ng-click="selectowner(user)">
+                <li ng-repeat="user in gm.usuarios_encontrados" ng-click="selectowner(user)">
                   <img class="square32" ng-src="{[{ user.avatar_url }]}">
                   {[{ user.login }]}
                 </li>
@@ -13,8 +13,8 @@
         </div>
     </span>
     Repository:
-    <img ng-show="listing_repos" src="../img/loader.gif">
-    <select ng-model="selected_repo" 
-      ng-options="repo.name for repo in repos"
-      ng-change="onchooserepo({repo:selected_repo})"></select>
+    <img ng-show="gm.buscando_repositorios" src="../img/loader.gif">
+    <select ng-model="gm.repo" 
+      ng-options="repo.name for repo in gm.repos_encontrados"
+      ng-change="onchooserepo({repo:gm.repo})"></select>
 </span>
