@@ -20,18 +20,20 @@
   <script src="../js/base2.js"></script>
   <script src="../js/ajax2.js"></script>
   <script src="../js/github_api3.js"></script>
+  <script src="../js/githubmodel.js"></script>
 
   <script src="../js/components/gh-filetree/gh-filetree.js"></script>
   <script>
-  	angular.module('myapp').controller('MyCtrl', ['$scope', function ($scope){
-      $scope.umrepo = {
+  	angular.module('myapp').controller('MyCtrl', ['$scope', 'GithubModel', function ($scope, GithubModel){
+      GithubModel.repo = {
         "name": "www.freedomsponsors.org",
         "owner": {
           "login": "freedomsponsors",
         }
       };
+      GithubModel.reset_repo_files();
 
-      $scope.abrearquivo = function(repo, file){
+      $scope.abrearquivo = function(file){
         alert("Abre o arquivo: " + file.name);
       }
     }]);
@@ -43,7 +45,7 @@
     <h1>gh-filetree</h1>
 
     <hr>
-    <gh-filetree repo="umrepo" onclickfile="abrearquivo(repo, file)"></gh-filetree>
+    <gh-filetree onclickfile="abrearquivo(file)"></gh-filetree>
     <hr>
  
     <h3>Tá e pra abrir o arquivo?</h3>

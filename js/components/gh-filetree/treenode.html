@@ -1,6 +1,6 @@
 <div>
   <div ng-if="node.type == 'dir'">
-    <a href ng-click="toggle_expand(node)">
+    <a href ng-click="gm.toggle_expand(node)">
       <i ng-class="{'icon-folder-close': !node.expanded, 'icon-folder-open': node.expanded}"></i>
     </a>
     {[{ node.name }]}

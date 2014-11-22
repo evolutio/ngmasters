@@ -76,15 +76,19 @@ angular.module('githubmodel').factory('GithubModel', function(Github, $log){
 	gm.reset_repo = function(){
 		if(gm.repo){
 			gm.repo.issues = [];
-			gm.repo.files = [
-				{
-					name: "/",
-					path: "",
-					type: "dir"
-				}
-			];
 		}
+		gm.reset_repo_files();
 	}
+
+	gm.reset_repo_files = function(){
+		gm.repo.files = [
+			{
+				name: "/",
+				path: "",
+				type: "dir"
+			}
+		];
+	};
 
 	gm.toggle_expand = function(node){
 		if(node.type == "dir"){
