@@ -41,6 +41,7 @@
 
         $scope.select = function(ind){
             var p = $scope.phones[ind];
+            p.is_selected = !p.is_selected;
             $scope.model.selected_index = ind;
             $scope.loading = true;
             PhoneApi.get_phone(p.id).success(function(data){
