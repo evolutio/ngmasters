@@ -5,9 +5,10 @@
 
   <gh-repochooser onchooserepo="escolheuorepo(repo)"></gh-repochooser>
   <hr>
-  <gh-filetree repo="selected_repo" onclickfile="abrearquivo(repo, file)"></gh-filetree>
+  <gh-filetree onclickfile="abrearquivo(file)"></gh-filetree>
 
   <mypopup titulo="{[{ current_file.name }]}" visible="showpopup">
+    <img src="../img/loader.gif" ng-show="current_file.loading">
     <pre>{[{ current_file.file_contents }]}</pre>
   </mypopup>
 

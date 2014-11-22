@@ -77,10 +77,6 @@ angular.module('githubmodel').factory('GithubModel', function(Github, $log){
 		if(gm.repo){
 			gm.repo.issues = [];
 		}
-		gm.reset_repo_files();
-	}
-
-	gm.reset_repo_files = function(){
 		gm.repo.files = [
 			{
 				name: "/",
@@ -88,7 +84,7 @@ angular.module('githubmodel').factory('GithubModel', function(Github, $log){
 				type: "dir"
 			}
 		];
-	};
+	}
 
 	gm.toggle_expand = function(node){
 		if(node.type == "dir"){
@@ -108,7 +104,10 @@ angular.module('githubmodel').factory('GithubModel', function(Github, $log){
 
 	gm.carrega_arquivo = function(node){
 		if(!node.file_contents){
-			Github.get_contents(gm.repo.owner.login, gm.repo.name, file.path).success(function(result){
+			node.loading = true;
+			Github.get_contents(gm.repo.owner.login, gm.repo.name, node.path).success(function(result){
+				node.loading = false;
+				node.loaded = true;
 				node.file_contents = Github.decode_file_contents(result.content);
 			});
 		}
