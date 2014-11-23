@@ -18,6 +18,7 @@ module.exports = function() {
       'js/base2.js',
       'js/ajax2.js',
       'js/github_api3.js',
+      'js/githubmodel.js',
       'js/phone_api.js',
       'js/components/gh-*/**/*.js',
       'js/components/popup.js',
