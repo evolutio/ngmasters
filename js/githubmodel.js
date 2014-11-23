@@ -105,7 +105,7 @@ angular.module('githubmodel').factory('GithubModel', function(Github, $log){
 	gm.carrega_arquivo = function(node){
 		if(!node.file_contents){
 			node.loading = true;
-			Github.get_contents(gm.repo.owner.login, gm.repo.name, node.path).success(function(result){
+			Github.get_contents(gm.repo.owner.login, gm.repo.name, "/"+node.path).success(function(result){
 				node.loading = false;
 				node.loaded = true;
 				node.file_contents = Github.decode_file_contents(result.content);
