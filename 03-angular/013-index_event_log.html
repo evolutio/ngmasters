@@ -9,7 +9,7 @@
   <script src="../lib/jquery-1.10.2.min.js"></script>
   <script src="../js/base.js"></script>
   <script>
-    function MyCtrl($scope, $http, $log){
+    Global.myapp.controller('MyCtrl', function ($scope, $http, $log){
 
       function get_issues(){
         var url = 'https://api.github.com/repos/freedomsponsors/www.freedomsponsors.org/issues';
@@ -81,7 +81,8 @@
         $scope.foto = fotos[indicefoto];
       }
 
-    }
+    });
+    
   </script>
 </head>
 

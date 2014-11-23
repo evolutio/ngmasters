@@ -11,8 +11,8 @@
     myapp.config(function($interpolateProvider){
         $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
     });
-
-    function MyCtrl($scope){
+    
+    myapp.controller('MyCtrl', function ($scope){
       $scope.sayhello = "Hello World!";
 
       $scope.meutexto_reversed = function(){
@@ -35,7 +35,7 @@
         return (-$scope.b - Math.sqrt($scope._delta())) / (2 * $scope.a)
       }
 
-    }
+    });
   </script>
 </head>
 <body ng-app="myapp" ng-controller="MyCtrl">

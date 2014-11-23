@@ -9,7 +9,7 @@
 <script src="../lib/jquery-1.10.2.min.js"></script>
 <script src="../lib/angular.min.js"></script>
 <script>
-  function MyCtrl($scope, $http){
+  angular.module('myapp', []).controller('MyCtrl', function ($scope, $http){
     function loadTodos(){
       $http.get('/02-jquery/todos.json').success(function(todos){
         $scope.todos = todos;
@@ -33,7 +33,8 @@
         $scope.newtask = '';
       }
     }
-  }
+  });
+  
 </script>
 </head>
 <body>

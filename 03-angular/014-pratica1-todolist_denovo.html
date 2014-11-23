@@ -9,71 +9,72 @@
 <script src="../lib/angular.min.js"></script>
 <script src="../js/base.js"></script>
 <script>
-  function MyCtrl($scope, $http, $timeout, $log){
+    Global.myapp.controller('MyCtrl', function ($scope, $http, $timeout, $log){
 
-    function TODOAsyncApi(){
-      var ID = 5;
-      return {
-        load_all: function(){
-          return $http.get('backend/list_todos.json');
-        },
-        remove: function(id){
-          var cb;
-          var promise = {
-            success : function(callback){
-              cb = callback;
+      function TODOAsyncApi(){
+        var ID = 5;
+        return {
+          load_all: function(){
+            return $http.get('backend/list_todos.json');
+          },
+          remove: function(id){
+            var cb;
+            var promise = {
+              success : function(callback){
+                cb = callback;
+              }
             }
-          }
-          $timeout(function(){
-            cb();
-          }, 1000);
-          return promise;
-        },
-        add: function(todo){
-          var cb;
-          var promise = {
-            success: function(callback){
-              cb = callback;
+            $timeout(function(){
+              cb();
+            }, 1000);
+            return promise;
+          },
+          add: function(todo){
+            var cb;
+            var promise = {
+              success: function(callback){
+                cb = callback;
+              }
             }
+            $timeout(function(){
+              cb(++ID);
+            },1000)
+            return promise;
           }
-          $timeout(function(){
-            cb(++ID);
-          },1000)
-          return promise;
+        };
+      }
+
+      var todoAPI = TODOAsyncApi();
+
+      $scope.remove = function(index){
+        var todo = $scope.todos[index];
+        todo.removing = true;
+        todoAPI.remove(todo.id).success(function(){
+          $scope.todos.splice(index, 1);
+        });
+      };
+
+      $scope.newtask_keyup = function(evt){
+        if(evt.keyCode == 13){
+          var todo = {
+            todo: $scope.newtask,
+            done: false
+          };
+          $scope.adding = true;
+          todoAPI.add(todo).success(function(newid){
+            todo.id = newid;
+            $scope.todos.push(todo);
+            $scope.newtask = '';
+            $scope.adding = false;
+          });
         }
       };
-    }
 
-    var todoAPI = TODOAsyncApi();
-
-    $scope.remove = function(index){
-      var todo = $scope.todos[index];
-      todo.removing = true;
-      todoAPI.remove(todo.id).success(function(){
-        $scope.todos.splice(index, 1);
+      todoAPI.load_all().success(function(todos){
+        $scope.todos = todos;
       });
-    };
-
-    $scope.newtask_keyup = function(evt){
-      if(evt.keyCode == 13){
-        var todo = {
-          todo: $scope.newtask,
-          done: false
-        };
-        $scope.adding = true;
-        todoAPI.add(todo).success(function(newid){
-          todo.id = newid;
-          $scope.todos.push(todo);
-          $scope.newtask = '';
-          $scope.adding = false;
-        });
-      }
-    };
-
-    todoAPI.load_all().success(function(todos){
-      $scope.todos = todos;
     });
-  }
+  
 
 </script>
 </head>

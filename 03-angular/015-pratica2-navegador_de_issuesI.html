@@ -12,7 +12,7 @@
   <script src="../js/github_api.js"></script>
   <script>
     
-    angular.module('myapp').controller('MyCtrl', function MyCtrl($scope, $log, $timeout, Github){
+    angular.module('myapp').controller('MyCtrl', function ($scope, $log, $timeout, Github){
       
       //Github user autocomplete
       $scope.find_users = function(){

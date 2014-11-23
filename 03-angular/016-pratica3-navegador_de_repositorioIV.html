@@ -11,7 +11,7 @@
   <script src="../js/base.js"></script>
   <script src="../js/github_api.js"></script>
   <script>
-    function MyCtrl($scope, $log, $timeout, Github){
+    Global.myapp.controller('MyCtrl', function ($scope, $log, $timeout, Github){
       
       //Github user autocomplete
       var DELAY = 800;
@@ -99,7 +99,8 @@
         return (node.type == 'dir' ? '0' : '1') + node.name;
       }
 
-    }
+    });
+    
   </script>
 </head>
 

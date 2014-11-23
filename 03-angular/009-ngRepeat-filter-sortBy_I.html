@@ -26,7 +26,7 @@
         $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
     });
 
-    function MyCtrl($scope){
+    myapp.controller('MyCtrl', function ($scope){
         $scope.phones = [
             {
                 "age": 0, 
@@ -209,7 +209,8 @@
             }
             return result;
         }
-    }
+    });
+    
   </script>
 </head>
 

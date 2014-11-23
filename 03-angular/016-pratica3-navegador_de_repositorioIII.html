@@ -11,7 +11,7 @@
   <script src="../js/base.js"></script>
   <script src="../js/github_api.js"></script>
   <script>
-    function MyCtrl($scope, $log, $timeout, Github){
+    Global.myapp.controller('MyCtrl', function ($scope, $log, $timeout, Github){
       $scope.roots = [
         {
           label: 'Animals',
@@ -59,7 +59,8 @@
       $scope.toggle_expand = function(node){
         node.expanded = !node.expanded;
       };
-    }
+    });
+    
   </script>
 </head>
 
