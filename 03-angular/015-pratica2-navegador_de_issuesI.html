@@ -6,32 +6,25 @@
   <link rel="stylesheet" href="../css/bootstrap_full.css">
   <link rel="stylesheet" href="../css/github.css">
   <link rel="stylesheet" href="../css/app.css">
-  <script src="../lib/angular.min.js"></script>
+  <script src="../lib/angular.js"></script>
   <script src="../lib/jquery-1.10.2.min.js"></script>
   <script src="../js/base.js"></script>
   <script src="../js/github_api.js"></script>
   <script>
-    function MyCtrl($scope, $log, $timeout, Github){
+    
+    angular.module('myapp').controller('MyCtrl', function MyCtrl($scope, $log, $timeout, Github){
       
       //Github user autocomplete
       var DELAY = 200;
       var timer;
-      $scope.searchowner_keyup = function(evt){
-        if(timer){
-          $timeout.cancel(timer)
-        }
-        timer = $timeout(function(){
-          if($scope.search_owner){
-            $scope.searching_users = true;
-            Github.search_users($scope.search_owner).
-              success(function(result){
-                $scope.searching_users = false;
-                $scope.githubusers = result.items;
-                $scope.showusers = true;
-              });
-          }
-          timer = null;
-        }, DELAY);
+
+      $scope.find_users = function(){
+        $scope.searching_users = true;
+        Github.search_users($scope.search_owner).success(function(result){
+          $scope.searching_users = false;
+          $scope.githubusers = result.items;
+          $scope.showusers = true;
+        });
       }
 
       //Populate repo combo
@@ -101,8 +94,7 @@
       $scope.friendly_date = function(date_str){
         return Global.friendly_date(new Date(date_str));
       }
-
-    }
+    });
   </script>
 </head>
 
@@ -117,7 +109,7 @@
     <span>
         Owner:
         <span style="position: relative;">
-            <input type="text" ng-model="search_owner" ng-keyup="searchowner_keyup($event)">
+            <input type="text" ng-model="search_owner" ng-model-options="{ debounce: {'default': 200, 'blur': 0} }" ng-change="find_users()">
             <img ng-show="searching_users" src="../img/loader.gif">
             <div class="pop-options" ng-show="showusers">
                 <ul>
