@@ -15,9 +15,6 @@
     angular.module('myapp').controller('MyCtrl', function MyCtrl($scope, $log, $timeout, Github){
       
       //Github user autocomplete
-      var DELAY = 200;
-      var timer;
-
       $scope.find_users = function(){
         $scope.searching_users = true;
         Github.search_users($scope.search_owner).success(function(result){
