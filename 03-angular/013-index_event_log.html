@@ -9,35 +9,40 @@
   <script src="../lib/jquery-1.10.2.min.js"></script>
   <script src="../js/base.js"></script>
   <script>
-    Global.myapp.controller('MyCtrl', function ($scope, $http, $log){
 
-      function get_issues(){
+    Global.myapp.factory('IssuesModel', function($http){
+      var m = {
+        issues: [],
+        loading_issues: false
+      };
+
+      m.get_issues = function(){
         var url = 'https://api.github.com/repos/freedomsponsors/www.freedomsponsors.org/issues';
-        $scope.loading_issues = true;
+        m.loading_issues = true;
         $http.get(url).success(function(result){
-          $scope.loading_issues = false;
-          $scope.issues = result;
-        })
-      }
+          m.loading_issues = false;
+          m.issues = result;
+        });
+      };
 
-      get_issues();
+      m.sobe = function(indice){
+        troca(m.issues, indice, indice - 1);
+      };
 
-      function _troca(array, i, j){
+      m.desce = function(indice){
+        troca(m.issues, indice, indice + 1);
+      };
+
+      function troca(array, i, j){
         var temp = array[i];
         array[i] = array[j];
         array[j] = temp;
       }
 
-      $scope.sobe = function(indice){
-        _troca($scope.issues, indice, indice - 1);
-      };
+      return m;
+    });
 
-      $scope.desce = function(indice){
-        _troca($scope.issues, indice, indice + 1);
-      }
-
-      ///////////////////////////////////////////////////
-
+    Global.myapp.factory('FotosModel', function($log){
       var fotos = [
         "../img/phones/motorola-xoom-with-wi-fi.0.jpg", 
         "../img/phones/motorola-xoom.0.jpg", 
@@ -60,11 +65,13 @@
         "../img/phones/t-mobile-g2.0.jpg", 
         "../img/phones/motorola-charm-with-motoblur.0.jpg", 
       ];
+      var indicefoto = 0;
 
-      var indicefoto = 0
-      $scope.foto = fotos[indicefoto];
+      var m = {
+        foto: fotos[indicefoto]
+      };
 
-      $scope.passafoto = function(evento){
+      m.passafoto = function(evento){
         $log.info(evento);
         if(evento.x > 320){
           indicefoto++;
@@ -78,9 +85,16 @@
             indicefoto += fotos.length;
           }
         }
-        $scope.foto = fotos[indicefoto];
-      }
+        m.foto = fotos[indicefoto];
+      };
 
+      return m;
+    });
+
+    Global.myapp.controller('MyCtrl', function ($scope, IssuesModel, FotosModel){
+      var im = $scope.im = IssuesModel;
+      var fm = $scope.fm = FotosModel;
+      im.get_issues();
     });
     
   </script>
@@ -92,7 +106,7 @@
     <hr>
       
     <h2>Sobe/Desce</h2>
-    <img ng-show="loading_issues" src="../img/loader.gif">
+    <img ng-show="im.loading_issues" src="../img/loader.gif">
 
     <table class="table">
       <tr>
@@ -101,15 +115,15 @@
         <th>controls</th>
         <th>Título</th>
       </tr>
-      <tr ng-repeat="issue in issues" ng-class="{selected: issue.is_selected}" 
+      <tr ng-repeat="issue in im.issues" ng-class="{selected: issue.is_selected}" 
       ng-click="issue.is_selected=true">
         <td>{[{issue.number}]}</td>
         <td>{[{$index}]}</td>
         <td>
-          <button ng-show="$index > 0" ng-click="sobe($index)">
+          <button ng-show="$index > 0" ng-click="im.sobe($index)">
             <i class="icon-chevron-up"></i>
           </button>
-          <button ng-show="$index < issues.length - 1" ng-click="desce($index)">
+          <button ng-show="$index < im.issues.length - 1" ng-click="im.desce($index)">
             <i class="icon-chevron-down"></i>
           </button>
         </td>
@@ -118,7 +132,7 @@
     </table>
     <hr>
     <h2>Carrossel</h2>
-    <img ng-src="{[{foto}]}" ng-click="passafoto($event)">
+    <img ng-src="{[{fm.foto}]}" ng-click="fm.passafoto($event)">
     <div class="alert alert-info">
       Tony, não esquece:
       <ul>

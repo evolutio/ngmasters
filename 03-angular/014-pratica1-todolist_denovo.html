@@ -9,70 +9,90 @@
 <script src="../lib/angular.min.js"></script>
 <script src="../js/base.js"></script>
 <script>
-    Global.myapp.controller('MyCtrl', function ($scope, $http, $timeout, $log){
 
-      function TODOAsyncApi(){
-        var ID = 5;
-        return {
-          load_all: function(){
-            return $http.get('backend/list_todos.json');
-          },
-          remove: function(id){
-            var cb;
-            var promise = {
-              success : function(callback){
-                cb = callback;
-              }
+    Global.myapp.factory('TODOApi', function($http, $timeout){
+      var ID = 5;
+      return {
+        load_all: function(){
+          return $http.get('backend/list_todos.json');
+        },
+        remove: function(id){
+          var cb;
+          var promise = {
+            success : function(callback){
+              cb = callback;
             }
-            $timeout(function(){
-              cb();
-            }, 1000);
-            return promise;
-          },
-          add: function(todo){
-            var cb;
-            var promise = {
-              success: function(callback){
-                cb = callback;
-              }
-            }
-            $timeout(function(){
-              cb(++ID);
-            },1000)
-            return promise;
           }
-        };
-      }
+          $timeout(function(){
+            cb();
+          }, 1000);
+          return promise;
+        },
+        add: function(todo){
+          var cb;
+          var promise = {
+            success: function(callback){
+              cb = callback;
+            }
+          }
+          $timeout(function(){
+            cb(++ID);
+          },1000)
+          return promise;
+        }
+      };
+    });
 
-      var todoAPI = TODOAsyncApi();
+    Global.myapp.factory('TODOModel', function(TODOApi){
+      var m = {
+        newtask: '',
+        adding: false,
+        todos: []
+      };
 
-      $scope.remove = function(index){
-        var todo = $scope.todos[index];
-        todo.removing = true;
-        todoAPI.remove(todo.id).success(function(){
-          $scope.todos.splice(index, 1);
+      m.load_all = function(){
+        TODOApi.load_all().success(function(todos){
+          m.todos = todos;
         });
       };
 
+      m.remove = function(index){
+        var todo = m.todos[index];
+        todo.removing = true;
+        TODOApi.remove(todo.id).success(function(){
+          m.todos.splice(index, 1);
+        });
+      };
+
+      m.addnew = function(){
+        var todo = {
+          todo: m.newtask,
+          done: false
+        };
+        m.adding = true;
+        TODOApi.add(todo).success(function(newid){
+          todo.id = newid;
+          m.todos.push(todo);
+          m.newtask = '';
+          m.adding = false;
+        });
+      };
+
+      return m;
+    });
+
+
+    Global.myapp.controller('MyCtrl', function ($scope, TODOModel){
+      var m = $scope.m = TODOModel;
+
       $scope.newtask_keyup = function(evt){
         if(evt.keyCode == 13){
-          var todo = {
-            todo: $scope.newtask,
-            done: false
-          };
-          $scope.adding = true;
-          todoAPI.add(todo).success(function(newid){
-            todo.id = newid;
-            $scope.todos.push(todo);
-            $scope.newtask = '';
-            $scope.adding = false;
-          });
+          m.addnew();
         }
       };
 
-      todoAPI.load_all().success(function(todos){
-        $scope.todos = todos;
-      });
+      m.load_all();
+
     });
   
 
@@ -85,15 +105,15 @@
     <div>
       <div>
         <label>Nova tarefa:</label>
-        <input type="text" ng-model="newtask" ng-keyup="newtask_keyup($event)">
-        <img ng-show="adding" src="../img/loader.gif">
+        <input type="text" ng-model="m.newtask" ng-keyup="newtask_keyup($event)">
+        <img ng-show="m.adding" src="../img/loader.gif">
       </div>
       <table class="table table-striped table-bordered todotable">
-        <tr ng-repeat="todo in todos">
+        <tr ng-repeat="todo in m.todos">
           <td class="todocheck"><input type="checkbox" ng-model="todo.done"></td>
           <td ng-class="{tododone: todo.done}">{[{todo.todo}]}</td>
           <td class="todoremove">
-            <a href ng-click="remove($index)"><i class="icon-trash"></i></a>
+            <a href ng-click="m.remove($index)"><i class="icon-trash"></i></a>
             <img ng-show="todo.removing" src="../img/loader.gif">
           </td>
         </tr>
@@ -103,7 +123,6 @@
     <div class="alert alert-info">
       Olha só quanto conceito importante a gente tá aplicando aqui:
       <ul>
-        <li>Objeto com estado armazenado em closure</li>
         <li>Construção e consumo de API assíncrona</li>
         <li>$timeout, $http</li>
         <li>Uso de $event, e $index</li>
