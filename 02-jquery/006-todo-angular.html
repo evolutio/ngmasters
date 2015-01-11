@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="../css/curso.css">
 <link rel="stylesheet" href="003-todo.css">
 <script src="../lib/jquery-1.10.2.min.js"></script>
-<script src="../lib/angular.min.js"></script>
+<script src="../lib/angular.js"></script>
 <script>
   angular.module('myapp', []).controller('MyCtrl', function ($scope, $http){
     function loadTodos(){
@@ -38,7 +38,7 @@
 </script>
 </head>
 <body>
-<div class="container" ng-app ng-controller="MyCtrl">
+<div class="container" ng-app="myapp" ng-controller="MyCtrl">
   <h1>TODO list - com JQuery</h1>
 
   <div>

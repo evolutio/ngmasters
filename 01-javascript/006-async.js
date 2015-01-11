@@ -33,20 +33,20 @@ function soma_assincrona_callback(a, b, callback){
 }
 
 function soma_assincrona_promessa(a, b){
-	var cb;
 	var promessa = {
 		then: function(callback){
-			cb = callback;
+			promessa.callback = callback;
 		}
 	};
 	setTimeout(function(){
-		cb(a+b);
+		promessa.callback(a+b);
 	}, 1000);
 	return promessa;
 }
 
 function ajax_sim(){
 	var url = 'https://api.github.com/repos/freedomsponsors/www.freedomsponsors.org/issues'
+	
 	$.get(url).success(function(result){
 		console.log('02 - do que isso!');
 		console.table(result);

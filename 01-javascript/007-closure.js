@@ -58,7 +58,7 @@ function cc(){
 //Outro exemplo
 //Um error logger que não loga o mesmo erro duas vezes:
 
-window.onerror = function(){
+window.onerror = (function(){
 
 	function ajax_faz_de_conta(msg, url, lineNumber){
 		console.log('Enviando erro pro servidor: '+url+':'+lineNumber+' - '+msg);
@@ -72,7 +72,7 @@ window.onerror = function(){
 			ja_loguei[msg] = true;
 		}
 	}
-}();
+})();
 
 function dapau(){
 	var x = undefined;
