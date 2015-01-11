@@ -18,6 +18,7 @@ Já o arquivo [index.html](https://github.com/tonylampada/webgl_graphs/blob/gh-p
 
 # 3. Forka o meu repo [webgl_graphs](https://github.com/tonylampada/webgl_graphs)
 
+Modifique algum arquivo no fork pro Github disparar o processo de geração da Github Pages.
 Espera uns 10 minutinhos (Github pages novas demoram um pouco pra entrar no ar) e veja se o html fica disponível numa URL do tipo: http://seu_username.github.io/webgl_graphs
 
 # 4. Crie uma Github page "ng-masters"
