@@ -59,7 +59,8 @@ function vaibuscarasissues(){
     //mais um pouco de codigo aqui....
     
     var le_repo = GithubRepo(username, reponame);
-    le_repo.busca_issues_e_popula_tabela("#issuestable");
+    le_repo.busca_issues();
+    le_repo.popula_tabela("#issuestable");
 }
 ```
 
@@ -68,7 +69,7 @@ GithubRepo é "tipo uma classe" que sabe:
 * Buscar uma lista de issues de um repositório Github
 * Popular uma tabela html com as issues que ela buscou
 
-Pra isso, cada "instância" dessa classe vai precisar armazenar estado, que nesse caso vai ser composto pelo nome do usuario github e do repositorio.
+Pra isso, cada "instância" dessa classe vai precisar armazenar estado, que nesse caso vai ser composto pelo nome do usuario github e do repositorio, e tambem um array com as issues do repositorio.
 
 Quando eu digitar nos inputs "freedomsponsors" e "www.freedomsponsors.org", ao clicar no botão, ele deverá mostrar na tabela as [issues do freedomsponsors](https://github.com/freedomsponsors/www.freedomsponsors.org/issues?state=open) que ela foi buscar via API (daqui https://api.github.com/repos/freedomsponsors/www.freedomsponsors.org/issues):
 
@@ -84,8 +85,8 @@ Use a técnica do closure pra armazenar o estado das "instâncias" de GithubRepo
 
 ## c) Faça uma versão 2 dessa página
 
-Mas dessa vez armazene o estado do GithubRepo no "this" (ao invés de usar o closure), e implemente a função busca_issues_e_popula_tabela no prototype do GithubRepo.
+Mas dessa vez armazene o estado do GithubRepo no "this" (ao invés de usar o closure), e implemente as funções busca_issues() e popula_tabela() no prototype do GithubRepo.
 
-Publique tudo no seu Github pages e manda o link pra galera lá na lista!!!
+Publique tudo no seu Github pages e manda o link pra gente lá na lista!!!
 
 
