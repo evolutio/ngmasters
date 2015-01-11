@@ -1,6 +1,7 @@
-angular.module('githubmodel', ['modgithubapi']);
+// angular.module('githubmodel', ['modgithubapi']);
+// angular.module('githubmodel').factory('GithubModel', function(Github, $log){
 
-angular.module('githubmodel').factory('GithubModel', function(Github, $log){
+Global.myapp.factory('GithubModel', function(Github, $log){
 
 	function _next_page(repo){
 		if(!repo.issues){
@@ -11,7 +12,6 @@ angular.module('githubmodel').factory('GithubModel', function(Github, $log){
 			return 1 + repo.issues.length / 30;
 		}
 	}
-
 
 	var gm = {
 		username_input: '',
@@ -60,7 +60,7 @@ angular.module('githubmodel').factory('GithubModel', function(Github, $log){
 					}
 					gm.repo.issues = gm.repo.issues.concat(issues);
 					if(issues.length < 30){
-						gm.no_more_issues = true;
+						gm.repo.no_more_issues = true;
 					}
 					gm.buscando_issues = false;
 				}).error(function(result, status){
@@ -109,6 +109,18 @@ angular.module('githubmodel').factory('GithubModel', function(Github, $log){
 				node.loading = false;
 				node.loaded = true;
 				node.file_contents = Github.decode_file_contents(result.content);
+			});
+		}
+	};
+
+	gm.carrega_comentarios_da_issue = function(issue){
+		if(!issue.comment_list){
+			issue.loading_comments = true;
+			Github.list_issue_comments(gm.repo.owner.login, 
+									   gm.repo.name, 
+									   issue.number).success(function(comments){
+				issue.comment_list = comments;
+				issue.loading_comments = false;
 			});
 		}
 	};

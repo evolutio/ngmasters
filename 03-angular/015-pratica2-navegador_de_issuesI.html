@@ -10,78 +10,21 @@
   <script src="../lib/jquery-1.10.2.min.js"></script>
   <script src="../js/base.js"></script>
   <script src="../js/github_api.js"></script>
+  <script src="../js/githubmodel.js"></script>
   <script>
     
-    angular.module('myapp').controller('MyCtrl', function ($scope, $log, $timeout, Github){
-      
-      //Github user autocomplete
-      $scope.find_users = function(){
-        $scope.searching_users = true;
-        Github.search_users($scope.search_owner).success(function(result){
-          $scope.searching_users = false;
-          $scope.githubusers = result.items;
-          $scope.showusers = true;
-        });
-      }
+    angular.module('myapp').controller('MyCtrl', function ($scope, GithubModel){
+      var gm = $scope.gm = GithubModel;
+      $scope.selected_issue = null;
 
-      //Populate repo combo
       $scope.selectowner = function(user){
-        $scope.search_owner = user.login;
-        $scope.showusers = false;
-        $scope.listing_repos = true;
-        Github.list_user_repos($scope.search_owner).success(function(repos){
-          $scope.listing_repos = false;
-          $scope.repos = repos;
-        })
-      }
-
-      //list first issues
-      $scope.onselect_repo = function(){
-        page = 0;
-        $scope.issues = [];
-        $scope.theres_more = true;
-        $scope.get_more_issues();
-      }
-
-      //Infinite scrolling
-      var page;
-      $scope.theres_more = true;
-      $scope.get_more_issues = function(){
-        page++;
-        $scope.loading_issues = true;
-        Github.list_issues($scope.selected_repo.owner.login, $scope.selected_repo.name, page).
-          success(function(issues){
-            $log.info('got '+issues.length+' issues');
-            $scope.issues = $scope.issues.concat(issues);
-            if(issues.length == 0){
-              $scope.theres_more = false;
-            }
-            $scope.loading_issues = false;
-          }).
-          error(function(result,status){
-            $log.error("status "+status);
-            $log.error(result);
-            alert(result.message);
-            $scope.loading_issues = false;
-          });
+        gm.escolhe_usuario(user);
+        gm.busca_repos_do_usuario();
       };
 
       $scope.open = function(issue){
         $scope.selected_issue = issue;
-        if(!issue.comment_list){
-          $scope.loading_comments = true;
-          Github.list_issue_comments(
-            $scope.selected_repo.owner.login, 
-            $scope.selected_repo.name, 
-            $scope.selected_issue.number).success(function(comments){
-              issue.comment_list = comments; // BOM!
-              
-              //$scope.selected_issue.comment_list = comments; // MAU!
-              //cuidado com estado do $scope dentro de callbacks
-
-              $scope.loading_comments = false;
-            });
-        }
+        GithubModel.carrega_comentarios_da_issue(issue);
       }
 
       $scope.close = function(){
@@ -106,11 +49,11 @@
     <span>
         Owner:
         <span style="position: relative;">
-            <input type="text" ng-model="search_owner" ng-model-options="{ debounce: {'default': 200, 'blur': 0} }" ng-change="find_users()">
-            <img ng-show="searching_users" src="../img/loader.gif">
-            <div class="pop-options" ng-show="showusers">
+            <input type="text" ng-model="gm.username_input" ng-model-options="{ debounce: {'default': 200, 'blur': 0} }" ng-change="gm.busca_usuarios_pelo_nome()">
+            <img ng-show="gm.buscando_usuarios" src="../img/loader.gif">
+            <div class="pop-options" ng-show="gm.mostra_usuarios_encontrados">
                 <ul>
-                    <li ng-repeat="user in githubusers" ng-click="selectowner(user)">
+                    <li ng-repeat="user in gm.usuarios_encontrados" ng-click="selectowner(user)">
                       <img class="square32" ng-src="{[{ user.avatar_url }]}">
                       {[{ user.login }]}
                     </li>
@@ -118,10 +61,10 @@
             </div>
         </span>
         Repository:
-        <img ng-show="listing_repos" src="../img/loader.gif">
-        <select ng-model="selected_repo" 
-          ng-options="repo.name for repo in repos"
-          ng-change="onselect_repo()"></select>
+        <img ng-show="gm.buscando_repositorios" src="../img/loader.gif">
+        <select ng-model="gm.repo" 
+          ng-options="repo.name for repo in gm.repos_encontrados"
+          ng-change="gm.busca_mais_issues()"></select>
     </span>
       
     <table class="table" style="width: 450px;">
@@ -130,7 +73,7 @@
         <th style="width:300px;">Título</th>
         <th>Status</th>
       </tr>
-      <tr ng-repeat="issue in issues">
+      <tr ng-repeat="issue in gm.repo.issues">
         <td>
           <i class="icon-exclamation-sign" ng-if="issue.state == 'open'"></i>
           <i class="icon-ok-circle" ng-if="issue.state == 'closed'"></i>
@@ -147,9 +90,9 @@
         <td>{[{issue.state}]}</td>
       </tr>
     </table>
-    <img ng-show="loading_issues" src="../img/loader-bar.gif">
-    <button ng-click="get_more_issues()" ng-show="selected_repo && theres_more">Mooooore!</button>
-    <div class="alert alert-warn" ng-show="selected_repo && !theres_more">
+    <img ng-show="gm.buscando_issues" src="../img/loader-bar.gif">
+    <button ng-click="get_more_issues()" ng-show="gm.repo && !gm.repo.no_more_issues">Mooooore!</button>
+    <div class="alert alert-warn" ng-show="gm.repo && gm.repo.no_more_issues">
       Acabou!
     </div>
     <hr>
@@ -208,7 +151,7 @@
             </div>
           </div>
         </div>
-        <img src="../img/loader-bar.gif" ng-show="loading_comments">
+        <img src="../img/loader-bar.gif" ng-show="selected_issue.loading_comments">
         <div class="timeline-comment-wrapper js-comment-container" ng-repeat="comment in selected_issue.comment_list">
           <a href="http://github.com/{[{ comment.user.login }]}"><img alt="{[{comment.user.login}]}" class="timeline-comment-avatar" height="48" ng-src="{[{ comment.user.avatar_url }]}" width="48"></a>
           <div class="timeline-comment timeline-comment-owner-comment">
