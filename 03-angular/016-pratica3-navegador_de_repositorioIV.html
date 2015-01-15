@@ -10,90 +10,30 @@
   <script src="../lib/jquery-1.10.2.min.js"></script>
   <script src="../js/base.js"></script>
   <script src="../js/github_api.js"></script>
+  <script src="../js/githubmodel.js"></script>
   <script>
-    Global.myapp.controller('MyCtrl', function ($scope, $log, $timeout, Github){
+    Global.myapp.controller('MyCtrl', function ($scope, GithubModel){
+
+      var gm = $scope.gm = GithubModel;
+      $scope.current_file = null;
       
-      //Github user autocomplete
-      var DELAY = 800;
-      var timer;
-      $scope.searchowner_keyup = function(evt){
-        if(timer){
-          $timeout.cancel(timer)
-        }
-        timer = $timeout(function(){
-          $scope.searching_users = true;
-          if($scope.search_owner){
-            Github.search_users($scope.search_owner).
-              success(function(result){
-                $scope.searching_users = false;
-                $scope.githubusers = result.items;
-                $scope.showusers = true;
-              });
-          }
-          timer = null;
-        }, DELAY);
-      }
-
-      //Populate repo combo
       $scope.selectowner = function(user){
-        $scope.search_owner = user.login;
-        $scope.showusers = false;
-        $scope.listing_repos = true;
-        Github.list_user_repos($scope.search_owner).success(function(repos){
-          $scope.listing_repos = false;
-          $scope.repos = repos;
-        })
-      }
+        gm.escolhe_usuario(user);
+        gm.busca_repos_do_usuario();
+      };
 
-      //get first level
-      $scope.onselect_repo = function(){
-        $scope.roots = [
-          {
-            name: "/",
-            path: "",
-            type: "dir"
-          }
-        ];
-        $scope.toggle_expand($scope.roots[0]);
-      }
-
-      $scope.toggle_expand = function(node){
-        if(node.type == "dir"){
-          if(!node.loaded){
-            node.loading = true;
-            Github.get_contents($scope.search_owner, $scope.selected_repo.name, "/"+node.path).success(function(contents){
-              node.loading = false;
-              node.loaded = true;
-              node.children = contents;
-              node.expanded = true;
-            });
-          } else {
-            node.expanded = !node.expanded;
-          }
-        }
-      }
-
-      $scope.open_file = function(node){
-        if(node.type == 'file'){
-          if(!node.loaded){
-            node.loading = true;
-            Github.get_contents($scope.search_owner, $scope.selected_repo.name, "/"+node.path).success(function(file){
-              node.loading = false;
-              node.loaded = true;
-              node.file_contents = Github.decode_file_contents(file.content);
-              $scope.opened_file = node;
-              $scope.show_file_popup = true;
-            })
-          } else {
-            $scope.opened_file = node;
-            $scope.show_file_popup = true;
-          }
-        }
-      }
+      $scope.escolheuorepo = function(repo){
+        gm.reset_repo();
+      };
 
       $scope.close = function(){
-        $scope.show_file_popup = false;
-      }
+        $scope.current_file = null;
+      };
+
+      $scope.click_file = function(file){
+        $scope.current_file = file;
+        gm.carrega_arquivo(file);
+      };
 
       $scope.directory_first = function(node){
         return (node.type == 'dir' ? '0' : '1') + node.name;
@@ -115,11 +55,13 @@
     <span>
         Owner:
         <span style="position: relative;">
-            <input type="text" ng-model="search_owner" ng-keyup="searchowner_keyup($event)">
-            <img ng-show="searching_users" src="../img/loader.gif">
-            <div class="pop-options" ng-show="showusers">
+            <input type="text" ng-model="gm.username_input" 
+              ng-model-options="{ debounce: {'default': 200, 'blur': 0} }" 
+              ng-change="gm.busca_usuarios_pelo_nome()">
+            <img ng-show="gm.buscando_usuarios" src="../img/loader.gif">
+            <div class="pop-options" ng-show="gm.mostra_usuarios_encontrados">
                 <ul>
-                    <li ng-repeat="user in githubusers" ng-click="selectowner(user)">
+                    <li ng-repeat="user in gm.usuarios_encontrados" ng-click="selectowner(user)">
                       <img class="square32" ng-src="{[{ user.avatar_url }]}">
                       {[{ user.login }]}
                     </li>
@@ -127,14 +69,14 @@
             </div>
         </span>
         Repository:
-        <img ng-show="listing_repos" src="../img/loader.gif">
-        <select ng-model="selected_repo" 
-          ng-options="repo.name for repo in repos"
-          ng-change="onselect_repo()"></select>
+        <img ng-show="gm.buscando_repositorios" src="../img/loader.gif">
+        <select ng-model="gm.repo" 
+          ng-options="repo.name for repo in gm.repos_encontrados"
+          ng-change="escolheuorepo()"></select>
     </span>
       
     <ul class="tree">
-      <li ng-include="'include/treenodeIV.html'" ng-repeat="node in roots"></li>
+      <li ng-include="'include/treenodeIV.html'" ng-repeat="node in gm.repo.files"></li>
     </ul>
 
     <hr>
@@ -156,15 +98,15 @@
   </div>
 
 
-  <div class="transparent-layer" ng-show="show_file_popup">
+  <div class="transparent-layer" ng-show="current_file">
 
     <div class="modal" style="position: relative; top: auto; left: auto; right: auto; margin: 0 auto 20px; z-index: 1; max-width: 100%;margin-top: 50px;min-height: 400px;max-height:80%;min-width:600px;">
       <div class="modal-header">
         <button type="button" class="close" ng-click="close()">×</button>
-        <h3>{[{ opened_file.name }]}</h3>
+        <h3>{[{ current_file.name }]}</h3>
       </div>
       <div class="modal-body" style="max-height:80%;">
-        <pre>{[{opened_file.file_contents}]}</pre>
+        <pre>{[{current_file.file_contents}]}</pre>
       </div>
     </div>
 

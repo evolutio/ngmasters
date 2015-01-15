@@ -91,7 +91,7 @@
       </tr>
     </table>
     <img ng-show="gm.buscando_issues" src="../img/loader-bar.gif">
-    <button ng-click="get_more_issues()" ng-show="gm.repo && !gm.repo.no_more_issues">Mooooore!</button>
+    <button ng-click="gm.busca_mais_issues()" ng-show="gm.repo && !gm.repo.no_more_issues">Mooooore!</button>
     <div class="alert alert-warn" ng-show="gm.repo && gm.repo.no_more_issues">
       Acabou!
     </div>
