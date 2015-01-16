@@ -14,30 +14,7 @@
     <h1>Controllers, com zero gambiarra.</h1>
 
     <section>
-      <h3>Tem dois problemas na maneira que a gente tá criando nossos controllers.</h3>
-
-      <pre>
-  //---- pagina.html -----
-  &lt;head&gt;
-    ...
-    &lt;script&gt;
-      function MyCtrl($scope, $log, $timeout, Github){
-        ...
-      }
-    &lt;/script&gt;
-  &lt;/head&gt;
-      </pre>
-
-      <ul>
-        <li><p>MyCtrl é uma função global, coisas globais são do mal.</p></li>
-        <li><p>Os parâmetros não sobreviveriam a uma minificação de js</p></li>
-      </ul>
-
-      <p>Pra resolver o problema:</p>
-
-      <ul>
-        <li><p>1. Pendure os controllers num módulo angular</p></li>
-      </ul>
+      <h3>Tem um problema na maneira que a gente tá criando nossos controllers.</h3>
 
       <pre>
   //---- pagina.html -----
@@ -53,7 +30,13 @@
       </pre>
 
       <ul>
-        <li><p>2. Declare o controller como um <strong>array</strong> ao invés de uma função</p></li>
+        <li><p>Os parâmetros não sobreviveriam a uma minificação de js</p></li>
+      </ul>
+
+      <p>Pra resolver o problema:</p>
+
+      <ul>
+        <li><p> Declare o controller como um <strong>array</strong> ao invés de uma função</p></li>
       </ul>
 
       <pre>
