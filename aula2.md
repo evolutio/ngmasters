@@ -61,6 +61,7 @@ A idéia:
 * Cada tb tem um ng-click que muda o estado do booleano correspondente - isso vai permitir que o usuario crie uma configuração inicial pra matriz.
 * No seu controller, crie uma função "step" que recalcula o array[][] baseado nas regras do life.
 * Crie botões pra controlar a passagem do tempo, que nem o abelson aí :-)
+* Refatore de modo que o estado do tabuleiro e as regras do life sejam implementadas num serviço ao invés do controller.
 
 * Pontos bônus pra frufrus do tipo:
 ** Permitir que o usuario configure o tamanho da matriz
