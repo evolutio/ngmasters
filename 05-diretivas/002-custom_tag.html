@@ -26,8 +26,9 @@
   <script src="../js/phone_api.js"></script>
   <script>
 
-    angular.module('myapp').controller('MyCtrl', ['$scope', 'PhoneApi', function($scope, PhoneModel){
+    angular.module('myapp').controller('MyCtrl', ['$scope', 'PhoneModel', function($scope, PhoneModel){
         var m = $scope.m = PhoneModel;
+        $scope.detalheimportante = 'Escopo compartilhado';
     }]);
     
   </script>
@@ -52,8 +53,7 @@
             <th>Descrição</th>
           </tr>
           <tr ng-repeat="phone in m.phones"
-            ng-click="m.select(phone)"
-            ng-class="{selected: phone.is_selected}">
+            ng-click="m.select(phone)">
             <td><img ng-src="{[{phone.imageUrl}]}" class="thumb40"></td>
             <td>{[{phone.name}]}</td>
             <td>{[{phone.snippet}]}</td>
@@ -65,8 +65,9 @@
         Olha só a importância disso que a gente fez:
         <ul>
           <li>&lt;phone-detail&gt; é um componente reutilizável. Ele tem apresentação e um comportamento definidos. Eu importo o <strong>phonedetail.js</strong> na página que eu quiser e saio usando.</li>
-          <li>Tudo que ele precisa é que exista uma variável &lt;selected_phone&gt; no escopo atual.</li>
+          <li>Tudo que ele precisa é que o PhoneModel.selected_phone esteja setado.</li>
           <li><strong>ajax2.js</strong> e <strong>phone_api.js</strong> não são diretivas, mas também são serviços reutilizáveis de maneira completamente independente.</li>
+          <li>E atenção pro detalhe: escopo compartilhado. O $scope é o mesmo! (Prova!!)</li>
         </ul>
       </div>
  

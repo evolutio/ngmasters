@@ -3,7 +3,7 @@
         return {
             restrict: 'E',
             replace: true,
-            templateUrl: '/js/components/phonedetail2.html',
+            templateUrl: '/js/components/phones2/phonedetail2.html',
             scope: {
                 titulo: '@',
                 phone: '=',

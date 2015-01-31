@@ -13,44 +13,26 @@
       }
       window.Global.angular_dependencies = [
           'modphonedetail',
-          'modphoneapi'
+          'modphonemodel',
       ];
   </script>
 
   <!-- ordem dos scripts intencionalmente embaralhada ;) -->
-  <script src="../js/components/phonedetail2.js"></script>
+  <script src="../js/components/phones2/phonedetail2.js"></script>
+  <script src="../js/components/phones1/phonemodel.js"></script>
   <script src="../js/ajax2.js"></script>
   <script src="../js/base2.js"></script>
   <script src="../js/phone_api.js"></script>
   <script>
 
-    angular.module('myapp').controller('MyCtrl', ['$scope', 'PhoneApi', function($scope, PhoneApi){
-        $scope.phones = [
-            {
-                "age": 0, 
-                "id": "motorola-xoom-with-wi-fi", 
-                "imageUrl": "../img/phones/motorola-xoom-with-wi-fi.0.jpg", 
-                "name": "Motorola XOOM\u2122 with Wi-Fi", 
-                "snippet": "The Next, Next Generation\r\n\r\nExperience the future with Motorola XOOM with Wi-Fi, the world's first tablet powered by Android 3.0 (Honeycomb)."
-            }, 
-            {
-                "age": 1, 
-                "id": "motorola-xoom", 
-                "imageUrl": "../img/phones/motorola-xoom.0.jpg", 
-                "name": "MOTOROLA XOOM\u2122", 
-                "snippet": "The Next, Next Generation\n\nExperience the future with MOTOROLA XOOM, the world's first tablet powered by Android 3.0 (Honeycomb)."
-            }
-        ];
+    angular.module('myapp').controller('MyCtrl', ['$scope', 'PhoneModel', function($scope, PhoneModel){
+        var m = $scope.m = PhoneModel;
+
+        $scope.detalheimportante = 'Escopo Isolado';
 
         $scope.select = function(ind){
-            var p = $scope.phones[ind];
-            $scope.selected_index = ind;
-            $scope.loading = true;
-            PhoneApi.get_phone(p.id).success(function(data){
-                $scope.loading = false;
-                $scope.selected_phone = data;
-                $scope.selected_phone.selected_image = data.images[0];
-            });
+            var p = m.phones[ind];
+            m.select(p);
         };
     }]);
     
@@ -63,11 +45,11 @@
     <hr>
     <div>
 
-      <img src="../img/loader.gif" ng-show="loading">
-      <div ng-show="selected_phone && !loading" class="row">
+      <img src="../img/loader.gif" ng-show="m.loading">
+      <div ng-show="m.selected_phone && !m.loading" class="row">
         <phone-detail 
           titulo="{[{ 'selecionado: '+selected_index }]}" 
-          phone="selected_phone">
+          phone="m.selected_phone">
         </phone-detail>
       </div>
 
@@ -78,9 +60,8 @@
             <th>Modelo</th>
             <th>Descrição</th>
           </tr>
-          <tr ng-repeat="phone in phones"
-            ng-click="select($index)"
-            ng-class="{selected: phone.is_selected}">
+          <tr ng-repeat="phone in m.phones"
+            ng-click="select($index)">
             <td><img ng-src="{[{phone.imageUrl}]}" class="thumb40"></td>
             <td>{[{phone.name}]}</td>
             <td>{[{phone.snippet}]}</td>
@@ -94,6 +75,7 @@
           <li>Agora os escopos interno e externo são dois objetos javascript diferentes.</li>
           <li>@ é string, com binding unidirecional</li>
           <li>= é qualquer objeto, com binding bidirecional.</li>
+          <li>Atençao pro detalhe: Escopo isolado!!</li>
         </ul>
       </div>
  

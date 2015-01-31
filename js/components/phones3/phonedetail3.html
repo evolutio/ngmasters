@@ -1,5 +1,6 @@
-<div>
+<div ng-show="m.selected_phone">
   <div class="span6">
+    <h3>{[{ 'selecionado: ' + m.selected_index + ' / ' + m.selected_phone.name }]}</h3>
     <img ng-src="{{m.selected_phone.selected_image}}" class="bordinha">
     <div class="row">
       <img ng-repeat="image in m.selected_phone.images" ng-src="{{image}}" class="thumb40" ng-click="m.select_image(image)">
@@ -24,5 +25,4 @@
       </div>
     </div>
   </div>
-  <h3>detalhe: {[{detalheimportante}]}</h3>
 </div>
