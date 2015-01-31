@@ -12,45 +12,22 @@
       if(!window.Global){
           window.Global = {}
       }
-      window.Global.angular_dependencies = [
+      Global.angular_dependencies = [
           'modphonedetail',
-          'modphoneapi'
+          'modphonemodel',
       ];
   </script>
 
   <!-- ordem dos scripts intencionalmente embaralhada ;) -->
-  <script src="../js/components/phonedetail.js"></script>
+  <script src="../js/components/phones1/phonedetail.js"></script>
+  <script src="../js/components/phones1/phonemodel.js"></script>
   <script src="../js/ajax2.js"></script>
   <script src="../js/base2.js"></script>
   <script src="../js/phone_api.js"></script>
   <script>
 
-    angular.module('myapp').controller('MyCtrl', ['$scope', 'PhoneApi', function($scope, PhoneApi){
-        $scope.phones = [
-            {
-                "age": 0, 
-                "id": "motorola-xoom-with-wi-fi", 
-                "imageUrl": "../img/phones/motorola-xoom-with-wi-fi.0.jpg", 
-                "name": "Motorola XOOM\u2122 with Wi-Fi", 
-                "snippet": "The Next, Next Generation\r\n\r\nExperience the future with Motorola XOOM with Wi-Fi, the world's first tablet powered by Android 3.0 (Honeycomb)."
-            }, 
-            {
-                "age": 1, 
-                "id": "motorola-xoom", 
-                "imageUrl": "../img/phones/motorola-xoom.0.jpg", 
-                "name": "MOTOROLA XOOM\u2122", 
-                "snippet": "The Next, Next Generation\n\nExperience the future with MOTOROLA XOOM, the world's first tablet powered by Android 3.0 (Honeycomb)."
-            }
-        ];
-
-        $scope.select = function(p){
-            $scope.loading = true;
-            PhoneApi.get_phone(p.id).success(function(data){
-                $scope.loading = false;
-                $scope.selected_phone = data;
-                $scope.selected_phone.selected_image = data.images[0];
-            });
-        };
+    angular.module('myapp').controller('MyCtrl', ['$scope', 'PhoneApi', function($scope, PhoneModel){
+        var m = $scope.m = PhoneModel;
     }]);
     
   </script>
@@ -62,8 +39,8 @@
     <hr>
     <div>
 
-      <img src="../img/loader.gif" ng-show="loading">
-      <div ng-show="selected_phone && !loading" class="row">
+      <img src="../img/loader.gif" ng-show="m.loading">
+      <div ng-show="m.selected_phone && !m.loading" class="row">
         <phone-detail></phone-detail> <!-- Muito lindo isso nénão :-) ... -->
       </div>
 
@@ -74,8 +51,8 @@
             <th>Modelo</th>
             <th>Descrição</th>
           </tr>
-          <tr ng-repeat="phone in phones"
-            ng-click="select(phone)"
+          <tr ng-repeat="phone in m.phones"
+            ng-click="m.select(phone)"
             ng-class="{selected: phone.is_selected}">
             <td><img ng-src="{[{phone.imageUrl}]}" class="thumb40"></td>
             <td>{[{phone.name}]}</td>

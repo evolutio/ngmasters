@@ -1,0 +1,27 @@
+<div>
+  <div class="span6">
+    <img ng-src="{{m.selected_phone.selected_image}}" class="bordinha">
+    <div class="row">
+      <img ng-repeat="image in m.selected_phone.images" ng-src="{{image}}" class="thumb40" ng-click="m.select_image(image)">
+    </div>
+  </div>
+  <div class="span6">
+    <div>
+      <div>
+        id: {{ m.selected_phone.id }}
+      </div>
+      <div>
+        Dimensions: {{ m.selected_phone.sizeAndWeight.dimensions }}
+      </div>
+      <div>
+        Flash: {{ m.selected_phone.storage.flash }}
+      </div>
+      <div>
+        CPU: {{ m.selected_phone.hardware.cpu }}
+      </div>
+      <div>
+        Additional Features: {{ m.selected_phone.additionalFeatures }}
+      </div>
+    </div>
+  </div>
+</div>
