@@ -25,13 +25,14 @@
   <script src="../js/components/gh-filetree/gh-filetree.js"></script>
   <script>
   	angular.module('myapp').controller('MyCtrl', ['$scope', 'GithubModel', function ($scope, GithubModel){
-      GithubModel.repo = {
+      var gm = GithubModel;
+      gm.repo = {
         "name": "www.freedomsponsors.org",
         "owner": {
           "login": "freedomsponsors",
         }
       };
-      GithubModel.reset_repo();
+      gm.reset_repo();
 
       $scope.abrearquivo = function(file){
         alert("Abre o arquivo: " + file.name);
@@ -43,6 +44,8 @@
 <body ng-app="myapp" ng-controller="MyCtrl">
   <div class="container" style="margin: 15px;">
     <h1>gh-filetree</h1>
+    <h3>Mostra os arquivos do gm.repo</h3>
+    <h3>Te deixa saber quando o usuario clicou num arquivo</h3>
 
     <hr>
     <gh-filetree onclickfile="abrearquivo(file)"></gh-filetree>

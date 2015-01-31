@@ -29,6 +29,10 @@
           <p>Separe a aplicação em módulos - angular.module('modabc', [...]) - cada módulo no seu próprio arquivo .js</p>
         </li>
         <li>
+          <p><strong>!important:</strong> Sempre que possível, evite armazenar o estado da tela dentro do $scope. É melhor que o estado da tela - e o seu comportamento (ou seja, as operações que alteram o estado) - fique dentro de serviços singleton</p>
+          <p>Normalmente isso é mais difícil de se fazer quando temos que usar o mesmo componente mais de uma vez na tela. Nesse caso, o melhor é usar diretivas "E" que recebem parâmetros via scope.</p>
+        </li>
+        <li>
           <p>Use um wrapper ajax pra simplificar a api do $http</p>
         </li>
         <li>
