@@ -126,4 +126,4 @@ angular.module('githubmodel').factory('GithubModel', function(Github, $log){
 	};
 
 	return gm;
-})
+});
