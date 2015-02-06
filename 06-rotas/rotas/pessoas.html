@@ -1,11 +1,11 @@
 <section>
   <h3>Quante gente...</h3>
 
-  <p ng-show="loading">Carregando...</p>
+  <p ng-show="m.loading">Carregando...</p>
 
-  <ul ng-show="!loading">
-    <li ng-repeat="person in people">
-      <a href="#/pessoa/{[{ person.id }]}">{[{ person.name }]}</a>
+  <ul ng-show="!m.loading">
+    <li ng-repeat="pessoa in m.pessoas">
+      <a href="#/pessoa/{[{ pessoa.id }]}">{[{ pessoa.name }]}</a>
     </li>
   </ul>
 </section>
