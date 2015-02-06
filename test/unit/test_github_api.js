@@ -29,6 +29,4 @@ describe("testes do Github API", function() {
         expect(le_result).equal('OK');
 		console.log('(UFA ne...) Github.search_users("joao") = api.github.com/search/users?q=joao');
     }));
-
-
 });

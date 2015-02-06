@@ -22,7 +22,7 @@ module.exports = function() {
       'js/phone_api.js',
       'js/components/gh-*/**/*.js',
       'js/components/popup.js',
-      'js/components/phonedirectives.js',
+      'js/components/phones3/phonedirectives.js',
       'grunt4/build/js/myapp-templates.js',
 
       //Test-Specific Code

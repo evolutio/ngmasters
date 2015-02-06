@@ -54,13 +54,13 @@ describe("testes do phonedirectives", function() {
     	$httpBackend.expectGET('/phones.json').respond(DOIS_TELEFONES);
 	    var PhoneListCtrl = $controller('PhoneListCtrl', {$scope:scope});
 	    $httpBackend.flush();
-	    expect(scope.phones.length).equal(2);
+	    expect(scope.m.phones.length).equal(2);
 	    console.log('PhoneListCtrl carregou 2 telefones do "back"')
 
     	$httpBackend.expectGET('/phones/motorola-xoom-with-wi-fi.json').respond(XOOM_WIFI);
-	    scope.select(0);
+	    scope.m.select(0);
 	    $httpBackend.flush();
-	    expect(scope.model.selected_phone.additionalFeatures).equal("Sensors: proximity, ambient light, barometer, gyroscope")
+	    expect(scope.m.selected_phone.additionalFeatures).equal("Sensors: proximity, ambient light, barometer, gyroscope")
 	    console.log('PhoneListCtrl seleciona telefones direitinho')
     }));
 
