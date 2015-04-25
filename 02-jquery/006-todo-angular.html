@@ -10,27 +10,35 @@
 <script src="../lib/angular.js"></script>
 <script>
   angular.module('myapp', []).controller('MyCtrl', function ($scope, $http){
-    function loadTodos(){
-      $http.get('/02-jquery/todos.json').success(function(todos){
-        $scope.todos = todos;
-      });
-    }
 
-    $scope.remove = function(index){
-      $scope.todos.splice(index, 1);
-    }
+    var model = {
+      novotodo: '',
+      todos: [],
+      load_todos: function(){
+        $http.get('/02-jquery/todos.json').success(function(todos){
+          model.todos = todos;
+        });
+      },
+      add_todo: function(){
+        var newtodo = {jafiz: false, tarefa: model.novotodo};
+        model.todos.push(newtodo);
+        model.novotodo = '';
+      },
+      remove_todo: function(indice){
+        model.todos.splice(indice, 1);
+      },
+      print: function(){
+        console.log(JSON.stringify(model, null, 4))
+      }
+    };
 
-    loadTodos();
+    model.load_todos();
+
+    $scope.model = model;
 
     $scope.newtask_keyup = function(evt){
       if(evt.keyCode == 13){
-        var todo = {
-          id: 123,
-          todo: $scope.newtask,
-          done: false
-        };
-        $scope.todos.push(todo);
-        $scope.newtask = '';
+        model.add_todo();
       }
     }
   });
@@ -44,13 +52,13 @@
   <div>
     <div>
       <label>Nova tarefa:</label>
-      <input type="text" ng-model="newtask" ng-keyup="newtask_keyup($event)">
+      <input type="text" ng-model="model.novotodo" ng-keyup="newtask_keyup($event)">
     </div>
     <table class="table table-striped table-bordered todotable">
-      <tr ng-repeat="todo in todos">
-        <td class="todocheck"><input type="checkbox" ng-model="todo.done"></td>
-        <td ng-class="{tododone: todo.done}">{{todo.todo}}</td>
-        <td class="todoremove"><a href ng-click="remove($index)"><i class="icon-trash"></i></a></td>
+      <tr ng-repeat="todo in model.todos">
+        <td class="todocheck"><input type="checkbox" ng-model="todo.jafiz"></td>
+        <td ng-class="{tododone: todo.jafiz}">{{todo.tarefa}}</td>
+        <td class="todoremove"><a href ng-click="model.remove_todo($index)"><i class="icon-trash"></i></a></td>
       </tr>
     </table>
   </div>

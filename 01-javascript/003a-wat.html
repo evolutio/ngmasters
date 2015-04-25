@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <title>AngularJS</title>
+  <link rel="stylesheet" href="../css/curso.css">
+  <script src="../lib/jquery-1.11.0.js"></script>
+  <script src="../lib/angular.js"></script>
+  <script type="text/javascript">
+  angular.module('myapp', []).controller('WatCtrl', function($scope){
+    var um = true;
+    $scope.idx1 = -1;
+    $scope.idx2 = -1;
+    $scope.txts = [
+      'Mas que numero eh esse???',
+      'Que falta de sort()...',
+      '[] + [] = ?',
+      '[] + {} = ?',
+      'Bom, então... {} + [] = !',
+      'EITA! E {} + {} = ???',
+      'Nananinanaaaaao!',
+      'WAT DA JS FUUUUK!',
+    ]
+    $scope.pics = [
+      '/img/wat1.jpg',
+      '/img/wat3.jpg',
+      '/img/wat2.gif',
+      '/img/wat4.gif',
+      '/img/wat5.gif',
+      '/img/wat6.gif',
+      '/img/watman.jpg',
+      '/img/wat-the-fuck.jpg'
+    ];
+
+    $scope.passa = function(){
+      if(um){
+        $scope.idx1++;
+      } else {
+        $scope.idx2++;
+      }
+      um = !um;
+    }
+
+  });
+  </script>
+</head>
+<body ng-app="myapp" ng-controller="WatCtrl">
+  <div class="head">
+    <span style="font-weight:bold">ng-<span style="color: rgb(125, 25, 51);">masters</span></span>: AngularJS na prática
+  </div>
+  <div class="container content"> 
+    <h1>Wat???</h1>
+    <div class="subtitle">wat {{idx1}}</div>
+
+    <section>
+
+      <h3>{{txts[idx1]}}</h3>
+      <img style="max-height:300px;" ng-src="{{pics[idx2]}}"></img>
+
+      <button ng-click="passa()">Passa</button>
+
+    </section>
+
+    <footer>
+      <h3>KKKKKKKKKKKKKKKK :-D, PRÓXIMO!</h3>
+      <ul>
+        <li><a href="004-json.html">Serializando dados com JSON</a></li>
+      </ul>
+    </footer>
+  </div>
+
+</body>
+</html>
