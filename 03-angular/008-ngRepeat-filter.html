@@ -21,12 +21,13 @@
       };
     }
 
-    var myapp = angular.module("myapp", []);
-    myapp.config(function($interpolateProvider){
+    angular.module("myapp", []);
+
+    angular.module("myapp").config(function($interpolateProvider){
         $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
     });
 
-    myapp.factory('PhonesModel', function(){
+    angular.module("myapp").factory('PhonesModel', function(){
         var m = {
             filtro: '',
             phones: [
@@ -188,7 +189,7 @@
         return m;
     });
 
-    myapp.controller('MyCtrl', function ($scope, PhonesModel){
+    angular.module("myapp").controller('MyCtrl', function ($scope, PhonesModel){
         var m = $scope.m = PhonesModel;
 
         $scope.comecacom = function(phone){

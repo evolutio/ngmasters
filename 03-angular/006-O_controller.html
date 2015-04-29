@@ -7,12 +7,13 @@
   <link rel="stylesheet" href="../css/app.css">
   <script src="../lib/angular.min.js"></script>
   <script>
-    var myapp = angular.module("myapp", []);
-    myapp.config(function($interpolateProvider){
+    angular.module("myapp", []);
+
+    angular.module("myapp").config(function($interpolateProvider){
         $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
     });
     
-    myapp.controller('MyCtrl', function ($scope){
+    angular.module("myapp").controller('MyCtrl', function ($scope){
       $scope.sayhello = "Hello World!";
 
       $scope.meutexto_reversed = function(){

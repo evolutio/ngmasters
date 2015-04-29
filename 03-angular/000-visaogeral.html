@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AngularJS</title>
+<link rel="stylesheet" href="../css/curso.css">
+</head>
+<body>
+  <div class="head">
+    <span style="font-weight:bold">ng-<span style="color: rgb(125, 25, 51);">masters</span></span>: AngularJS na prática
+  </div>
+<div class="container content"> 
+  <h1>AngularJS - visão geral</h1>
+  <p><a href="http://www.slideshare.net/tonylampada/prez-39652981">Palestra que pode ser útil</a></p>
+
+  <section>
+    <h3>Módulos e dependências</h3>
+    <p>Um módulo angular é um local onde vc adiciona "coisas".</p>
+    <p>Usando módulos, nós podemos dividir nossa aplicação em "subsistemas" com limites bem definidos</p>
+    <img src="/img/relacao_modulos.jpg">
+    <pre>
+  angular.module('c', []); //cria o modulo c
+  angular.module('b', ['c']); //cria o modulo b, dependendo de c
+  angular.module('a', ['b', 'c']); //cria o modulo a, dependendo de b e c
+
+  angular.module('a'); //retorna o modulo a
+
+  angular.module('x'); //da um erro!
+
+  angular.module('x', []); cria o modulo x
+    </pre>
+
+    <ul>
+      <li>Cuidado com o bug de recriação de módulo!</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>O que são essas "coisas"?</h3>
+    <img src="/img/dentro_modulos.jpg">
+    <pre>
+  angular.module('a').controller('MeuCtrl', function(){...});
+  angular.module('a').directive('MinhaDrtv', function(){...});
+  angular.module('a').factory('MeuSvc', function(){...});
+    </pre>
+
+    <p>
+      Existem outras "coisas" além dessas, mas isso daí já suficiente pra vc... dominar o mundo
+    </p>
+  </section>
+
+  <footer>
+    <h3>Vamo pro Hello world entao :-)</h3>
+    <ul>
+      <li><a href="001-helloworld.html">Hellooooo Worldiiiiiii!</a></li>
+    </ul>
+  </footer>
+</div>
+
+</body>
+</html>
