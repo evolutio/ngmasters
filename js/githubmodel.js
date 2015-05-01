@@ -1,7 +1,5 @@
-// angular.module('githubmodel', ['modgithubapi']);
-// angular.module('githubmodel').factory('GithubModel', function(Github, $log){
-
-Global.myapp.factory('GithubModel', function(Github, $log){
+angular.module('githubmodel', ['github_api']);
+angular.module('githubmodel').factory('GithubModel', function(Github, $log){
 
 	function _next_page(repo){
 		if(!repo.issues){
