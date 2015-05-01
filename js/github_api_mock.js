@@ -1,4 +1,6 @@
-Global.myapp.factory('Github', function($timeout){
+angular.module('github_api', []);
+
+angular.module('github_api').factory('GithubApi', function($timeout){
     var users = {
         "total_count": 233,
         "incomplete_results": false,

@@ -1,5 +1,5 @@
 angular.module('githubmodel', ['github_api']);
-angular.module('githubmodel').factory('GithubModel', function(Github, $log){
+angular.module('githubmodel').factory('GithubModel', function(GithubApi, $log){
 
 	function _next_page(repo){
 		if(!repo.issues){
@@ -25,7 +25,7 @@ angular.module('githubmodel').factory('GithubModel', function(Github, $log){
 
 	gm.busca_usuarios_pelo_nome = function(){
 		gm.buscando_usuarios = true;
-		Github.search_users(gm.username_input).success(function(result){
+		GithubApi.search_users(gm.username_input).success(function(result){
 			gm.buscando_usuarios = false;
 			gm.usuarios_encontrados = result.items;
 			gm.mostra_usuarios_encontrados = true;
@@ -40,7 +40,7 @@ angular.module('githubmodel').factory('GithubModel', function(Github, $log){
 
 	gm.busca_repos_do_usuario = function(){
 		gm.buscando_repositorios = true;
-		Github.list_user_repos(gm.user.login).success(function(repos){
+		GithubApi.list_user_repos(gm.user.login).success(function(repos){
 			gm.buscando_repositorios = false;
 			gm.repos_encontrados = repos;
 		});
@@ -51,7 +51,7 @@ angular.module('githubmodel').factory('GithubModel', function(Github, $log){
 			var page = _next_page(gm.repo);
 			if(page > 0){
 				gm.buscando_issues = true;
-				Github.list_issues(gm.repo.owner.login, gm.repo.name, page).success(function(issues){
+				GithubApi.list_issues(gm.repo.owner.login, gm.repo.name, page).success(function(issues){
 					$log.info('got '+issues.length+' issues');
 					if(!gm.repo.issues){
 						gm.repo.issues = [];
@@ -88,7 +88,7 @@ angular.module('githubmodel').factory('GithubModel', function(Github, $log){
 		if(node.type == "dir"){
 			if(!node.loaded){
 				node.loading = true;
-				Github.get_contents(gm.repo.owner.login, gm.repo.name, "/"+node.path).success(function(contents){
+				GithubApi.get_contents(gm.repo.owner.login, gm.repo.name, "/"+node.path).success(function(contents){
 					node.loading = false;
 					node.loaded = true;
 					node.children = contents;
@@ -103,10 +103,10 @@ angular.module('githubmodel').factory('GithubModel', function(Github, $log){
 	gm.carrega_arquivo = function(node){
 		if(!node.file_contents){
 			node.loading = true;
-			Github.get_contents(gm.repo.owner.login, gm.repo.name, "/"+node.path).success(function(result){
+			GithubApi.get_contents(gm.repo.owner.login, gm.repo.name, "/"+node.path).success(function(result){
 				node.loading = false;
 				node.loaded = true;
-				node.file_contents = Github.decode_file_contents(result.content);
+				node.file_contents = GithubApi.decode_file_contents(result.content);
 			});
 		}
 	};
@@ -114,7 +114,7 @@ angular.module('githubmodel').factory('GithubModel', function(Github, $log){
 	gm.carrega_comentarios_da_issue = function(issue){
 		if(!issue.comment_list){
 			issue.loading_comments = true;
-			Github.list_issue_comments(gm.repo.owner.login, 
+			GithubApi.list_issue_comments(gm.repo.owner.login, 
 									   gm.repo.name, 
 									   issue.number).success(function(comments){
 				issue.comment_list = comments;
