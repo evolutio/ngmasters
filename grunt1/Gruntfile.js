@@ -7,9 +7,9 @@ module.exports = function(grunt) {
   grunt.registerTask('concatena', ['concat:build']);
 
   var arquivosjs = [
-    '../js/base2.js',
-    '../js/ajax2.js',
-    '../js/github_api3.js',
+    '../js/base.js',
+    '../js/ajax.js',
+    '../js/github_api2.js',
     '../js/components/gh-*/**/*.js',
     '../js/components/popup.js',
   ];

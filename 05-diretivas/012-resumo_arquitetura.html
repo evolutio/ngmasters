@@ -26,11 +26,10 @@
           <p>Evite criar variáveis globais desnecessariamente - (function(){...})()</p>
         </li>
         <li>
-          <p>Separe a aplicação em módulos - angular.module('modabc', [...]) - cada módulo no seu próprio arquivo .js</p>
+          <p>Separe a aplicação em módulos - angular.module('abc', [...]) - cada módulo no seu próprio arquivo .js</p>
         </li>
         <li>
-          <p><strong>!important:</strong> Sempre que possível, evite armazenar o estado da tela dentro do $scope. É melhor que o estado da tela - e o seu comportamento (ou seja, as operações que alteram o estado) - fique dentro de serviços singleton</p>
-          <p>Normalmente isso é mais difícil de se fazer quando temos que usar o mesmo componente mais de uma vez na tela. Nesse caso, o melhor é usar diretivas "E" que recebem parâmetros via scope.</p>
+          <p><strong>!important:</strong> Evite armazenar o estado da tela dentro do $scope. É melhor que o estado da tela - e o seu comportamento (ou seja, as operações que alteram o estado) - esteja totalmente contido num objeto javascript (que chamamos de <strong>modelo</strong> da tela), implementado na forma de um serviço Angular.</p>
         </li>
         <li>
           <p>Use um wrapper ajax pra simplificar a api do $http</p>
@@ -73,8 +72,8 @@
   &lt;!-- 2. Carrega todos os módulos que a página precisa. 
   A ordem dos js não importa (good)! --&gt;
   &lt;script src="../js/components/phonedetail.js"&gt;&lt;/script&gt;
-  &lt;script src="../js/ajax2.js"&gt;&lt;/script&gt;
-  &lt;script src="../js/base2.js"&gt;&lt;/script&gt;
+  &lt;script src="../js/ajax.js"&gt;&lt;/script&gt;
+  &lt;script src="../js/base.js"&gt;&lt;/script&gt;
   &lt;script src="../js/phone_api.js"&gt;&lt;/script&gt;
   &lt;script&gt;
 

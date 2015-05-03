@@ -1,14 +1,16 @@
 (function(){
-    angular.module('modphoneapi', ['modajax']).factory('PhoneApi', ['ajax', function(ajax){
+    angular.module('modphoneapi', ['ajax']);
+    
+    angular.module('modphoneapi').factory('PhoneApi', function(Ajax){
 		return {
 			get_phone: function(id){
 				var url="/phones/"+id+".json";
-				return ajax.get(url);
+				return Ajax.get(url);
 			},
 			list_all: function(){
 				var url="/phones.json";
-				return ajax.get(url);
+				return Ajax.get(url);
 			}
 		}
-	}]);
+	});
 })();

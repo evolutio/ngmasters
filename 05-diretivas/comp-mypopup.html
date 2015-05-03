@@ -11,33 +11,33 @@
   	if(!window.Global){
   	  window.Global = {};
   	}
-  	Global.angular_dependencies = ['modpopup', 'modgithubapi'];
+  	Global.angular_dependencies = ['modpopup', 'github_api'];
   </script>
 
-  <script src="../lib/angular.min.js"></script>
+  <script src="../lib/angular.js"></script>
   <script src="../lib/jquery-1.10.2.min.js"></script>
   
-  <script src="../js/base2.js"></script>
-  <script src="../js/ajax2.js"></script>
-  <script src="../js/github_api3.js"></script>
+  <script src="../js/base.js"></script>
+  <script src="../js/ajax.js"></script>
+  <script src="../js/github_api2.js"></script>
 
   <script src="../js/components/popup.js"></script>
   <script>
-  	angular.module('myapp').controller('MyCtrl', ['$scope', 'Github', function ($scope, Github){
+  	angular.module('myapp').controller('MyCtrl', function ($scope, GithubApi){
       $scope.arquivo = {
         name: 'setup.md',
         path: '/doc/setup.md'
       };
 
       $scope.loading = true;
-      Github.get_contents('freedomsponsors', 'www.freedomsponsors.org', $scope.arquivo.path).success(function(result){
-        $scope.arquivo.file_contents = Github.decode_file_contents(result.content);
+      GithubApi.get_contents('freedomsponsors', 'www.freedomsponsors.org', $scope.arquivo.path).success(function(result){
+        $scope.arquivo.file_contents = GithubApi.decode_file_contents(result.content);
         $scope.loading = false;
         $scope.mostra = true;
       });
 
 
-    }]);
+    });
     
   </script>
 </head>

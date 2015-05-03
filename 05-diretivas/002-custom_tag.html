@@ -5,7 +5,7 @@
   <title>AngularJS</title>
   <link rel="stylesheet" href="../css/bootstrap.css">
   <link rel="stylesheet" href="../css/app.css">
-  <script src="../lib/angular.min.js"></script>
+  <script src="../lib/angular.js"></script>
   <script src="../lib/jquery-1.11.0.js"></script>
 
   <script>
@@ -21,8 +21,8 @@
   <!-- ordem dos scripts intencionalmente embaralhada ;) -->
   <script src="../js/components/phones1/phonedetail.js"></script>
   <script src="../js/components/phones1/phonemodel.js"></script>
-  <script src="../js/ajax2.js"></script>
-  <script src="../js/base2.js"></script>
+  <script src="../js/ajax.js"></script>
+  <script src="../js/base.js"></script>
   <script src="../js/phone_api.js"></script>
   <script>
 
@@ -66,7 +66,7 @@
         <ul>
           <li>&lt;phone-detail&gt; é um componente reutilizável. Ele tem apresentação e um comportamento definidos. Eu importo o <strong>phonedetail.js</strong> na página que eu quiser e saio usando.</li>
           <li>Tudo que ele precisa é que o PhoneModel.selected_phone esteja setado.</li>
-          <li><strong>ajax2.js</strong> e <strong>phone_api.js</strong> não são diretivas, mas também são serviços reutilizáveis de maneira completamente independente.</li>
+          <li><strong>ajax.js</strong> e <strong>phone_api.js</strong> não são diretivas, mas também são serviços reutilizáveis de maneira completamente independente.</li>
           <li>E atenção pro detalhe: escopo compartilhado. O $scope é o mesmo! (Prova!!)</li>
         </ul>
       </div>
