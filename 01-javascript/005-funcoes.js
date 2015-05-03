@@ -4,7 +4,7 @@ function soma(a, b){
 
 function somatudo(){
 	var s = 0;
-	for(i in arguments){
+	for(var i in arguments){
 		s += arguments[i];
 	}
 	return s;
@@ -14,7 +14,7 @@ function n_alerts(){
 	function alertaiiii(x){
 		alert(x);
 	}
-	for(i in arguments){
+	for(var i in arguments){
 		alertaiiii(arguments[i]);
 	}
 	return alertaiiii;

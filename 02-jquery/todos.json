@@ -1,22 +1,22 @@
 [
 	{
-		"tarefa": "Lavar a roupa",
-		"jafiz": false
+		"todo": "Lavar a roupa",
+		"done": false
 	},
 	{
-		"tarefa": "Levar a cachorra pra passear",
-		"jafiz": true
+		"todo": "Levar a cachorra pra passear",
+		"done": true
 	},
 	{
-		"tarefa": "Fazer supermercado",
-		"jafiz": false
+		"todo": "Fazer supermercado",
+		"done": false
 	},
 	{
-		"tarefa": "Trocar a fralda do neném",
-		"jafiz": true
+		"todo": "Trocar a fralda do neném",
+		"done": true
 	},
 	{
-		"tarefa": "Consertar o chuveiro",
-		"jafiz": false
+		"todo": "Consertar o chuveiro",
+		"done": false
 	}
 ]
