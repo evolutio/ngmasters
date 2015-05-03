@@ -5,14 +5,15 @@
   <title>AngularJS</title>
   <link rel="stylesheet" href="../css/bootstrap.css">
   <link rel="stylesheet" href="../css/app.css">
-  <script src="../lib/angular.min.js"></script>
+  <script src="../lib/angular.js"></script>
   <script>
-    var myapp = angular.module("myapp", []);
-    myapp.config(function($interpolateProvider){
+    angular.module("myapp", []);
+    
+    angular.module("myapp").config(function($interpolateProvider){
         $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
     });
 
-    myapp.factory('GiraModel', function(){
+    angular.module("myapp").factory('GiraModel', function(){
       var m = {
         angle: 0
       };
@@ -34,7 +35,7 @@
       return m;
     });
 
-    myapp.controller('MyCtrl', function ($scope, GiraModel){
+    angular.module("myapp").controller('MyCtrl', function ($scope, GiraModel){
       $scope.m = GiraModel;
     });
     

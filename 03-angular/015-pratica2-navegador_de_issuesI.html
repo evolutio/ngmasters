@@ -8,9 +8,14 @@
   <link rel="stylesheet" href="../css/app.css">
   <script src="../lib/angular.js"></script>
   <script src="../lib/jquery-1.10.2.min.js"></script>
+  <script>
+    if(!window.Global){
+      window.Global = {};
+    }
+    Global.angular_dependencies = ['githubmodel'];
+  </script>
   <script src="../js/base.js"></script>
   <script src="../js/githubmodel.js"></script>
-
 
   <!-- 1 -->
   <script src="../js/github_api.js"></script>
@@ -112,8 +117,8 @@
     <div class="alert alert-info">
       Mais coisa importante aqui:
       <ul>
-        <li>Factory!!!</li>
-        <li>O truque do autocomplete</li>
+        <li>Sistema de módulos!</li>
+        <li>O truque do autocomplete (debounce)</li>
         <li>Paginação / scroll infinito</li>
         <li>ng-options, ng-change</li>
       </ul>

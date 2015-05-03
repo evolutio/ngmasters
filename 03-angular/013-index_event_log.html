@@ -5,12 +5,12 @@
   <title>AngularJS</title>
   <link rel="stylesheet" href="../css/bootstrap.css">
   <link rel="stylesheet" href="../css/app.css">
-  <script src="../lib/angular.min.js"></script>
+  <script src="../lib/angular.js"></script>
   <script src="../lib/jquery-1.10.2.min.js"></script>
   <script src="../js/base.js"></script>
   <script>
 
-    Global.myapp.factory('IssuesModel', function($http){
+    angular.module("myapp").factory('IssuesModel', function($http){
       var m = {
         issues: [],
         loading_issues: false
@@ -42,7 +42,7 @@
       return m;
     });
 
-    Global.myapp.factory('FotosModel', function($log){
+    angular.module("myapp").factory('FotosModel', function($log){
       var fotos = [
         "../img/phones/motorola-xoom-with-wi-fi.0.jpg", 
         "../img/phones/motorola-xoom.0.jpg", 
@@ -91,7 +91,7 @@
       return m;
     });
 
-    Global.myapp.controller('MyCtrl', function ($scope, IssuesModel, FotosModel){
+    angular.module("myapp").controller('MyCtrl', function ($scope, IssuesModel, FotosModel){
       var im = $scope.im = IssuesModel;
       var fm = $scope.fm = FotosModel;
       im.get_issues();

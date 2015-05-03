@@ -14,137 +14,41 @@
     <h1>Módulos.</h1>
 
     <section>
-      <h3>Essa história de tuchar tudo no Global.myapp não tá legal.</h3>
-
-      <p>O Angular tem um sistema de módulos que permite separar melhor as responsabilidades entre as partes que compõem tua aplicação. Funciona assim:</p>
-
-      <pre>
-  // Criar 3 módulos:
-  var modulo1 = angular.module('mod1', []);
-  var modulo2 = angular.module('mod2', []);
-  var modulo3 = angular.module('mod3', ['mod1', 'mod2'])
-
-  // Passar o array = cria um novo módulo!
-  angular.module('mod1', []) == angular.module('mod1', [])
-  = false
-
-  // Pegar uma referência pra um módulo existente:
-  var moduloX = angular.module('modx')
-  = Erro
-
-  var modulo1 = angular.module('mod1')
-  = Object module
-
-  angular.module('mod1') == angular.module('mod1')
-  = true
-      </pre>
-
-      <p>Então a gente não precisa pendurar os módulos angular nas nossas variáveis globais (Global.myapp ou whatever). Ao invés de ter uma estrutura assim:</p>
-
-      <ul><li>base.js</li></ul>
+      <h3>Lembra disso aqui né?</h3>
+      <img src="/img/relacao_modulos.jpg">
+      <img src="/img/dentro_modulos.jpg">
+    </section>
+    <section>
+      <h3>E o que temos aqui? (navegador de issues)</h3>
+      
+      <p>base.js: Módulo raiz (myapp), com dependências que vêm de uma variável global.</p>
 
       <pre>
   if(!window.Global){
       window.Global = {};
   }
+  if(!Global.angular_dependencies){
+    Global.angular_dependencies = [];
+  }
 
-  Global.myapp = angular.module("myapp", []);
+  angular.module("myapp", Global.angular_dependencies);
   
-  Global.myapp.config(function($interpolateProvider){
+  angular.module("myapp").config(function($interpolateProvider){
     $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
   });
       </pre>
 
-      <ul><li>ajax.js</li></ul>
-      <pre>
-  Global.myapp.config(
-      function($httpProvider){
-          //Essa configuração pode ser dependente de como seu backend implementa a proteção CSRF
-          $httpProvider.defaults.headers.common['X-CSRFToken'] = Global.CSRF_TOKEN; // alguem precisa ter setado isso aqui!
-          $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-          $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
-      }
-  );
+      <h3>E aih:</h3>
+      <img src="/img/modulos_ngmasters.png">
 
-  Global.myapp.factory('ajax', function($http){...});
-      </pre>
-
-      <ul><li>github_api2.js</li></ul>
-      <pre>
-  Global.myapp.factory('Github', function(ajax){...});  
-      </pre>
-
-      <p>Faz mais sentido criar uma estrutura assim:</p>
-
-      <ul><li>base2.js</li></ul>
-      <pre>
-  if(!window.Global){
-      window.Global = {};
-  }
-  if(!window.Global.angular_dependencies){
-    window.Global.angular_dependencies = [];
-  }
-
-  //dependencias mais flexíveis
-  angular.module("myapp", window.Global.angular_dependencies);
-  
-  // A responsabilidade de configurar o CSRF saiu do ajax.js e veio pro base.js!
-  angular.module("myapp").config(function($interpolateProvider, $httpProvider){
-    $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
-    
-    //Configuração do CSRF passou pro base.js!
-    $httpProvider.defaults.headers.common['X-CSRFToken'] = Global.CSRF_TOKEN; // alguem precisa ter setado isso aqui!
-    $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-    $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
-  });
-      </pre>
-
-      <ul><li>pagina.html</li></ul>
-      <pre>
-  &lt;head&gt;
-    ...
-    &lt;script&gt;
-      if(!window.Global){
-          window.Global = {}
-      }
-      Global.angular_dependencies = [
-          'modgithubapi'
-      ];
-      Global.CSRF_TOKEN = '{{ csrf_token_que_veio_do_backend }}';
-    &lt;/script&gt;
-    &lt;!-- E agora tanto faz a ordem dos arquivos! --&gt;
-    &lt;script src="../js/base2.js"&gt;&lt;/script&gt;
-    &lt;script src="../js/github_api3.js"&gt;&lt;/script&gt;
-    &lt;script src="../js/ajax2.js"&gt;&lt;/script&gt;
-  &lt;/head&gt;
-      </pre>
-
-      <ul><li>ajax2.js</li></ul>
-      <pre>
-  //cria um novo módulo angular 'modajax', e sem sujar o window! :-)
-  (function(){
-    var modajax = angular.module('modajax', [])
-    modajax.factory('ajax', function($http){...});
-  })();
-
-      </pre>
-
-      <ul><li>github_api3.js</li></ul>
-      <pre>
-  (function(){
-    angular.module('modgithubapi', ['modajax']).factory('Github', function(ajax){...});
-  })();
-      </pre>
-
-      <p>Nos próximos exemplos, vamos usar uma estrutura mais parecida com essa.</p>
 
     </section>
 
     <footer>
       <h3>Acho que entendi, é agora que a gente vai falar de diretiva?</h3>
       <ul>
-        <li>Tem só uma última coisa que a gente precisa tirar do caminho primeiro...</li>
-        <li><a href="005-controllers_no_padrao.html">A gente tá criando controller do jeito "errado"</a></li>
+        <li>É sim!</li>
+        <li><a href="../05-diretivas/001-diretivas.html">Diretivas</a></li>
       </ul>
     </footer>
   </div>

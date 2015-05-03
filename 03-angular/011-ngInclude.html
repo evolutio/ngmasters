@@ -5,7 +5,7 @@
   <title>AngularJS</title>
   <link rel="stylesheet" href="../css/bootstrap.css">
   <link rel="stylesheet" href="../css/app.css">
-  <script src="../lib/angular.min.js"></script>
+  <script src="../lib/angular.js"></script>
   <script>
 
     //Bizu do stackoverflow
@@ -21,12 +21,12 @@
       };
     }
 
-    var myapp = angular.module("myapp", []);
-    myapp.config(function($interpolateProvider){
+    angular.module("myapp", []);
+    angular.module("myapp").config(function($interpolateProvider){
         $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
     });
 
-    myapp.factory('PhonesModel', function(){
+    angular.module("myapp").factory('PhonesModel', function(){
         var m = {
             filtro: '',
             ordem: 'name',
@@ -205,7 +205,7 @@
         return m;
     });
 
-    myapp.controller('MyCtrl', function ($scope, PhonesModel){
+    angular.module("myapp").controller('MyCtrl', function ($scope, PhonesModel){
         var m = $scope.m = PhonesModel;
     });
     

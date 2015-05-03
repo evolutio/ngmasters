@@ -6,11 +6,11 @@
 <link rel="stylesheet" href="../css/bootstrap.css">
 <link rel="stylesheet" href="../02-jquery/003-todo.css">
 <script src="../lib/jquery-1.10.2.min.js"></script>
-<script src="../lib/angular.min.js"></script>
+<script src="../lib/angular.js"></script>
 <script src="../js/base.js"></script>
 <script>
 
-    Global.myapp.factory('TODOApi', function($http, $timeout){
+    angular.module("myapp").factory('TODOApi', function($http, $timeout){
       var ID = 5;
       return {
         load_all: function(){
@@ -43,7 +43,7 @@
       };
     });
 
-    Global.myapp.factory('TODOModel', function(TODOApi){
+    angular.module("myapp").factory('TODOModel', function(TODOApi){
       var m = {
         newtask: '',
         adding: false,
@@ -82,7 +82,7 @@
     });
 
 
-    Global.myapp.controller('MyCtrl', function ($scope, TODOModel){
+    angular.module("myapp").controller('MyCtrl', function ($scope, TODOModel){
       var m = $scope.m = TODOModel;
 
       $scope.newtask_keyup = function(evt){
@@ -131,6 +131,7 @@
       E não esquece de mostrar:
       <ul>
         <li>O bug das remoções simultâneas! Como que resolve??</li>
+        <li>Por quê <strong>newtask_keyup</strong> no controller (e não no serviço)?</li>
       </ul>
     </div>
 

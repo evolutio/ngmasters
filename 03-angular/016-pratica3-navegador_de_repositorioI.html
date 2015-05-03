@@ -6,13 +6,11 @@
   <link rel="stylesheet" href="../css/bootstrap.css">
   <link rel="stylesheet" href="../css/github.css">
   <link rel="stylesheet" href="../css/app.css">
-  <script src="../lib/angular.min.js"></script>
+  <script src="../lib/angular.js"></script>
   <script src="../lib/jquery-1.10.2.min.js"></script>
   <script src="../js/base.js"></script>
-  <script src="../js/github_api.js"></script>
   <script>
-    Global.myapp.controller('MyCtrl', function ($scope){});
-    
+    angular.module("myapp").controller('MyCtrl', function ($scope){});
   </script>
 </head>
 

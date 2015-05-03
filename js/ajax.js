@@ -1,5 +1,6 @@
+angular.module('ajax', []);
 
-Global.myapp.config(
+angular.module('ajax').config(
     function($httpProvider){
         //Essa configuração pode ser dependente de como seu backend implementa a proteção CSRF
         $httpProvider.defaults.headers.common['X-CSRFToken'] = Global.CSRF_TOKEN; // alguem precisa ter setado isso aqui!
@@ -20,7 +21,7 @@ Global.myapp.config(
 // get e post do jeitinho que eu quero.
 // Depois eu injeto esse "ajax" aonde eu quiser.
 
-Global.myapp.factory('ajax', function($http){
+angular.module('ajax').factory('Ajax', function($http){
     return {
         get: function(url, params){
             if(!params){

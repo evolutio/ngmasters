@@ -2,9 +2,9 @@ module.exports = function(grunt) {
 
     var dados_comuns_disponiveis_pra_todas_as_tasks = {
         arquivosjs: [
-            '../js/base2.js',
-            '../js/ajax2.js',
-            '../js/github_api3.js',
+            '../js/base.js',
+            '../js/ajax.js',
+            '../js/github_api2.js',
             '../js/githubmodel.js',
             '../js/components/gh-*/**/*.js',
             '../js/components/popup.js',

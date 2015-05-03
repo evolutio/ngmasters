@@ -14,9 +14,13 @@ if (typeof String.prototype.endsWith != 'function') {
 if(!window.Global){
     window.Global = {};
 }
+if(!Global.angular_dependencies){
+  Global.angular_dependencies = [];
+}
 
-Global.myapp = angular.module("myapp", []);
-Global.myapp.config(function($interpolateProvider){
+angular.module("myapp", Global.angular_dependencies);
+console.log('criou o myapp');
+angular.module("myapp").config(function($interpolateProvider){
 	$interpolateProvider.startSymbol('{[{').endSymbol('}]}');
 });
 

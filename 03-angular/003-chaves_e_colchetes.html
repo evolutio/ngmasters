@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <title>AngularJS</title>
   <link rel="stylesheet" href="../css/bootstrap.css">
-  <script src="../lib/angular.min.js"></script>
+  <script src="../lib/angular.js"></script>
   <script>
-    var myapp = angular.module("myapp", []);
-    myapp.config(function($interpolateProvider){
+    angular.module("myapp", []);
+    angular.module("myapp").config(function($interpolateProvider){
         $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
     });
   </script>
@@ -21,15 +21,7 @@
       substituição de variáveis no backend.</p>
     <hr>
 
-    <p>--&gt; Solução 1: Usar <code>{% verbatim %} {{var_angular}} <% endverbatim %></code></p>
-    <p> Só que não...</p>
-    <ul>
-      <li>Pode causar confusão: "essa <code>{{ variavel }}</code> é do back ou do front?!"</li>
-      <li>Não dá pra fazer algo do tipo<code>&lt;img src="{{variavel_back}}" class="{{variavel_front}}"&gt;</code></li>
-    </ul>
-    <hr>
-
-    <p>--&gt; Solução 2: Configurar o angular pra usar uma sintaxe diferente.</p>
+    <p>--&gt; Solução: Configurar o angular pra usar uma sintaxe diferente.</p>
     <p>Sugestão: <span ng-non-bindable><code>{[{ variavel }]}</code></span></p>
   </div>
 
