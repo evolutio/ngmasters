@@ -47,7 +47,7 @@ $(document).ready(function(){
 		var $newtask = $('#newtask')
 		$newtask.keyup(function(evt){
 			if(evt.keyCode == 13){
-				var todo = {id: 123, todo: $newtask.val(), done: false}
+				var todo = {todo: $newtask.val(), done: false}
 				addTodo(todo);
 				$newtask.val('')
 			}
