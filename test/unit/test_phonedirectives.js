@@ -32,7 +32,7 @@ var XOOM_WIFI = {
 
 describe("testes do phonedirectives", function() {
 
-	beforeEach(angular.mock.module('modphonedirectives'));
+	beforeEach(angular.mock.module('phonedirectives'));
 	beforeEach(angular.mock.module('myapp'));
 
 	afterEach(inject(function($httpBackend){
@@ -40,9 +40,9 @@ describe("testes do phonedirectives", function() {
         $httpBackend.verifyNoOutstandingRequest();
     }));
 
-    it('modphonedirectives deve carregar ok', function(){
-        expect(!!angular.module('modphonedirectives')).equal(true);
-		console.log('carregou o modulo modphonedirectives');
+    it('phonedirectives deve carregar ok', function(){
+        expect(!!angular.module('phonedirectives')).equal(true);
+		console.log('carregou o modulo phonedirectives');
     });
 
     //Exemplo de como testar um controller

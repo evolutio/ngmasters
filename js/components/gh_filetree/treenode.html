@@ -6,7 +6,7 @@
     {[{ node.name }]}
     <img src="../img/loader.gif" ng-show="node.loading">
     <ul ng-if="node.children" ng-show="node.loaded && node.expanded">
-      <li ng-include="'/js/components/gh-filetree/treenode.html'" ng-repeat="node in node.children | orderBy: directory_first"></li>
+      <li ng-include="'/js/components/gh_filetree/treenode.html'" ng-repeat="node in node.children | orderBy: directory_first"></li>
     </ul>
   </div>
   <div ng-if="node.type == 'file'">

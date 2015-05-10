@@ -1,7 +1,6 @@
 angular.module('github_api', []);
 
 angular.module('github_api').factory('GithubApi', function($http){
-    
     function add_auth(params){
         if(Global.GITHUB_ACCESS_TOKEN){
             params['access_token'] = Global.GITHUB_ACCESS_TOKEN;

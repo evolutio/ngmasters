@@ -13,8 +13,8 @@
           window.Global = {}
       }
       Global.angular_dependencies = [
-          'modphonedetail',
-          'modphonemodel',
+          'phonedetail',
+          'phonemodel',
       ];
   </script>
 
@@ -26,10 +26,10 @@
   <script src="../js/phone_api.js"></script>
   <script>
 
-    angular.module('myapp').controller('MyCtrl', ['$scope', 'PhoneModel', function($scope, PhoneModel){
+    angular.module('myapp').controller('MyCtrl', function($scope, PhoneModel){
         var m = $scope.m = PhoneModel;
         $scope.detalheimportante = 'Escopo compartilhado';
-    }]);
+    });
     
   </script>
 </head>

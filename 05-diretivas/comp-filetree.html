@@ -11,7 +11,7 @@
   	if(!window.Global){
   	  window.Global = {};
   	}
-  	Global.angular_dependencies = ['mod-gh-filetree'];
+  	Global.angular_dependencies = ['gh_filetree'];
   </script>
 
   <script src="../lib/angular.js"></script>
@@ -22,9 +22,9 @@
   <script src="../js/github_api2.js"></script>
   <script src="../js/githubmodel.js"></script>
 
-  <script src="../js/components/gh-filetree/gh-filetree.js"></script>
+  <script src="../js/components/gh_filetree/gh_filetree.js"></script>
   <script>
-  	angular.module('myapp').controller('MyCtrl', ['$scope', 'GithubModel', function ($scope, GithubModel){
+  	angular.module('myapp').controller('MyCtrl', function ($scope, GithubModel){
       var gm = GithubModel;
       gm.repo = {
         "name": "www.freedomsponsors.org",
@@ -37,7 +37,7 @@
       $scope.abrearquivo = function(file){
         alert("Abre o arquivo: " + file.name);
       }
-    }]);
+    });
   </script>
 </head>
 

@@ -61,10 +61,10 @@
 
       // declara quais módulos (raiz) eu preciso
       // por exemplo, nao preciso declara aqui o 'modajax' 
-      // porque o 'modphoneapi' já depende dele
+      // porque o 'phoneapi' já depende dele
       window.Global.angular_dependencies = [
-          'modphonedetail',
-          'modphoneapi'
+          'phonedetail',
+          'phoneapi'
       ];
       Global.CSRF_TOKEN = '{{ csrf_token_que_veio_do_backend }}';
   &lt;/script&gt;
@@ -89,14 +89,14 @@
 
   ========= phone_api.js =========
   (function(){
-      angular.module('modphoneapi', ['modajax']).factory('PhoneApi', ['ajax', function(ajax){
+      angular.module('phoneapi', ['modajax']).factory('PhoneApi', ['ajax', function(ajax){
           //...
       }]);
   })();
 
   ========= phonedetail.js =========
   (function(){
-      angular.module('modphonedetail', []).directive('phoneDetail', function() {
+      angular.module('phonedetail', []).directive('phoneDetail', function() {
           //...
       });
   })();

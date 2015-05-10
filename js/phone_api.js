@@ -1,7 +1,7 @@
 (function(){
-    angular.module('modphoneapi', ['ajax']);
+    angular.module('phone_api', ['ajax']);
     
-    angular.module('modphoneapi').factory('PhoneApi', function(Ajax){
+    angular.module('phone_api').factory('PhoneApi', function(Ajax){
 		return {
 			get_phone: function(id){
 				var url="/phones/"+id+".json";

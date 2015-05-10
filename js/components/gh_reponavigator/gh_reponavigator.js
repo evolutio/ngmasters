@@ -1,11 +1,13 @@
 (function(){
-  angular.module('mod-gh-reponavigator', ['mod-gh-repochooser', 'modpopup', 'mod-gh-filetree']).directive('ghReponavigator', function() {
+  angular.module('gh_reponavigator', ['gh_repochooser', 'popup', 'gh_filetree']);
+
+  angular.module('gh_reponavigator').directive('ghReponavigator', function() {
     return {
       restrict: 'E',
       replace: true,
-      templateUrl: '/js/components/gh-reponavigator/gh-reponavigator.html',
+      templateUrl: '/js/components/gh_reponavigator/gh_reponavigator.html',
       scope: {},
-      controller: ['$scope', 'GithubModel', function ($scope, GithubModel) {
+      controller: function ($scope, GithubModel) {
 
         var gm = $scope.gm = GithubModel;
         
@@ -18,8 +20,7 @@
           $scope.showpopup = true;
           gm.carrega_arquivo(file);
         };
-
-      }]
+      }
     }
   });
 })();

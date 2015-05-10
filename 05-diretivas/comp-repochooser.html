@@ -11,7 +11,7 @@
   	if(!window.Global){
   	  window.Global = {};
   	}
-  	Global.angular_dependencies = ['mod-gh-repochooser'];
+  	Global.angular_dependencies = ['gh_repochooser'];
   </script>
 
   <script src="../lib/angular.js"></script>
@@ -22,13 +22,13 @@
   <script src="../js/github_api2.js"></script>
   <script src="../js/githubmodel.js"></script>
 
-  <script src="../js/components/gh-repochooser/gh-repochooser.js"></script>
+  <script src="../js/components/gh_repochooser/gh_repochooser.js"></script>
   <script>
-  	angular.module('myapp').controller('MyCtrl', ['$scope', function ($scope){
+  	angular.module('myapp').controller('MyCtrl', function ($scope){
       $scope.escolheuorepo = function(repo){
       	alert('Escolheu o repo! ' + repo.name + ' (' + repo.stargazers_count + ' estrelas)');
       }
-    }]);
+    });
     
   </script>
 </head>

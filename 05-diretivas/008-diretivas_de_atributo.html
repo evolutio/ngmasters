@@ -16,13 +16,13 @@
       $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
     });
 
-    angular.module('myapp').controller('MyCtrl', ['$scope', function($scope){
+    angular.module('myapp').controller('MyCtrl', function($scope){
         $scope.umavariavelqualquer = 'oi mamae';
 
         $scope.teste = function(){
             $scope.umavariavelqualquer += $scope.umavariavelqualquer;          
         };
-    }]);
+    });
 
     angular.module('myapp').directive('seclicar', function(){
         return {
@@ -76,12 +76,12 @@
             scope: {},
             replace: false,
             template: '<div>{[{now}]}</div>',
-            controller: ['$scope', '$interval', function($scope, $interval){
+            controller: function($scope, $interval){
                 $scope.now = new Date();
                 $interval(function(){
                     $scope.now = new Date();
                 }, 1000)
-            }]
+            }
         }
     });
 
@@ -165,7 +165,7 @@
 
     <algumas-tooltips></algumas-tooltips>
 
-    <p>Sacou? Numa pagina angular, onde o dom pode ser modificado várias vezes durante a interação do usuário, fazer um "$('.tooltip').tooltip();" na hora que a página carrega não é suficiente!</p>
+    <p>Sacou? Numa pagina angular, onde o DOM pode ser modificado várias vezes durante a interação do usuário, fazer um "$('.tooltip').tooltip();" na hora que a página carrega não é suficiente!</p>
 
   </section>
 

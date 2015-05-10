@@ -12,8 +12,8 @@
           window.Global = {}
       }
       window.Global.angular_dependencies = [
-          'modphonedetail',
-          'modphonemodel',
+          'phonedetail',
+          'phonemodel',
       ];
   </script>
 
@@ -32,6 +32,7 @@
 
         $scope.select = function(ind){
             var p = m.phones[ind];
+            $scope.selected_index = ind;
             m.select(p);
         };
     }]);

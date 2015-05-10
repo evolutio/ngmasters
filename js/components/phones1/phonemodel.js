@@ -1,5 +1,7 @@
 (function(){
-    angular.module('modphonemodel', ['modphoneapi']).factory('PhoneModel', function(PhoneApi) {
+    angular.module('phonemodel', ['phone_api']);
+    
+    angular.module('phonemodel').factory('PhoneModel', function(PhoneApi) {
         var m = {
             loading: false,
             selected_phone: null,

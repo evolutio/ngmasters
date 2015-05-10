@@ -1,5 +1,7 @@
 (function(){
-    angular.module('modpopup', []).directive('mypopup', function() {
+    angular.module('popup', []);
+    
+    angular.module('popup').directive('mypopup', function() {
         return {
             restrict: 'E',
             replace: true,
@@ -9,7 +11,7 @@
                 visible: '=',
                 titulo: '@'
             },
-            controller: ['$scope', function ($scope) {
+            controller: function ($scope) {
                 $scope.close = function(){
                     $scope.visible = false;
                 }
@@ -17,7 +19,7 @@
                 $scope.$watch('visible', function(){
                     console.log('mudou: '+$scope.visible);
                 });
-            }]
+            }
         }
     });
 })();

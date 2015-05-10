@@ -1,5 +1,7 @@
 (function(){
-    angular.module('modphonedetail', []).directive('phoneDetail', function() {
+    angular.module('phonedetail', []);
+    
+    angular.module('phonedetail').directive('phoneDetail', function() {
         return {
             restrict: 'E',
             replace: true,
@@ -8,7 +10,7 @@
                 titulo: '@',
                 phone: '=',
             },
-            controller: ['$scope', function ($scope) {
+            controller: function ($scope) {
                 if($scope.phone){
                     if(!$scope.phone.selected_image){
                         $scope.phone.selected_image = $scope.phone.images[0];
@@ -17,7 +19,7 @@
                 $scope.select_image = function(img){
                     $scope.phone.selected_image = img;
                 };
-            }]
+            }
         }
     });
 })();

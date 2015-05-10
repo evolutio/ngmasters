@@ -1,7 +1,7 @@
 (function(){
-    var modpopup = angular.module('modpopup2', []);
+    angular.module('popup_dois', []);
 
-    modpopup.directive('mypopup2', function() {
+    angular.module('popup_dois').directive('mypopup2', function() {
         return {
             restrict: 'E',
             replace: true,
@@ -12,16 +12,16 @@
                 titulo: '@',
                 onclose: '&'
             },
-            controller: ['$scope', function ($scope) {
+            controller: function ($scope) {
                 $scope.close = function(){
                     $scope.visible = false;
                     $scope.onclose();
                 }
-            }]
+            }
         }
     });
 
-    modpopup.directive('mypopup3', function() {
+    angular.module('popup_dois').directive('mypopup3', function() {
         return {
             restrict: 'E',
             replace: true,
@@ -32,14 +32,14 @@
                 titulo: '@',
                 onclose: '&'
             },
-            controller: ['$scope', function ($scope) {
+            controller: function ($scope) {
                 var counter = 0;
                 $scope.close = function(){
                     $scope.visible = false;
                     counter++;
                     $scope.onclose({counter: counter});
                 }
-            }]
+            }
         }
     });
 })();

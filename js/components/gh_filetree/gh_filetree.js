@@ -1,13 +1,15 @@
 (function(){
-  angular.module('mod-gh-filetree', ['githubmodel']).directive('ghFiletree', function() {
+  angular.module('gh_filetree', ['githubmodel']);
+  
+  angular.module('gh_filetree').directive('ghFiletree', function() {
     return {
       restrict: 'E',
       replace: true,
-      templateUrl: '/js/components/gh-filetree/gh-filetree.html',
+      templateUrl: '/js/components/gh_filetree/gh_filetree.html',
       scope: {
           onclickfile: '&'
       },
-      controller: ['$scope', 'GithubModel', function ($scope, GithubModel) {
+      controller: function ($scope, GithubModel) {
 
         var gm = $scope.gm = GithubModel;
 
@@ -18,7 +20,7 @@
         $scope.click_file = function(node){
           $scope.onclickfile({file: node});
         }
-      }]
+      }
     }
   });
 })();

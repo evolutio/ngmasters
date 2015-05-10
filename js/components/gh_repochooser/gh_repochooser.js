@@ -1,13 +1,15 @@
 (function(){
-  angular.module('mod-gh-repochooser', ['githubmodel']).directive('ghRepochooser', function() {
+  angular.module('gh_repochooser', ['githubmodel']);
+
+  angular.module('gh_repochooser').directive('ghRepochooser', function() {
     return {
       restrict: 'E',
       replace: true,
-      templateUrl: '/js/components/gh-repochooser/gh-repochooser.html',
+      templateUrl: '/js/components/gh_repochooser/gh_repochooser.html',
       scope: {
           onchooserepo: '&'
       },
-      controller: ['$scope', 'GithubModel', '$timeout', function ($scope, GithubModel, $timeout) {
+      controller: function ($scope, GithubModel, $timeout) {
         var gm = $scope.gm = GithubModel;
 
         var DELAY = 800;
@@ -29,7 +31,7 @@
           gm.escolhe_usuario(user);
           gm.busca_repos_do_usuario();
         }
-      }]
+      }
     }
   });
 })();
