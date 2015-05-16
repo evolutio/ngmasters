@@ -1,6 +1,10 @@
 (function(){
   angular.module('gh_repochooser', ['githubmodel']);
 
+  /** 
+   * Componente que deixa o usuario escolher um repositorio qualquer no github.
+   * Chama o callback "onchooserepo" quando o usuario escolheu.
+   */
   angular.module('gh_repochooser').directive('ghRepochooser', function() {
     return {
       restrict: 'E',

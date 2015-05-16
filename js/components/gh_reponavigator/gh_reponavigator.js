@@ -1,6 +1,9 @@
 (function(){
   angular.module('gh_reponavigator', ['gh_repochooser', 'popup', 'gh_filetree']);
 
+  /** 
+   * Navegador de arquivos do Github
+   */
   angular.module('gh_reponavigator').directive('ghReponavigator', function() {
     return {
       restrict: 'E',

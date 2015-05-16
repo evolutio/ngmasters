@@ -81,17 +81,17 @@
     // Não, não tem problema 
     // (a menos que esse código fique muito grande...
     // aí vc cria uma diretiva)
-    angular.module('myapp').controller('MyCtrl', ['$scope', 'PhoneApi', function($scope, PhoneApi){
+    angular.module('myapp').controller('MyCtrl', function($scope, PhoneApi){
 
-    }]);
+    });
     
   &lt;/script&gt;
 
   ========= phone_api.js =========
   (function(){
-      angular.module('phoneapi', ['modajax']).factory('PhoneApi', ['ajax', function(ajax){
+      angular.module('phoneapi', ['modajax']).factory('PhoneApi', function(ajax){
           //...
-      }]);
+      });
   })();
 
   ========= phonedetail.js =========

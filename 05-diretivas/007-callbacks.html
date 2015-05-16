@@ -21,7 +21,7 @@
   <script src="../js/base.js"></script>
   <script>
 
-    angular.module('myapp').controller('MyCtrl', ['$scope', function($scope){
+    angular.module('myapp').controller('MyCtrl', function($scope){
         $scope.show1 = function(){
           $scope.visible1 = true;
         };
@@ -37,8 +37,7 @@
         $scope.onclose2 = function(vezes){
           alert('fechou a segunda '+vezes+' vezes');
         }
-
-    }]);
+    });
     
   </script>
 </head>

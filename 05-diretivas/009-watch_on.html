@@ -3,128 +3,88 @@
 <head>
   <meta charset="utf-8">
   <title>AngularJS</title>
-  <link rel="stylesheet" href="../css/curso.css">
+  <link rel="stylesheet" href="../css/bootstrap_full.css">
+  <link rel="stylesheet" href="../css/app.css">
   <script src="../lib/angular.js"></script>
-  <script src="../lib/jquery-1.11.0.js"></script>
-  <script>
-    window.Global = {};
-    angular.module('myapp', []).config(function($interpolateProvider){
-      $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
-    });
 
-    angular.module('myapp').directive('d1WatchP1p2', function(){
-        return {
-            restrict: 'E',
-            scope: {
-                p1: '@',
-                p2: '='
-            },
-            replace: true,
-            template: '<div>[ {[{p1}]} / {[{p2.msg}]} ]</div>',
-            controller: ['$scope', function($scope){
-                $scope.$watch('p1', function(newvalue,oldvalue){
-                    console.log('mudou o p1: ' + oldvalue + ' --> ' + newvalue);
-                });
-                $scope.$watch('p2.msg', function(newvalue,oldvalue){
-                    console.log('mudou o p2.msg: ' + oldvalue + ' --> ' + newvalue);
-                });
-            }]
-        }
-    });
+  <script>
+      if(!window.Global){
+          window.Global = {}
+      }
+      window.Global.angular_dependencies = [
+          'popup_quatro'
+      ];
+  </script>
+
+  <!-- ordem dos scripts intencionalmente embaralhada ;) -->
+  <script src="../js/components/popup_quatro.js"></script>
+  <script src="../js/base.js"></script>
+  <script>
 
     angular.module('myapp').controller('MyCtrl', ['$scope', function($scope){
-        $scope.$on('errou-questao', function(evt, data){
-            console.log('myapp errou questao: '+data.numero_questao + '/' + data.resposta);
+        $scope.show1 = function(){
+          $scope.visible1 = true;
+        };
+
+        $scope.$on('evento-de-popup', function(evt, data){
+          console.log('Pai ON!('+JSON.stringify(data)+')');
         });
-        var lang = 'ptbr';
-        $scope.change_language = function(){
-            lang = lang == 'ptbr' ? 'enus' : 'ptbr';
-            $scope.$broadcast('change-language', {lang: lang})
-        }
     }]);
 
-
-    angular.module('myapp').directive('d2EmitErrouQuestaoListenChangeLanguage', function(){
-        return {
-            restrict: 'E',
-            scope: {},
-            replace: true,
-            template: '<div><div>LANG2={[{lang}]}</div><button ng-click="errou_questao()">Errou Questao</button></div>',
-            controller: ['$scope', '$rootScope', function($scope, $rootScope){
-                var counter = 0;
-                $scope.$on('change-language', function(evt, data){
-                    $scope.lang = data.lang
-                    console.log('d2 change language: '+data.lang);
-                });
-                $scope.errou_questao = function(){
-                    counter++;
-                    $scope.$emit('errou-questao', {numero_questao: 4, resposta: "42"});
-                };
-            }]
-        }
+    angular.module('myapp').controller('CtrlIrmao', function($scope){
+        $scope.$on('evento-de-popup', function(evt, data){
+          console.log('Irmao ON!('+JSON.stringify(data)+')');
+        });
     });
 
-    angular.module('myapp').directive('d3ListenBoth', function(){
-        return {
-            restrict: 'E',
-            scope: {},
-            replace: true,
-            template: '<div>d3 LANG3={[{lang}]}</div>',
-            controller: ['$scope', function($scope){
-                $scope.$on('change-language', function(evt, data){
-                    $scope.lang = data.lang;
-                    console.log('d3 change language: '+data.lang);
-                });
-                $scope.$on('errou-questao', function(evt, data){
-                    console.log('d3 errou questao: '+data.numero_questao + '/' + data.resposta);
-                });
-            }]
-        }
+    angular.module('myapp').controller('CtrlFilho', function($scope){
+        $scope.$on('evento-de-popup', function(evt, data){
+          console.log('Filho ON!('+JSON.stringify(data)+')');
+        });
     });
+    
   </script>
 </head>
+
 <body ng-app="myapp" ng-controller="MyCtrl">
-  <div class="head">
-    <span style="font-weight:bold">ng-<span style="color: rgb(125, 25, 51);">masters</span></span>: AngularJS na prática
-  </div>
-<div class="container content"> 
-  <h1>$watch e $on</h1>
-
-  <section>
-    <h3>$watch</h3>
-    <input type="text" ng-model="t1">
-    <input type="text" ng-model="t2.msg">
-    <button ng-click="t2 = {}">Reset t2</button>
-
-    <d1-watch-p1p2 p1="{[{ t1 }]}" p2="t2"></d1-watch-p1p2>
-  </section>
-
-  <section>
-    <h3>emit, broadcast, on</h3>
-    <button ng-click="change_language()">Change Language</button>
+  <div class="container" style="margin-left: 35px">
+    <h1>$watch e $on</h1>
     <hr>
-    <d2-emit-errou-questao-listen-change-language></d2-emit-errou-questao-listen-change-language>
-    <hr>
-    <d3-listen-both></d3-listen-both>
-    <hr>
-    <h3>Resuminho</h3>
-    <ul>
-      <li>$emit joga o evento pra cima</li>
-      <li>$broadcast joga o evento pra baixo</li>
-      <li>Pra escopos em hierarquias diferentes, $rootScope.$broadcast</li>
-    </ul>
-  </section>
+    <button ng-click="show1()">Popup1</button>
 
-  <footer>
-    <h3>Cool! Dá pra ver um exemplo prático dessas coisas?</h3>
+    <div ng-controller="CtrlIrmao"></div>
+    
+    <mypopup4 titulo="Hello" visible="visible1" onclose="onclose1()">
+      <div ng-controller="CtrlFilho">Mundão <strong>sem porteira!</strong></div>
+    </mypopup4>
 
+    <hr>
+  
+    <div class="alert alert-info">
+      <h3>Resuminho</h3>
+      <ul>
+        <li>$emit joga o evento pra cima</li>
+        <li>$broadcast joga o evento pra baixo</li>
+        <li>Pra escopos em hierarquias diferentes, $rootScope.$broadcast</li>
+      </ul>
+      <h3>Mas na prática:</h3>
+      <ul>
+        <li>$watch às vezes é útil, mas use com moderação. O Feijão com arroz atende 95% dos casos. <a href="http://www.benlesh.com/2013/10/title.html">Mais sobre isso</a></li>
+        <li>E sobre o $broadcast() & cia: pubsub global é uma má idéia. Nem use. Faz de conta que vc não aprendeu isso aqui, sério. Spagghetti de eventos, alguém já viveu isso? Não é bonito.</li>
+      </ul>
+    </div>
+   
+    <h3>Blz! Mas dá pra ver um exemplo prático dessas coisas?</h3>
     <p>Com certeza!</p>
-
     <ul>
       <li><a href="010-navegador_de_repositorios_estrutura.html">Repensando o navegador de repositórios</a></li>
     </ul>
-  </footer>
 
-</div>
+  </div>
+
+
+
 </body>
+
+
 </html>

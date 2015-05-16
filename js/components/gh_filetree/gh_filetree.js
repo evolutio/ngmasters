@@ -1,6 +1,10 @@
 (function(){
   angular.module('gh_filetree', ['githubmodel']);
   
+  /** 
+   * Mostra na tela a arvore do repositorio GithubModel.repo
+   * Chama o callback "onclickfile" quando o usuario clica em algum arquivo.
+   */
   angular.module('gh_filetree').directive('ghFiletree', function() {
     return {
       restrict: 'E',

@@ -1,4 +1,4 @@
-<span>
+<div style="border: 1px solid #444; padding: 10px">
     Owner:
     <span style="position: relative;">
         <input type="text" ng-model="gm.username_input" ng-keyup="searchowner_keyup($event)">
@@ -17,4 +17,4 @@
     <select ng-model="gm.repo" 
       ng-options="repo.name for repo in gm.repos_encontrados"
       ng-change="onchooserepo({repo:gm.repo})"></select>
-</span>
+</div>
