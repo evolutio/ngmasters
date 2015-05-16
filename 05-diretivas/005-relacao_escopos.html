@@ -7,47 +7,6 @@
   <script src="../lib/angular.js"></script>
   <script>
     angular.module('myapp', []);
-
-    angular.module('myapp').directive('d1EscopoCompartilhado', function(){
-        return {
-            restrict: 'E',
-            replace: true,
-            template: '<div><input type="text" ng-model="message1"></div>' //poisé, isso funciona tb ;)
-        }
-    });
-
-    angular.module('myapp').directive('d2EscopoIsolado', function(){
-        return {
-            restrict: 'E',
-            replace: true,
-            scope:{
-                msg: '='
-            },
-            template: '<div><input type="text" ng-model="msg"></div>'
-        }
-    });
-    angular.module('myapp').directive('d3BindingOpcional', function(){
-        return {
-            restrict: 'E',
-            replace: true,
-            scope:{
-                msg: '=?'
-            },
-            template: '<div><input type="text" ng-model="msg"></div>'
-        }
-    });
-    angular.module('myapp').directive('d4DataPonto', function(){
-        return {
-            restrict: 'E',
-            replace: true,
-            scope:{
-                data: '='
-            },
-            template: '<div><input type="text" ng-model="data.msg"></div>'
-        }
-    });
-
-    angular.module('myapp').controller('c1', ['$scope', function($scope){}]);
   </script>
 </head>
 <body ng-app="myapp"> <!-- Olha, sem controller, pode? PODE! -->
@@ -63,6 +22,16 @@
     <d1-escopo-compartilhado></d1-escopo-compartilhado>
     <d1-escopo-compartilhado></d1-escopo-compartilhado>
   </section>
+  <script>
+    angular.module('myapp').directive('d1EscopoCompartilhado', function(){
+        return {
+            restrict: 'E',
+            replace: true,
+            template: '<div><input type="text" ng-model="message1"></div>' //poisé, isso funciona tb ;)
+        }
+    });
+  </script>
+  <!-- ================================================= -->
 
   <section>
     <h3>2. Escopo isolado, com binding bidirecional</h3>
@@ -70,6 +39,19 @@
     <d2-escopo-isolado msg="message2"></d2-escopo-isolado>
     <d2-escopo-isolado msg="message2"></d2-escopo-isolado>
   </section>
+  <script>
+    angular.module('myapp').directive('d2EscopoIsolado', function(){
+        return {
+            restrict: 'E',
+            replace: true,
+            scope:{
+                msg: '='
+            },
+            template: '<div><input type="text" ng-model="msg"></div>'
+        }
+    });
+  </script>
+  <!-- ================================================= -->
 
   <section>
     <h3>3. Escopo isolado, com binding opcional</h3>
@@ -77,6 +59,19 @@
     <d3-binding-opcional msg="message3"></d3-binding-opcional>
     <d3-binding-opcional></d3-binding-opcional>
   </section>
+  <script>
+    angular.module('myapp').directive('d3BindingOpcional', function(){
+        return {
+            restrict: 'E',
+            replace: true,
+            scope:{
+                msg: '=?'
+            },
+            template: '<div><input type="text" ng-model="msg"></div>'
+        }
+    });
+  </script>
+  <!-- ================================================= -->
 
   <section>
     <h3>4. Escopo isolado, com ponto</h3>
@@ -84,6 +79,19 @@
     <d4-data-ponto data="data4"></d4-data-ponto>
     <d4-data-ponto data="data4"></d4-data-ponto>
   </section>
+  <script>
+    angular.module('myapp').directive('d4DataPonto', function(){
+        return {
+            restrict: 'E',
+            replace: true,
+            scope:{
+                data: '='
+            },
+            template: '<div><input type="text" ng-model="data.msg"></div>'
+        }
+    });
+  </script>
+  <!-- ================================================= -->
 
   <section>
     <h3>5. Herança entre escopos, sem o ponto</h3>
@@ -97,15 +105,21 @@
       <li>Herança entre escopos!</li>
     </ul>
   </section>
+  <script>
+  </script>
+  <!-- ================================================= -->
 
   <section>
     <h3>6. Herança entre escopos, com o ponto</h3>
     <div><input type="text" ng-model="data6.message"></div>
+    <div ng-if="1+1">       <input type="text" ng-model="data6.message"></div>
     <div ng-controller="c1"><input type="text" ng-model="data6.message"></div>
-    <div ng-controller="c1"><input type="text" ng-model="data6.message"></div>
-
     <p>Será magia?</p>
   </section>
+  <script>
+    angular.module('myapp').controller('c1', ['$scope', function($scope){}]);
+  </script>
+  <!-- ================================================= -->
 
   <section>
     <h3>Lições valiosas:</h3>
@@ -124,16 +138,12 @@
 
     <ul>
       <li>
-        <p>Prefira sempre <pre>  ng-click="toggle_state()"</pre> a <pre>  ng-click="state=!state"</pre> 
+        <p>Não mude o estado das coisas no template: <pre>  ng-click="state=!state" //MAU </pre> 
       </li>
       <li>
-        <p>Prefira sempre <pre>  ng-model="modelo.atributo" //mais previsivel</pre> a <pre>  ng-model="atributo"</pre> 
+        <p>ng-model tem q ter pontinho <pre>  ng-model="modelo.atributo" //BOM</pre> <pre>  ng-model="atributo" //Vc nao entendeu meu ponto :(</pre> 
       </li>
     </ul>
-          (<a href="004-transclusao.html">vamos ver a popup de novo!</a>)</p>
-
-
-    <p>Em outras palavras: lugar de mudar estado é no controller (ou melhor ainda, num serviço), não no template. Faça isso e as coisas hão de ser mais estáveis!</p>
   </section>
 
   <footer>

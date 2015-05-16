@@ -28,7 +28,6 @@
 
     angular.module('myapp').controller('MyCtrl', function($scope, PhoneModel){
         var m = $scope.m = PhoneModel;
-        $scope.detalheimportante = 'Escopo compartilhado';
     });
     
   </script>
@@ -41,6 +40,7 @@
     <div>
 
       <img src="../img/loader.gif" ng-show="m.loading">
+      inputx fora <input type="text" ng-model="x">
       <div ng-show="m.selected_phone && !m.loading" class="row">
         <phone-detail></phone-detail> <!-- Muito lindo isso nénão :-) ... -->
       </div>
@@ -67,7 +67,7 @@
           <li>&lt;phone-detail&gt; é um componente reutilizável. Ele tem apresentação e um comportamento definidos. Eu importo o <strong>phonedetail.js</strong> na página que eu quiser e saio usando.</li>
           <li>Tudo que ele precisa é que o PhoneModel.selected_phone esteja setado.</li>
           <li><strong>ajax.js</strong> e <strong>phone_api.js</strong> não são diretivas, mas também são serviços reutilizáveis de maneira completamente independente.</li>
-          <li>E atenção pro detalhe: escopo compartilhado. O $scope é o mesmo! (Prova!!)</li>
+          <li>E atenção pro detalhe: escopo compartilhado. O $scope é <strong>o mesmo!</strong> (não tem herança de escopos aqui - Prova = inputx)</li>
         </ul>
       </div>
  
