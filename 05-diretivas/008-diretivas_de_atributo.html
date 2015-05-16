@@ -24,6 +24,22 @@
         };
     });
 
+
+
+  </script>
+</head>
+<body ng-app="myapp" ng-controller="MyCtrl">
+  <div class="head">
+    <span style="font-weight:bold">ng-<span style="color: rgb(125, 25, 51);">masters</span></span>: AngularJS na prática
+  </div>
+<div class="container content"> 
+  <h1>Diretivas de atributo</h1>
+
+  <section>
+    <h3>Tipo A, função link</h3>
+    <div seclicar mostra="Oiiiiii">Clica aí</div>
+  </section>
+  <script>
     angular.module('myapp').directive('seclicar', function(){
         return {
             restrict: 'A',
@@ -35,7 +51,14 @@
             }
         }
     });
+  </script>
+  <!-- ================================================ -->
 
+  <section>
+    <h3>A mesma coisa, com um atalho.</h3>
+    <div seclicar2 mostra="Oi de novoooo">Clica aí</div>
+  </section>
+  <script>
     angular.module('myapp').directive('seclicar2', function(){
         return function(scope, element, attrs){
             $(element).click(function(){
@@ -44,7 +67,14 @@
             });
         };
     });
+  </script>
+  <!-- ================================================ -->
 
+  <section>
+    <h3>Com escopo isolado</h3>
+    <div hoverzinho>Passa o mouse em cima</div>
+  </section>
+  <script>
     angular.module('myapp').directive('hoverzinho', function(){
         return {
             restrict: 'A',
@@ -55,7 +85,14 @@
             }
         }
     });
+  </script>
+  <!-- ================================================ -->
 
+  <section>
+    <h3>Passando parametros</h3>
+    <div hoverzinho2 mostra="{[{umavariavelqualquer}]}">Passa o mouse de novo</div>
+  </section>
+  <script>
     angular.module('myapp').directive('hoverzinho2', function(){
         return {
             restrict: 'A',
@@ -69,7 +106,19 @@
             }
         }
     });
+  </script>
+  <!-- ================================================ -->
 
+  <section>
+    <h3>Templates e controllers</h3>
+    <div reloginho>Esse texto vai sumir</div>
+    <ul>
+      <li>Valem as mesmas regras das diretivas do tipo E</li>
+      <li>Atenção pro efeito do "replace"</li>
+      <li>$scope x scope? Nome x posição!</li>
+    </ul>
+  </section>
+  <script>
     angular.module('myapp').directive('reloginho', function(){
         return {
             restrict: 'A',
@@ -84,7 +133,26 @@
             }
         }
     });
+  </script>
+  <!-- ================================================ -->
 
+  <section>
+    <h3>Integração com plugins JQuery</h3>
+    <p>(Peguei o bizu no <a href="http://pedronauck.com/angularjs/sobre-diretivas-e-como-usar-corretamente-plugins-jquery-com-angularjs">blog do pedronauck!)</a></p>
+    <span class="tooltip" title="Olha... uma tooltip!">
+      Passa o mouse aih de novo...
+    </span>
+    <ul>
+      <li>Até funciona, mas melhor não fazer isso...</li>
+    </ul>
+    <span tooltip title="Tooltip com Angular, aih sim :-)">
+      Se nesse pc tem mouse... passa ni mim!
+    </span>    
+  </section>
+  <script>
+    $(function(){
+      $('.tooltip').tooltip();
+    });
     angular.module('myapp').directive('tooltip', function(){
         return function(scope, element, attrs){
             $(element).tooltip({
@@ -92,7 +160,6 @@
             });
         };
     });
-
     angular.module('myapp').directive('algumasTooltips', function(){
         return {
             restrict: 'E',
@@ -102,62 +169,7 @@
         }
     });
   </script>
-</head>
-<body ng-app="myapp" ng-controller="MyCtrl">
-  <div class="head">
-    <span style="font-weight:bold">ng-<span style="color: rgb(125, 25, 51);">masters</span></span>: AngularJS na prática
-  </div>
-<div class="container content"> 
-  <h1>Diretivas de atributo</h1>
-
-  <section>
-    <h3>Tipo A, função link</h3>
-    <div seclicar mostra="Oiiiiii">Clica aí</div>
-  </section>
-
-  <section>
-    <h3>A mesma coisa, com um atalho.</h3>
-    <div seclicar2 mostra="Oi de novoooo">Clica aí</div>
-  </section>
-
-  <section>
-    <h3>Com escopo isolado</h3>
-    <div hoverzinho>Passa o mouse em cima</div>
-  </section>
-
-  <section>
-    <h3>Passando parametros</h3>
-    <div hoverzinho2 mostra="{[{umavariavelqualquer}]}">Passa o mouse de novo</div>
-  </section>
-
-  <section>
-    <h3>Templates e controllers</h3>
-    <div reloginho>Esse texto vai sumir</div>
-
-    <ul>
-      <li>Valem as mesmas regras das diretivas do tipo E</li>
-      <li>Atenção pro efeito do "replace"</li>
-      <li>$scope x scope? Nome x posição!</li>
-    </ul>
-  </section>
-
-  <section>
-    <h3>Integração com plugins JQuery</h3>
-    <p>(Peguei o bizu no <a href="http://pedronauck.com/angularjs/sobre-diretivas-e-como-usar-corretamente-plugins-jquery-com-angularjs">blog do pedronauck!)</a></p>
-
-    <span class="tooltip" title="Olha... uma tooltip!">
-      Passa o mouse aih de novo...
-    </span>
-
-    <ul>
-      <li>Até funciona, mas melhor não fazer isso...</li>
-    </ul>
-
-    <span tooltip title="Tooltip com Angular, aih sim :-)">
-      Se nesse pc tem mouse... passa ni mim!
-    </span>    
-
-  </section>
+  <!-- ================================================ -->
 
   <section>
     <h3>Ah, deixa eu usar JQuery direto...?</h3>
@@ -200,7 +212,6 @@
 
   <!-- Horrivel! Não faça isso! -->
   <script> 
-    $('.tooltip').tooltip();
   </script>
 
 </div>
