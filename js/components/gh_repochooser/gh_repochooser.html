@@ -1,7 +1,10 @@
 <div style="border: 1px solid #444; padding: 10px">
     Owner:
     <span style="position: relative;">
-        <input type="text" ng-model="gm.username_input" ng-keyup="searchowner_keyup($event)">
+        <input type="text" ng-model="gm.username_input" 
+          ng-model-options="{ debounce: {'default': 800, 'blur': 0} }" 
+          ng-change="gm.busca_usuarios_pelo_nome()">
+
         <img ng-show="gm.buscando_usuarios" src="../img/loader.gif">
         <div class="pop-options" ng-show="gm.mostra_usuarios_encontrados">
             <ul>
