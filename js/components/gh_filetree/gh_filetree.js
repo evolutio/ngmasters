@@ -28,3 +28,10 @@
     }
   });
 })();
+
+
+// expandir e colapsar diretorios
+// buscar conteudos de um diretorio q ela nao buscou ainda
+// cachear os childrens
+// ordenar com pastas primeiro
+// chamar o callback de clicar no arquivo

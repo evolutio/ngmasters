@@ -7,13 +7,16 @@ concamina:
 #  -  'clean:after'
 
 concamina_cache:
-  - 'clean:before'
-  - 'concat:build'
-  - 'ngtemplates'
-  - 'ngmin:fix_angular_declarations'
-  - 'concat:withtemplates'
-  - 'uglify:build'
-  - 'copy:myapp'
+  - 'clean:before' # limpa a pasta tmp/ e build/
+  - 'concat:build' # concatena as coisas                             == tmp/myapp.js
+  - 'ngtemplates'  # cacheia os templates                            == tmp/myapp-templates.js
+  - 'ngmin:fix_angular_declarations' # Conserta injeçoes do angular  == tmp/myapp.js
+  - 'concat:withtemplates' #Concatena: myapp.js + myapp-templates.js == tmp/myapp.js
+  - 'uglify:build' # Minifica myapp.js                               == tmp/myapp.min.js
+  - 'copy:myapp' # Copia pra build/                                  == build/js/*
+
+# limpa a pasta tmp/ e build/
+# concatena 
 
 test:
   - 'karma:unit'

@@ -16,7 +16,8 @@ module.exports = function(grunt) {
     '../js/base.js',
     '../js/ajax.js',
     '../js/github_api2.js',
-    '../js/components/gh-*/**/*.js',
+    '../js/githubmodel.js',
+    '../js/components/gh_*/**/*.js',
     '../js/components/popup.js',
   ];
 
