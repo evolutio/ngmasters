@@ -1,27 +1,26 @@
 angular.module('github_api', []);
 
 angular.module('github_api').factory('GithubApi', function($timeout){
+    var joao = {
+        "login": "joao",
+        "id": 594112,
+        "avatar_url": "https://avatars.githubusercontent.com/u/594112?",
+        "gravatar_id": "39ebccd822b6fb533e004ee722c38e9d",
+        "url": "https://api.github.com/users/tonylukasavage",
+        "type": "User"
+    };
+    var jose = {
+        "login": "josé",
+        "id": 31147,
+        "avatar_url": "https://avatars.githubusercontent.com/u/31147?",
+        "gravatar_id": "43b2ca65e7a2cadf849adf103e6c066d",
+        "url": "https://api.github.com/users/tonylukasavage",
+        "type": "User"
+    };
     var users = {
         "total_count": 233,
         "incomplete_results": false,
-        "items": [
-            {
-                "login": "joao",
-                "id": 594112,
-                "avatar_url": "https://avatars.githubusercontent.com/u/594112?",
-                "gravatar_id": "39ebccd822b6fb533e004ee722c38e9d",
-                "url": "https://api.github.com/users/tonylukasavage",
-                "type": "User"
-            },
-            {
-                "login": "josé",
-                "id": 31147,
-                "avatar_url": "https://avatars.githubusercontent.com/u/31147?",
-                "gravatar_id": "43b2ca65e7a2cadf849adf103e6c066d",
-                "url": "https://api.github.com/users/tonylukasavage",
-                "type": "User"
-            }
-        ]
+        "items": [joao, jose],
     };
 
     var repos = [
@@ -104,6 +103,8 @@ angular.module('github_api').factory('GithubApi', function($timeout){
         },
     ];
 
+    var contents = [];
+
 	return {
 		list_issues: function(owner, repo, page){
             return Global.mock_ajax($timeout, issues);
@@ -116,6 +117,25 @@ angular.module('github_api').factory('GithubApi', function($timeout){
         },
         list_issue_comments: function(owner, repo, issue_number){
             return Global.mock_ajax($timeout, comments);
-        }
+        },
+        get_contents: function(owner, repo, path){
+            return Global.mock_ajax($timeout, contents);
+        },
+        decode_file_contents : function(contents_base64){
+            // Por causa de um erro de design (esse método não deveria existir nesse objeto), 
+            // tivemos que duplicar código
+            var lines_base_64 = contents_base64.split("\n");
+            var lines = [];
+            for(var i=0; i<lines_base_64.length; i++){
+                lines.push(atob(lines_base_64[i]));
+            }
+            return lines.join("");
+        },
+        _mock_issues: function(_issues){
+            issues = _issues;
+        },
+        _mock_contents: function(_contents){
+            contents = _contents;
+        },
 	}
 });
