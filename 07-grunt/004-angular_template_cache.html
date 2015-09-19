@@ -7,10 +7,10 @@
   <script src="../lib/angular.js"></script>
 
   <script>
-    var myapp = angular.module('myapp', []);
-    myapp.run(['$templateCache', function($templateCache){
+    angular.module('myapp', []);
+    angular.module('myapp').run(function($templateCache){
       $templateCache.put('/07-grunt/hello.html', '<p>Olá papai</p>');
-    }]);
+    });
   </script>
 </head>
 

@@ -1,8 +1,14 @@
+'use strict';
+
 (function(){
-  angular.module('mod_view_pessoas', ['mod_service_people']).
-    controller('PessoasCtrl', ['$scope', 'PessoasModel', function($scope, PessoasModel){
+  angular.module('mod_view_pessoas', ['mod_service_people']);
+
+  angular.module('mod_view_pessoas').
+    controller('PessoasCtrl', function($scope, PessoasModel){
     	var m = $scope.m = PessoasModel;
-    	m.load_all();
-    }]);
+    	if(m.pessoas.length == 0){
+	    	m.load_all();
+    	}
+    });
 })();
 

@@ -20,7 +20,7 @@
         });
       },
       add_todo: function(){
-        var newtodo = {jafiz: false, tarefa: model.novotodo};
+        var newtodo = {done: false, todo: model.novotodo};
         model.todos.push(newtodo);
         model.novotodo = '';
       },
@@ -56,8 +56,8 @@
     </div>
     <table class="table table-striped table-bordered todotable">
       <tr ng-repeat="todo in model.todos">
-        <td class="todocheck"><input type="checkbox" ng-model="todo.jafiz"></td>
-        <td ng-class="{tododone: todo.jafiz}">{{todo.tarefa}}</td>
+        <td class="todocheck"><input type="checkbox" ng-model="todo.done"></td>
+        <td ng-class="{tododone: todo.done}">{{todo.todo}}</td>
         <td class="todoremove"><a href ng-click="model.remove_todo($index)"><i class="icon-trash"></i></a></td>
       </tr>
     </table>

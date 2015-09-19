@@ -28,12 +28,12 @@
   <script src="rotas/service_people.js"></script>
 
   <script>
-    angular.module('myapp').config(['$routeProvider', function($routeProvider) {
+    angular.module('myapp').config(function($routeProvider) {
       $routeProvider.
         when('/pessoa', {templateUrl: 'rotas/pessoas.html', controller: 'PessoasCtrl'}).
         when('/pessoa/:pessoaId', {templateUrl: 'rotas/pessoa.html', controller: 'PessoaCtrl'}).
         otherwise({redirectTo: '/pessoa'});
-    }]);
+    });
   </script>
 
 

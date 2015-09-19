@@ -32,7 +32,7 @@
         };
     }]);
 
-    angular.module('mod_service_people').factory('PessoasModel', ['PeopleAPI', function(PeopleAPI){
+    angular.module('mod_service_people').factory('PessoasModel', function(PeopleAPI){
         var m = {
             pessoas: [],
             pessoa: null,
@@ -53,6 +53,6 @@
             });
         };
         return m;
-    }]);
+    });
 })();
 
