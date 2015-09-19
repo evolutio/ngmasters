@@ -28,10 +28,13 @@
 
     angular.module("myapp").factory('PhonesModel', function(){
         var m = {
-            filtro: '',
-            ordem: 'name',
             selected_phone: null,
-            aocontrario: false,
+
+            filtro: '', //filtro
+
+            ordem: 'name', //ordenacao
+            aocontrario: false, //ordenacao
+
             phones: [
                 {
                     "age": 0, 
@@ -194,7 +197,7 @@
             p.is_selected = !p.is_selected;
         };
 
-        m.toggle_sort = function(ordem){
+        m.muda_ordenacao = function(ordem){
           if(m.ordem != ordem){
             m.ordem = ordem;
           } else {
@@ -248,14 +251,14 @@
           <tr>
             <th></th>
             <th>
-              <a href ng-click="m.toggle_sort('name')">
+              <a href ng-click="m.muda_ordenacao('name')">
                 Modelo 
                 <i ng-show="m.ordem == 'name'" 
                 ng-class="{'icon-chevron-up': !m.aocontrario, 'icon-chevron-down': m.aocontrario}"></i>
               </a>
             </th>
             <th>
-              <a href ng-click="m.toggle_sort('snippet')">
+              <a href ng-click="m.muda_ordenacao('snippet')">
                 Descrição
                 <i ng-show="m.ordem == 'snippet'" 
                 ng-class="{'icon-chevron-up': !m.aocontrario, 'icon-chevron-down': m.aocontrario}"></i>
@@ -275,7 +278,7 @@
       <div class="alert alert-info">
         Tony, não esquece:
         <ul>
-          <li>explicar o toggle_sort()</li>
+          <li>explicar o muda_ordenacao()</li>
           <li>Dá pra eliminar a duplicação de código nos headers?</li>
         </ul>
       </div>

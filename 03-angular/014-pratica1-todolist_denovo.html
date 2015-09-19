@@ -12,35 +12,42 @@
 
     angular.module("myapp").factory('TODOApi', function($http, $timeout){
       var ID = 5;
+
       return {
-        load_all: function(){
-          return $http.get('backend/list_todos.json');
-        },
-        remove: function(id){
-          var cb;
-          var promise = {
-            success : function(callback){
-              cb = callback;
-            }
-          }
-          $timeout(function(){
-            cb();
-          }, 1000);
-          return promise;
-        },
-        add: function(todo){
-          var cb;
-          var promise = {
-            success: function(callback){
-              cb = callback;
-            }
-          }
-          $timeout(function(){
-            cb(++ID);
-          },1000)
-          return promise;
-        }
+        load_all: load_all,
+        remove: remove,
+        add: add
       };
+
+      function load_all(){
+        return $http.get('backend/list_todos.json');
+      }
+
+      function remove(id){
+        var cb;
+        var promise = {
+          success : function(callback){
+            cb = callback;
+          }
+        }
+        $timeout(function(){
+          cb();
+        }, 1000);
+        return promise;
+      }
+
+      function add(todo){
+        var cb;
+        var promise = {
+          success: function(callback){
+            cb = callback;
+          }
+        }
+        $timeout(function(){
+          cb(++ID);
+        },1000)
+        return promise;
+      }
     });
 
     angular.module("myapp").factory('TODOModel', function(TODOApi){
@@ -50,21 +57,29 @@
         todos: []
       };
 
-      m.load_all = function(){
+      angular.extend(m, {
+          load_all: load_all,
+          remove: remove,
+          addnew: addnew,
+      });
+
+      return m;
+
+      function load_all(){
         TODOApi.load_all().success(function(todos){
           m.todos = todos;
         });
-      };
+      }
 
-      m.remove = function(index){
+      function remove(index){
         var todo = m.todos[index];
         todo.removing = true;
         TODOApi.remove(todo.id).success(function(){
           m.todos.splice(index, 1);
         });
-      };
+      }
 
-      m.addnew = function(){
+      function addnew(){
         var todo = {
           todo: m.newtask,
           done: false
@@ -76,23 +91,24 @@
           m.newtask = '';
           m.adding = false;
         });
-      };
-
-      return m;
+      }
     });
 
 
     angular.module("myapp").controller('MyCtrl', function ($scope, TODOModel){
       var m = $scope.m = TODOModel;
 
-      $scope.newtask_keyup = function(evt){
-        if(evt.keyCode == 13){
-          m.addnew();
-        }
-      };
+      angular.extend($scope, {
+          newtask_keyup: newtask_keyup
+      });
 
       m.load_all();
 
+      function newtask_keyup(evt){
+        if(evt.keyCode == 13){
+          m.addnew();
+        }
+      }
     });
   
 

@@ -15,22 +15,24 @@
 
     angular.module("myapp").factory('GiraModel', function(){
       var m = {
-        angle: 0
+        angle: 0,
+        vai: vai,
+        volta: volta,
       };
 
-      m.vai = function(){
+      function vai(){
         m.angle += 30;
         while(m.angle >= 360){
           m.angle -= 360;
         }
-      };
+      }
 
-      m.volta = function(){
+      function volta(){
         m.angle -= 30;
         while(m.angle < 0){
           m.angle += 360;
         }
-      };
+      }
 
       return m;
     });

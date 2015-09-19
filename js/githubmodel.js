@@ -1,16 +1,6 @@
 angular.module('githubmodel', ['github_api']);
 angular.module('githubmodel').factory('GithubModel', function(GithubApi, $log){
 
-	function _next_page(repo){
-		if(!repo.issues){
-			return 1;
-		} else if(repo.no_more_issues){
-			return -1;
-		} else {
-			return 1 + repo.issues.length / 30;
-		}
-	}
-
 	var gm = {
 		username_input: '',
 		buscando_usuarios: false,
@@ -23,30 +13,43 @@ angular.module('githubmodel').factory('GithubModel', function(GithubApi, $log){
 		buscando_issues: false,
 	};
 
-	gm.busca_usuarios_pelo_nome = function(){
+	angular.extend(gm, {
+		busca_usuarios_pelo_nome: busca_usuarios_pelo_nome,
+		escolhe_usuario: escolhe_usuario,
+		busca_repos_do_usuario: busca_repos_do_usuario,
+		busca_mais_issues: busca_mais_issues,
+		reset_repo: reset_repo,
+		toggle_expand: toggle_expand,
+		carrega_arquivo: carrega_arquivo,
+		carrega_comentarios_da_issue: carrega_comentarios_da_issue,
+	});
+
+	return gm;
+
+	function busca_usuarios_pelo_nome(){
 		gm.buscando_usuarios = true;
 		GithubApi.search_users(gm.username_input).success(function(result){
 			gm.buscando_usuarios = false;
 			gm.usuarios_encontrados = result.items;
 			gm.mostra_usuarios_encontrados = true;
 		});
-	};
+	}
 
-	gm.escolhe_usuario = function(user){
+	function escolhe_usuario(user){
 		gm.user = user;
 		gm.username_input = user.login;
 		gm.mostra_usuarios_encontrados = false;
-	};
+	}
 
-	gm.busca_repos_do_usuario = function(){
+	function busca_repos_do_usuario(){
 		gm.buscando_repositorios = true;
 		GithubApi.list_user_repos(gm.user.login).success(function(repos){
 			gm.buscando_repositorios = false;
 			gm.repos_encontrados = repos;
 		});
-	};
+	}
 
-	gm.busca_mais_issues = function(){
+	function busca_mais_issues(){
 		if(gm.repo){
 			var page = _next_page(gm.repo);
 			if(page > 0){
@@ -69,9 +72,9 @@ angular.module('githubmodel').factory('GithubModel', function(GithubApi, $log){
 				});
 			}
 		}
-	};
+	}
 
-	gm.reset_repo = function(){
+	function reset_repo(){
 		if(gm.repo){
 			gm.repo.issues = [];
 		}
@@ -84,7 +87,7 @@ angular.module('githubmodel').factory('GithubModel', function(GithubApi, $log){
 		];
 	}
 
-	gm.toggle_expand = function(node){
+	function toggle_expand(node){
 		if(node.type == "dir"){
 			if(!node.loaded){
 				node.loading = true;
@@ -98,9 +101,9 @@ angular.module('githubmodel').factory('GithubModel', function(GithubApi, $log){
 				node.expanded = !node.expanded;
 			}
 		}
-	};
+	}
 
-	gm.carrega_arquivo = function(node){
+	function carrega_arquivo(node){
 		if(!node.file_contents){
 			node.loading = true;
 			GithubApi.get_contents(gm.repo.owner.login, gm.repo.name, "/"+node.path).success(function(result){
@@ -109,9 +112,9 @@ angular.module('githubmodel').factory('GithubModel', function(GithubApi, $log){
 				node.file_contents = GithubApi.decode_file_contents(result.content);
 			});
 		}
-	};
+	}
 
-	gm.carrega_comentarios_da_issue = function(issue){
+	function carrega_comentarios_da_issue(issue){
 		if(!issue.comment_list){
 			issue.loading_comments = true;
 			GithubApi.list_issue_comments(gm.repo.owner.login, 
@@ -121,7 +124,16 @@ angular.module('githubmodel').factory('GithubModel', function(GithubApi, $log){
 				issue.loading_comments = false;
 			});
 		}
-	};
+	}
+	
+	function _next_page(repo){
+		if(!repo.issues){
+			return 1;
+		} else if(repo.no_more_issues){
+			return -1;
+		} else {
+			return 1 + repo.issues.length / 30;
+		}
+	}
 
-	return gm;
 });

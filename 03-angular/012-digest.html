@@ -10,38 +10,55 @@
   <script src="../js/base.js"></script>
   <script>
     angular.module("myapp").controller('MyCtrl', function ($scope){
-      $scope.progress = 0;
 
-      var DOTS = '....................................................................................................';
-      var PIPES = '||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||';
+      $scope.pm = (function(){
+          var DOTS = '....................................................................................................';
+          var PIPES = '||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||';
+          var pm = {
+              progress: 0,
+              progress_bar: progress_bar,
+              tick: tick,
+              start: start
+          };
 
-      $scope.progress_bar = function (){
-        return '[' + PIPES.substring(0, $scope.progress) + DOTS.substring(0, 100 - $scope.progress) + ']'
-      }
+          return pm;
 
-      function tick(){
-        if($scope.progress < 100){
-          $scope.progress++;
-          setTimeout(tick, 50);
-          $scope.$digest();
-        }
-      }
+          function progress_bar(){
+              return '[' + PIPES.substring(0, pm.progress) + DOTS.substring(0, 100 - pm.progress) + ']';
+          }
 
-      $scope.start = function(){
-        setTimeout(tick, 0)
-      }
+          function tick(){
+            if(pm.progress < 100){
+              pm.progress++;
+              setTimeout(tick, 50);
+              $scope.$digest();
+            }
+          }
 
-      //////////////////////////////////////////////
+          function start(){
+            setTimeout(tick, 0)
+          }
+      })();
 
-      $scope.get_issues = function(){
-        var url = 'https://api.github.com/repos/freedomsponsors/www.freedomsponsors.org/issues';
-        $scope.loading_issues = true;
-        $.get(url).success(function(result){
-          $scope.loading_issues = false;
-          $scope.issues = result;
-          $scope.$digest();
-        })
-      }
+      $scope.im = (function(){
+          var im = {
+              issues: [],
+              loading_issues: false,
+              get_issues: get_issues
+          };
+
+          return im;
+
+          function get_issues(){
+            var url = 'https://api.github.com/repos/freedomsponsors/www.freedomsponsors.org/issues';
+            im.loading_issues = true;
+            $.get(url).success(function(result){
+              im.loading_issues = false;
+              im.issues = result;
+              $scope.$digest();
+            })
+          }
+      })();
 
     });
     
@@ -56,11 +73,11 @@
       <h2>Uma barra de progresso</h2>
 
       <div>
-        <span>{[{progress_bar()}]}</span>
-        <strong>{[{progress}]}%</strong>
+        <span>{[{pm.progress_bar()}]}</span>
+        <strong>{[{pm.progress}]}%</strong>
       </div>
-      <button ng-show="progress < 100" ng-click="start()">Vai!</button>
-      <div ng-show="progress >= 100">
+      <button ng-show="pm.progress < 100" ng-click="pm.start()">Vai!</button>
+      <div ng-show="pm.progress >= 100">
         Acabou! :-)
       </div>
 
@@ -75,15 +92,15 @@
       <hr>
       
       <h2>Issues do Github</h2>
-      <button ng-click="get_issues()">Vai buscar!</button>
-      <img ng-show="loading_issues" src="../img/loader.gif">
+      <button ng-click="im.get_issues()">Vai buscar!</button>
+      <img ng-show="im.loading_issues" src="../img/loader.gif">
 
       <table class="table">
         <tr>
           <th>ID</th>
           <th>Título</th>
         </tr>
-        <tr ng-repeat="issue in issues">
+        <tr ng-repeat="issue in im.issues">
           <td>{[{issue.id}]}</td>
           <td>{[{issue.title}]}</td>
         </tr>

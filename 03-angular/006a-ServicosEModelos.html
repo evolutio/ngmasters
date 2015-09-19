@@ -14,27 +14,34 @@
 
     angular.module("myapp").factory('Equacao2oGrau', function(){
       var m = {
-        meutexto: 'oi vc vem sempre aqui?',
-        a: 1,
-        b: -2,
-        c: 1
+          //estado
+          meutexto: 'oi vc vem sempre aqui?',
+          a: 1,
+          b: -2,
+          c: 1,
+
+          //comportamento
+          meutexto_reversed: meutexto_reversed,
+          delta: delta,
+          r1: r1,
+          r2: r2
       };
 
-      m.meutexto_reversed = function(){
+      function meutexto_reversed(){
         return m.meutexto.split("").reverse().join("")
-      };
+      }
       
-      m.delta = function(){
+      function delta(){
         return m.b * m.b - 4 * m.a * m.c;
-      };
+      }
 
-      m.r1 = function(){
+      function r1(){
         return (-m.b - Math.sqrt(m.delta())) / (4 * m.a);
-      };
+      }
 
-      m.r2 = function(){
+      function r2(){
         return (-m.b + Math.sqrt(m.delta())) / (4 * m.a);
-      };
+      }
 
       return m;
     });

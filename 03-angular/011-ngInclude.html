@@ -194,7 +194,7 @@
             p.is_selected = !p.is_selected;
         };
 
-        m.toggle_sort = function(ordem){
+        m.muda_ordenacao = function(ordem){
           if(m.ordem != ordem){
             m.ordem = ordem;
           } else {
@@ -207,12 +207,15 @@
 
     angular.module("myapp").controller('MyCtrl', function ($scope, PhonesModel){
         var m = $scope.m = PhonesModel;
+
+        window.S1 = $scope; // GAMBI. NÃO FAZER IGUAL.
     });
-    
+
   </script>
 </head>
 
 <body ng-app="myapp" ng-controller="MyCtrl">
+  <!-- button ng-click="x=2">x=2</button -->
   <div class="container" style="margin: 15px;">
     <h1>ng-include</h1>
     <hr>
@@ -227,14 +230,14 @@
           <tr>
             <th></th>
             <th>
-              <a href ng-click="m.toggle_sort('name')">
+              <a href ng-click="m.muda_ordenacao('name')">
                 Modelo 
                 <i ng-show="m.ordem == 'name'" 
                 ng-class="{'icon-chevron-up': !m.aocontrario, 'icon-chevron-down': m.aocontrario}"></i>
               </a>
             </th>
             <th>
-              <a href ng-click="m.toggle_sort('snippet')">
+              <a href ng-click="m.muda_ordenacao('snippet')">
                 Descrição
                 <i ng-show="m.ordem == 'snippet'" 
                 ng-class="{'icon-chevron-up': !m.aocontrario, 'icon-chevron-down': m.aocontrario}"></i>

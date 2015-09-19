@@ -13,27 +13,33 @@
     angular.module("myapp").factory('IssuesModel', function($http){
       var m = {
         issues: [],
-        loading_issues: false
+        loading_issues: false,
       };
 
-      m.get_issues = function(){
-        var url = 'https://api.github.com/repos/freedomsponsors/www.freedomsponsors.org/issues';
-        m.loading_issues = true;
-        $http.get(url).success(function(result){
-          m.loading_issues = false;
-          m.issues = result;
-        });
+      angular.extend(m, {
+          get_issues: get_issues,
+          sobe: sobe,
+          desce: desce
+      });
+
+      function get_issues(){
+          var url = 'https://api.github.com/repos/freedomsponsors/www.freedomsponsors.org/issues';
+          m.loading_issues = true;
+          $http.get(url).success(function(result){
+            m.loading_issues = false;
+            m.issues = result;
+          });
       };
 
-      m.sobe = function(indice){
-        troca(m.issues, indice, indice - 1);
+      function sobe(indice){
+        _troca(m.issues, indice, indice - 1);
       };
 
-      m.desce = function(indice){
-        troca(m.issues, indice, indice + 1);
+      function desce(indice){
+        _troca(m.issues, indice, indice + 1);
       };
 
-      function troca(array, i, j){
+      function _troca(array, i, j){
         var temp = array[i];
         array[i] = array[j];
         array[j] = temp;
@@ -68,10 +74,11 @@
       var indicefoto = 0;
 
       var m = {
-        foto: fotos[indicefoto]
+        foto: fotos[indicefoto],
+        passafoto: passafoto
       };
 
-      m.passafoto = function(evento){
+      function passafoto(evento){
         $log.info(evento);
         if(evento.x > 320){
           indicefoto++;
@@ -136,6 +143,7 @@
     <div class="alert alert-info">
       Tony, não esquece:
       <ul>
+        <li>angular.extend</li>
         <li>Mostra o closure em ação</li>
       </ul>
     </div>
