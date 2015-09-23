@@ -27,8 +27,7 @@
 
     angular.module('myapp').controller('MyCtrl', ['$scope', 'PhoneModel', function($scope, PhoneModel){
         var m = $scope.m = PhoneModel;
-
-        $scope.detalheimportante = 'Escopo Isolado';
+        window.S1 = $scope;  //GAMBI, nao fazer igual
 
         $scope.select = function(ind){
             var p = m.phones[ind];

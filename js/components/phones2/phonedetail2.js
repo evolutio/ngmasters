@@ -11,6 +11,7 @@
                 phone: '=',
             },
             controller: function ($scope) {
+                window.S2 = $scope; //GAMBI, nao fazer igual
                 if($scope.phone){
                     if(!$scope.phone.selected_image){
                         $scope.phone.selected_image = $scope.phone.images[0];
