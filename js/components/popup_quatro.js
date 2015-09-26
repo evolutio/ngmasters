@@ -12,19 +12,20 @@
                 titulo: '@',
             },
             controller: function ($scope, $rootScope) {
+                window.SPopup = $scope; //GAMBI! Não faça isso!
                 $scope.close = function(){
                     $scope.visible = false;
                 };
                 
                 $scope.$watch('visible', function(){
-                    console.log('WATCH! popup Visivel = '+$scope.visible);
-                    // lanca_evento();
+                    //console.log('WATCH! popup Visivel = '+$scope.visible);
+                    lanca_evento();
                 });
 
                 function lanca_evento(){
                     var evt = {visible: $scope.visible};
                     $scope.$broadcast('evento-de-popup', evt); //pra baixo
-                    $scope.$emit('evento-de-popup', evt); //pra cima
+                    //$scope.$emit('evento-de-popup', evt); //pra cima
                     // $rootScope.$broadcast('evento-de-popup', evt); //A torra poda
                 }
             }

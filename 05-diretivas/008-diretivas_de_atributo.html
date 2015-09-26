@@ -78,6 +78,7 @@
     angular.module('myapp').directive('hoverzinho', function(){
         return {
             restrict: 'A',
+            scope: {},
             link: function(scope, element, attrs){
                 $(element).hover(function(){
                     console.log(scope.umavariavelqualquer);
@@ -138,7 +139,7 @@
 
   <section>
     <h3>Integração com plugins JQuery</h3>
-    <p>(Peguei o bizu no <a href="http://pedronauck.com/angularjs/sobre-diretivas-e-como-usar-corretamente-plugins-jquery-com-angularjs">blog do pedronauck!)</a></p>
+    <p>(Peguei o bizu no <a href="https://medium.com/@fabyoguimaraes/sobre-diretivas-e-como-usar-corretamente-plugins-jquery-com-angularjs-8bcc5a07e371">blog do pedronauck!)</a></p>
     <span class="tooltip" title="Olha... uma tooltip!">
       Passa o mouse aih de novo...
     </span>
@@ -160,14 +161,6 @@
             });
         };
     });
-    angular.module('myapp').directive('algumasTooltips', function(){
-        return {
-            restrict: 'E',
-            scope: {},
-            replace: false,
-            templateUrl: '/05-diretivas/algumasTooltips.html'
-        }
-    });
   </script>
   <!-- ================================================ -->
 
@@ -175,7 +168,11 @@
     <h3>Ah, deixa eu usar JQuery direto...?</h3>
     <p>Vc que sabe, ó...</p>
 
-    <algumas-tooltips></algumas-tooltips>
+    <input type="checkbox" ng-model="emaisoutras"> Mostre-se, ó div dissimulada!
+    <div ng-if="emaisoutras">
+      <span tooltip title="Excelente! :-)">Tooltip boa!</span>
+      <span class="tooltip" title="Ih deu ruim :-(">Tooltip má!!!</span>
+    </div>
 
     <p>Sacou? Numa pagina angular, onde o DOM pode ser modificado várias vezes durante a interação do usuário, fazer um "$('.tooltip').tooltip();" na hora que a página carrega não é suficiente!</p>
 
