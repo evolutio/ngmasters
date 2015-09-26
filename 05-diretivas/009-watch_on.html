@@ -22,6 +22,7 @@
   <script>
 
     angular.module('myapp').controller('MyCtrl', ['$scope', function($scope){
+        window.SPai = $scope; //GAMBI! Não faça isso!
         $scope.show1 = function(){
           $scope.visible1 = true;
         };
@@ -32,12 +33,14 @@
     }]);
 
     angular.module('myapp').controller('CtrlIrmao', function($scope){
+        window.SIrmao = $scope; //GAMBI! Não faça isso!
         $scope.$on('evento-de-popup', function(evt, data){
           console.log('Irmao ON!('+JSON.stringify(data)+')');
         });
     });
 
     angular.module('myapp').controller('CtrlFilho', function($scope){
+        window.SFilho = $scope; //GAMBI! Não faça isso!
         $scope.$on('evento-de-popup', function(evt, data){
           console.log('Filho ON!('+JSON.stringify(data)+')');
         });

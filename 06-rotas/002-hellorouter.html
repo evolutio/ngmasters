@@ -11,14 +11,14 @@
       window.Global = {};
     }
     Global.angular_dependencies = [
-      'ngRoute',
+      'ui.router',
       'mod_view_pessoas',
       'mod_view_pessoa',
       'mod_service_people'];
   </script>
 
   <script src="../lib/angular.js"></script>
-  <script src="../lib/angular-route.js"></script>
+  <script src="../lib/angular-ui-router.js"></script>
   <script src="../lib/jquery-1.10.2.min.js"></script>
   <script src="../js/base.js"></script>
   <script src="../js/mock_utils.js"></script>
@@ -28,11 +28,11 @@
   <script src="rotas/service_people.js"></script>
 
   <script>
-    angular.module('myapp').config(function($routeProvider) {
-      $routeProvider.
-        when('/pessoa', {templateUrl: 'rotas/pessoas.html', controller: 'PessoasCtrl'}).
-        when('/pessoa/:pessoaId', {templateUrl: 'rotas/pessoa.html', controller: 'PessoaCtrl'}).
-        otherwise({redirectTo: '/pessoa'});
+    angular.module('myapp').config(function($urlRouterProvider, $stateProvider) {
+      $stateProvider
+          .state('lista', {url: '/pessoa', templateUrl: 'rotas/pessoas.html', controller: 'PessoasCtrl'})
+          .state('detalhe', {url: '/pessoa/:pessoaId', templateUrl: 'rotas/pessoa.html', controller: 'PessoaCtrl'})
+      $urlRouterProvider.otherwise('/pessoa');
     });
   </script>
 
@@ -51,23 +51,25 @@
 
       <ol>
         <li>
-          <p>ng-view (diretiva tipo A)</p>
+          <p>ui-view (diretiva tipo A)</p>
         </li>
         <li>
-          <p>$routeProvider (Serviço angular) - passa no config do app raiz</p>
+          <p>$stateProvider e $urlRouterProvider (Providers angular) - passa no config do app raiz</p>
         </li>
         <li>
-          <p>$routeParams - passa pros controllers de cada view</p>
+          <p>$stateParams - passa pros controllers de cada view</p>
         </li>
       </ol>
     </section>
 
-    <div ng-view></div>
+    <div ui-view></div>
 
     <footer>
       <h3>Animal. Dá pra fazer umas coisas legais com isso!</h3>
       
       <p>Sim! Principalmente se vc precisa de uma SPA com URLs amigáveis e suporte ao botão back ;-)</p>
+
+      <p>Pra ver um exemplo mais completo, não deixe de ver o <a href="http://github.com/tonylampada/djangular3">Djangular3</a></p>
 
       <p>Bom galera, o que eu tinha pra falar <strong>de Angular</strong> acabou. Mas tem um outro assunto importante que é o seguinte:</p>
 

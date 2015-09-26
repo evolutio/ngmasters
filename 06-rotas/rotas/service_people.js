@@ -1,6 +1,6 @@
 (function(){
-    angular.module('mod_service_people', []);
-    angular.module('mod_service_people').factory('PeopleAPI', ['$timeout', function($timeout) {
+    angular.module('mod_service_people', ['mock_utils']);
+    angular.module('mod_service_people').factory('PeopleAPI', function(MockUtils) {
         var people = [
             {
                 id: 1,
@@ -20,17 +20,17 @@
         ];
         return {
             list_people: function(){
-                return Global.mock_ajax($timeout, people);
+                return MockUtils.mock_ajax(people);
             },
             get: function(id){
                 for(var i=0; i<people.length; i++){
                     if(id === people[i].id){
-                        return Global.mock_ajax($timeout, people[i]);
+                        return MockUtils.mock_ajax(people[i]);
                     }
                 }
             }
         };
-    }]);
+    });
 
     angular.module('mod_service_people').factory('PessoasModel', function(PeopleAPI){
         var m = {

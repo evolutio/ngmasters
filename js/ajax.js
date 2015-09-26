@@ -23,25 +23,29 @@ angular.module('ajax').config(
 
 angular.module('ajax').factory('Ajax', function($http){
     return {
-        get: function(url, params){
-            if(!params){
-                params = {};
-            }
-            return $http({
-                method: 'GET',
-                url: url,
-                params: params //ta vendo, pra GET a gente passa params
-            });
-        },
-        post: function(url, params){
-            if(!params){
-                params = {};
-            }
-            return $http({
-                method: 'POST',
-                url: url,
-                data: $.param(params) //e pra post a gente passa data
-            });
-        }
+        get: get,
+        post: post
     };
+
+    function get(url, params){
+        if(!params){
+            params = {};
+        }
+        return $http({
+            method: 'GET',
+            url: url,
+            params: params //ta vendo, pra GET a gente passa params
+        });
+    }
+
+    function post(url, params){
+        if(!params){
+            params = {};
+        }
+        return $http({
+            method: 'POST',
+            url: url,
+            data: $.param(params) //e pra post a gente passa data
+        });
+    }
 });

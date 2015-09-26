@@ -5,7 +5,8 @@
 
   <ul ng-show="!m.loading">
     <li ng-repeat="pessoa in m.pessoas">
-      <a href="#/pessoa/{[{ pessoa.id }]}">{[{ pessoa.name }]}</a>
+      <a href="#/pessoa/{[{ pessoa.id }]}">{[{ pessoa.name }]}</a> 
+      <!-- - <a ui-sref="detalhe({pessoaId: pessoa.id})">ou isso</a> -->
     </li>
   </ul>
 </section>

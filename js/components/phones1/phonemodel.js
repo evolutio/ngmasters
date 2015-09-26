@@ -23,18 +23,24 @@
             ]
         };
 
-        m.select = function(p){
+        angular.extend(m, {
+            select: select,
+            select_image: select_image
+        });
+
+        return m;
+
+        function select(p){
             m.loading = true;
             PhoneApi.get_phone(p.id).success(function(phone){
                 m.loading = false;
                 m.selected_phone = phone;
                 m.selected_phone.selected_image = phone.images[0];
             });
-        };
+        }
 
-        m.select_image = function(img){
+        function select_image(img){
             m.selected_phone.selected_image = img;
-        };
-        return m;
+        }
     });
 })();
