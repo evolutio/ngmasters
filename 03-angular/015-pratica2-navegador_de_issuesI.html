@@ -66,7 +66,10 @@
     <span>
         Owner:
         <span style="position: relative;">
-            <input type="text" ng-model="gm.username_input" ng-model-options="{ debounce: {'default': 200, 'blur': 0} }" ng-change="gm.busca_usuarios_pelo_nome()">
+            <input type="text" 
+              ng-model="gm.username_input" 
+              ng-model-options="{ updateOn: 'default blur', debounce: {'default': 200, 'blur': 0} }" 
+              ng-change="gm.busca_usuarios_pelo_nome()">
             <img ng-show="gm.buscando_usuarios" src="../img/loader.gif">
             <div class="pop-options" ng-show="gm.mostra_usuarios_encontrados">
                 <ul>

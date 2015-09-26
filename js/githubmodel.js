@@ -1,4 +1,5 @@
 angular.module('githubmodel', ['github_api']);
+
 angular.module('githubmodel').factory('GithubModel', function(GithubApi, $log){
 
 	var gm = {
@@ -77,14 +78,14 @@ angular.module('githubmodel').factory('GithubModel', function(GithubApi, $log){
 	function reset_repo(){
 		if(gm.repo){
 			gm.repo.issues = [];
+			gm.repo.files = [
+				{
+					name: "/",
+					path: "",
+					type: "dir"
+				}
+			];
 		}
-		gm.repo.files = [
-			{
-				name: "/",
-				path: "",
-				type: "dir"
-			}
-		];
 	}
 
 	function toggle_expand(node){
