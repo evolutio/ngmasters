@@ -1,5 +1,6 @@
 ////////// requires
 var gulp = require('gulp');
+var debug = require('gulp-debug');
 var concat = require('gulp-concat');
 
 ////////// code location
@@ -17,5 +18,8 @@ var app = {
 ////////// Tasks
 
 gulp.task('concat', function() {
-    return gulp.src(app.js).pipe(concat('./build/'));
+    return gulp.src(app.js)
+        .pipe(debug())
+        .pipe(concat('a.js'))
+        .pipe(gulp.dest('build/'));
 });

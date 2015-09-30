@@ -2,7 +2,8 @@
   "name": "myapp",
   "version": "0.1.0",
   "devDependencies": {
-      "gulp": "~3.9.0",
-      "gulp-concat": "~2.5.2"
+    "gulp": "~3.9.0",
+    "gulp-concat": "~2.5.2",
+    "gulp-debug": "~2.1.0"
   }
 }
