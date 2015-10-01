@@ -1,45 +1,26 @@
 module.exports = function(grunt) {
 
-  //1. Carrega plugins
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
+    var dados_comuns_disponiveis_pra_todas_as_tasks = {
+        arquivosjs: [
+            '../js/base.js',
+            '../js/ajax.js',
+            '../js/github_api2.js',
+            '../js/githubmodel.js',
+            '../js/components/gh_*/**/*.js',
+            '../js/components/popup.js',
+        ],
+        pkg: grunt.file.readJSON('package.json')
+    };
 
-  var concamina_tasks = [
-    'concat:build',
-    'uglify:build'
-  ];
+    // Conta o tempo das tasks facilitando a identificação de tasks carroça
+    require('time-grunt')(grunt);
 
-  //2. Registra tarefas
-  grunt.registerTask('concamina', concamina_tasks);
+    // Carrega configurações da pasta grunt-configs/
+    var path = require('path');
+    require('load-grunt-config')(grunt, {
+        init: true,
+        configPath: path.join(process.cwd(), 'grunt-tasks'),
+        data: dados_comuns_disponiveis_pra_todas_as_tasks
+    });
 
-  var arquivosjs = [
-    '../js/base.js',
-    '../js/ajax.js',
-    '../js/github_api2.js',
-    '../js/githubmodel.js',
-    '../js/components/gh_*/**/*.js',
-    '../js/components/popup.js',
-  ];
-
-  console.log(arquivosjs);
-
-  //3. Configura tarefas
-  grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
-    concat: {
-      build: {
-        src: arquivosjs,
-        dest: 'tmp/myapp.js'
-      }
-    },
-    uglify: {
-      options: {
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n',
-      },
-      build: {
-        src: ['tmp/myapp.js'],
-        dest: 'tmp/myapp.min.js'
-      }
-    }
-  });
 };

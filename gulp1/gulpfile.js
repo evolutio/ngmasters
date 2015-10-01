@@ -2,6 +2,9 @@
 var gulp = require('gulp');
 var debug = require('gulp-debug');
 var concat = require('gulp-concat');
+var uglify = require('gulp-uglify');
+var uglifyjs = require('gulp-uglifyjs');
+var rename = require('gulp-rename');
 
 ////////// code location
 var app = {
@@ -20,6 +23,13 @@ var app = {
 gulp.task('concat', function() {
     return gulp.src(app.js)
         .pipe(debug())
-        .pipe(concat('a.js'))
+        .pipe(concat('myapp.js'))
+        .pipe(gulp.dest('build/'));
+});
+
+gulp.task('minify', ['concat'], function() {
+    return gulp.src('build/myapp.js')
+        .pipe(debug())
+        .pipe(uglifyjs('myapp.min.js'))
         .pipe(gulp.dest('build/'));
 });
