@@ -2,9 +2,8 @@
 var gulp = require('gulp');
 var debug = require('gulp-debug');
 var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
 var uglifyjs = require('gulp-uglifyjs');
-var rename = require('gulp-rename');
+var ngmin = require('gulp-ngmin');
 
 ////////// code location
 var app = {
@@ -30,6 +29,7 @@ gulp.task('concat', function() {
 gulp.task('minify', ['concat'], function() {
     return gulp.src('build/myapp.js')
         .pipe(debug())
+        // .pipe(ngmin())
         .pipe(uglifyjs('myapp.min.js'))
         .pipe(gulp.dest('build/'));
 });

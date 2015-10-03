@@ -9,7 +9,7 @@
   <script>
     angular.module('myapp', []);
     angular.module('myapp').run(function($templateCache){
-      $templateCache.put('/07-grunt/hello.html', '<p>Olá papai</p>');
+      $templateCache.put('/07-gulp/hello.html', '<p>Olá papai</p>');
     });
   </script>
 </head>
@@ -25,14 +25,14 @@
       <h3>$templateCache</h3>
 
       <div ng-include="'hello.html'"></div>
-      <div ng-include="'/07-grunt/hello.html'"></div>
+      <div ng-include="'/07-gulp/hello.html'"></div>
     </section>
 
     <footer>
-      <h3>Hum, e o que tem o grunt com isso?</h3>
+      <h3>Hum, e o que tem o gulp com isso?</h3>
       <p>Vamos ver vamos ver!</p>
       <ul>
-        <li><a href="005-grunt_template_cache.html">cacheando templates com o grunt</a></li>
+        <li><a href="005-gulp_template_cache.html">cacheando templates com o gulp</a></li>
       </ul>
     </footer>
   </div>

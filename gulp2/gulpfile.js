@@ -9,6 +9,8 @@ var ngTemplates = require('gulp-ng-templates');
 var ngmin = require('gulp-ngmin');
 var karma = require('karma').server;
 var argv = require('yargs').argv;
+var watch = require('gulp-watch');
+var batch = require('gulp-batch');
 
 ////////// code location
 var app = {
@@ -67,13 +69,11 @@ gulp.task('templates', function(){
 });
 
 gulp.task('concat', ['templates'], function() {
-    return gulp.src(app.js
-            .concat(['build/myapp_templates.js']))
+    return gulp.src(app.js.concat(['./build/myapp_templates.js']))
         .pipe(debug())
         .pipe(concat('myapp.js'))
         .pipe(gulp.dest('build/'));
 });
-
 
 gulp.task('minify', ['concat'], function() {
     return gulp.src('build/myapp.js')
@@ -93,6 +93,7 @@ gulp.task('test', ['templates'], function (done) {
         frameworks: ['mocha'],
         reporters: ['progress'],
         browsers: ['PhantomJS'],
+        // browsers: ['Chrome'],
         autoWatch: true,
         singleRun: singleRun,
         client: {
@@ -112,9 +113,10 @@ gulp.task('test', ['templates'], function (done) {
     };
     if(coverage){
         karmacfg.reporters = ['progress', 'coverage'];
-        karmacfg.preprocessors = {
-            './src/**/!(docs)/*.js': ['coverage']
-        };
+        karmacfg.preprocessors = {};
+        app.js.map(function(f){
+            karmacfg.preprocessors[f] = ['coverage'];
+        })
         karmacfg.coverageReporter = {
             reporters: [
                 { type : 'html', dir : 'coverage/' },
@@ -124,6 +126,12 @@ gulp.task('test', ['templates'], function (done) {
     }
 
     karma.start(karmacfg, done);
+});
+
+gulp.task('watch', function () {
+    watch(concatall(app.js, app.nghtml), batch(function (events, done) {
+        gulp.start('minify', done);
+    }));
 });
 
 
