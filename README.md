@@ -67,7 +67,7 @@
 ## 06 - Rotas
 * Rotas
 
-## 07 - Gruntjs
+## 07 - Gulp
 * Setup
 * Concatenação / minificação
 * Template caching
