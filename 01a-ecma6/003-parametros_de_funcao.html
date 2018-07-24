@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AngularJS</title>
+<link rel="stylesheet" href="../css/curso.css">
+<script src="../lib/jquery-1.11.0.js"></script>
+<script src="003-parametros_de_funcao.js"></script>
+</head>
+<body>
+  <div class="head">
+    <span style="font-weight:bold">ng-<span style="color: rgb(125, 25, 51);">masters</span></span>: AngularJS na prática
+  </div>
+<div class="container content">
+  <h1>Parâmetros de função (mais açúcar sintático)</h1>
+
+  <section>
+    <h3>Parâmetros default</h3>
+    <button onclick="defaultparams()">function(x, y=1)</button>
+    <pre jsfunctioncontent="defaultparams"></pre>
+  </section>
+
+  <section>
+    <h3>Parâmetro ...resto</h3>
+    <button onclick="resto()">function(x, y=1, ...z)</button>
+    <pre jsfunctioncontent="resto"></pre>
+  </section>
+
+  <section>
+    <h3>Parâmetro {attr1, attr2}</h3>
+    <button onclick="objattrs(event)">function({x, y})</button>
+    <pre jsfunctioncontent="objattrs"></pre>
+  </section>
+
+<!--footer>
+  <h3>Boaaa, tranquilasso. Próximo!</h3>
+  <ul>
+    <li><a href="008-prototype.html">Prototype</a></li>
+  </ul>
+</footer-->
+
+</body>
+</html>
